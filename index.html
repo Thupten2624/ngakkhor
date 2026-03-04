@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#fafaf8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Vajrayana">
+<meta name="description" content="Registro de prácticas de meditación budista Vajrayana">
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" href="icons/icon-180x180.png">
+<link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+<link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png">
+
+<!-- Splash screens iOS -->
+<meta name="apple-touch-startup-image" content="icons/icon-512x512.png">
+
+<title>Vajrayana · Práctica</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: #e8e6e0;
+    --border-light: #f0ede8;
+    --text: #1a1916;
+    --text-muted: #8a8780;
+    --text-light: #b5b2ac;
+    --accent: #c4975a;
+    --accent-light: #f5ede0;
+    --accent-dark: #a07840;
+    --danger: #c4614a;
+    --danger-light: #fdf0ed;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+  }
+
+  html {
+    font-size: 16px;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100%;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* iOS smooth scroll */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── LAYOUT SHELL ── */
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding-top: var(--safe-top);
+    padding-bottom: var(--safe-bottom);
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: rgba(250,250,248,0.92);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 12px;
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-symbol { font-size: 1.1rem; color: var(--accent); }
+
+  /* ── BOTTOM TAB BAR ── */
+  .tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    background: rgba(250,250,248,0.96);
+    border-top: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    padding-bottom: var(--safe-bottom);
+    z-index: 200;
+  }
+
+  .tab-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 0 8px;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    letter-spacing: 0.02em;
+  }
+
+  .tab-btn.active { color: var(--accent); }
+  .tab-icon { font-size: 1.3rem; line-height: 1; }
+
+  /* ── MAIN SCROLL AREA ── */
+  main {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 16px;
+    padding-bottom: calc(80px + var(--safe-bottom));
+  }
+
+  /* ── VIEWS ── */
+  .view { display: none; }
+  .view.active { display: block; animation: fadeIn 0.18s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 12px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .section-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+  /* ── PRACTICE CARDS ── */
+  .practices-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .practice-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .practice-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+  }
+
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+
+  .card-info { flex: 1; min-width: 0; }
+  .card-icon { font-size: 1.2rem; margin-bottom: 4px; }
+  .card-name { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; line-height: 1.2; }
+  .card-type { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+  .card-menu-btn {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--bg);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* PROGRESS */
+  .progress-label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 6px; font-size: 0.78rem; color: var(--text-muted);
+  }
+
+  .progress-count { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--text); }
+
+  .progress-bar { height: 5px; background: var(--border); border-radius: 100px; overflow: hidden; margin-bottom: 4px; }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+    border-radius: 100px;
+    transition: width 0.6s cubic-bezier(.34,1.56,.64,1);
+    min-width: 3px;
+  }
+
+  .progress-meta { font-size: 0.7rem; color: var(--text-light); text-align: right; margin-bottom: 12px; }
+
+  /* DAILY BADGE */
+  .daily-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--accent-light);
+    border-radius: var(--radius-sm);
+    margin-bottom: 14px;
+  }
+
+  .daily-label { font-size: 0.75rem; color: var(--accent-dark); }
+  .daily-value { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--accent-dark); font-weight: 500; }
+
+  /* ADD BTN */
+  .btn-add-session {
+    width: 100%; padding: 12px;
+    background: var(--accent); color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 400;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-add-session:active { background: var(--accent-dark); }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 12px 20px;
+    border-radius: var(--radius-sm); border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 400;
+    cursor: pointer; transition: all 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 48px;
+  }
+
+  .btn-primary { background: var(--text); color: #fff; }
+  .btn-primary:active { background: #333; }
+
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-accent:active { background: var(--accent-dark); }
+
+  .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-ghost:active { background: var(--bg); }
+
+  .btn-danger { background: var(--danger); color: #fff; }
+
+  .btn-full { width: 100%; }
+
+  .btn-icon-sm {
+    padding: 8px 14px; min-height: 36px;
+    border-radius: 100px; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 400;
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
+    transition: all 0.15s;
+  }
+
+  .btn-edit { background: var(--bg); color: var(--text-muted); border: 1px solid var(--border); }
+  .btn-delete { background: var(--danger-light); color: var(--danger); }
+
+  /* ── FORM ELEMENTS ── */
+  .form-group { margin-bottom: 16px; }
+
+  label {
+    display: block; font-size: 0.72rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;
+  }
+
+  input[type="text"], input[type="number"], input[type="date"],
+  select, textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; /* prevents iOS zoom */
+    background: var(--bg); color: var(--text);
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none; appearance: none;
+  }
+
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  input::placeholder, textarea::placeholder { color: var(--text-light); }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8780' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+    padding-right: 40px;
+  }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* ── REGISTER CARD ── */
+  .reg-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 18px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+
+  /* ── HISTORY ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+
+  .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; line-height: 1; margin-bottom: 4px; }
+  .stat-label { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+
+  .filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+
+  .filter-select {
+    padding: 8px 12px; border: 1px solid var(--border);
+    border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+    background: var(--surface); color: var(--text); outline: none; cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8780' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 10px center;
+    padding-right: 26px; -webkit-appearance: none; appearance: none;
+  }
+
+  /* SESSIONS LIST (mobile-friendly, no table) */
+  .sessions-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .session-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .session-date-badge {
+    text-align: center;
+    min-width: 42px;
+    flex-shrink: 0;
+  }
+
+  .session-day { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; line-height: 1; color: var(--accent); }
+  .session-month { font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.06em; }
+
+  .session-body { flex: 1; min-width: 0; }
+  .session-practice { font-size: 0.88rem; font-weight: 400; color: var(--text); }
+  .session-meta { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+  .session-note { font-size: 0.72rem; color: var(--text-light); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .session-mantras {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .session-mantras-label { font-size: 0.62rem; color: var(--text-muted); text-align: right; font-family: 'DM Sans', sans-serif; }
+
+  .session-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+  /* ── MODAL / BOTTOM SHEET ── */
+  .sheet-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(10,10,8,0.5);
+    z-index: 500;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .sheet-overlay.open { display: flex; }
+
+  .sheet {
+    background: var(--surface);
+    border-radius: 20px 20px 0 0;
+    padding: 0 20px 0;
+    padding-bottom: calc(24px + var(--safe-bottom));
+    max-width: 600px;
+    width: 100%;
+    max-height: 92dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    animation: slideUp 0.25s cubic-bezier(.34,1.2,.64,1);
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .sheet-handle {
+    width: 40px; height: 4px;
+    background: var(--border);
+    border-radius: 100px;
+    margin: 12px auto 20px;
+  }
+
+  .sheet-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+    margin-bottom: 20px; line-height: 1.3;
+  }
+
+  .sheet-actions {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-top: 20px; padding-bottom: 4px;
+  }
+
+  /* CONTEXT MENU SHEET */
+  .menu-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 0;
+    border: none; background: transparent;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    color: var(--text); cursor: pointer; width: 100%;
+    border-bottom: 1px solid var(--border-light);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item.danger { color: var(--danger); }
+  .menu-icon { font-size: 1.1rem; width: 24px; text-align: center; }
+
+  /* EMPTY STATE */
+  .empty-state { text-align: center; padding: 50px 20px; color: var(--text-muted); }
+  .empty-icon { font-size: 2.5rem; margin-bottom: 14px; opacity: 0.5; }
+  .empty-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; margin-bottom: 6px; color: var(--text); }
+  .empty-text { font-size: 0.82rem; }
+
+  /* INSTALL BANNER */
+  .install-banner {
+    display: none;
+    position: fixed; bottom: calc(64px + var(--safe-bottom) + 10px); left: 16px; right: 16px;
+    background: var(--text); color: #fff;
+    border-radius: var(--radius); padding: 14px 16px;
+    box-shadow: var(--shadow-lg);
+    z-index: 300;
+    align-items: center; gap: 12px;
+    font-size: 0.82rem; line-height: 1.4;
+  }
+
+  .install-banner.show { display: flex; }
+  .install-banner-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .install-banner-text { flex: 1; }
+  .install-banner-close {
+    background: rgba(255,255,255,0.15); border: none; color: #fff;
+    border-radius: 50%; width: 28px; height: 28px;
+    font-size: 0.8rem; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: calc(72px + var(--safe-bottom) + 10px); left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--text); color: #fff;
+    padding: 10px 20px; border-radius: 100px;
+    font-size: 0.82rem; z-index: 9999;
+    opacity: 0; transition: all 0.25s;
+    white-space: nowrap; max-width: calc(100vw - 40px);
+    text-align: center; pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* CONFIRM TEXT */
+  .confirm-text { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-symbol">☸</span>
+        Vajrayana · Práctica
+      </div>
+      <div id="header-action"></div>
+    </div>
+  </header>
+
+  <main id="main-scroll">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div id="view-dashboard" class="view active">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Mis prácticas</h1>
+          <p class="section-subtitle" id="today-date"></p>
+        </div>
+        <button class="btn btn-primary" style="min-height:40px;padding:8px 14px;font-size:0.82rem;" onclick="openNewPractice()">+ Nueva</button>
+      </div>
+      <div id="practices-grid" class="practices-grid"></div>
+    </div>
+
+    <!-- ══ REGISTER ══ -->
+    <div id="view-register" class="view">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Registrar sesión</h1>
+          <p class="section-subtitle">Añade tu práctica de hoy</p>
+        </div>
+      </div>
+      <div class="reg-card">
+        <div class="form-group">
+          <label>Práctica</label>
+          <select id="reg-practice"></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mantras / Rep.</label>
+            <input type="number" id="reg-mantras" inputmode="numeric" placeholder="108" />
+          </div>
+          <div class="form-group">
+            <label>Duración (min)</label>
+            <input type="number" id="reg-duration" inputmode="numeric" placeholder="30" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="date" id="reg-date" />
+        </div>
+        <div class="form-group">
+          <label>Notas (opcional)</label>
+          <textarea id="reg-notes" placeholder="Observaciones, sensaciones, dedicatoria…" rows="3"></textarea>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-primary btn-full" onclick="saveSession()">Guardar sesión</button>
+          <button class="btn btn-ghost" onclick="clearRegForm()">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ HISTORY ══ -->
+    <div id="view-history" class="view">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Historial</h1>
+          <p class="section-subtitle">Todas tus sesiones</p>
+        </div>
+      </div>
+      <div class="stats-row" id="stats-row"></div>
+      <div class="filter-row">
+        <select class="filter-select" id="filter-practice" onchange="renderHistory()">
+          <option value="">Todas</option>
+        </select>
+        <select class="filter-select" id="filter-period" onchange="renderHistory()">
+          <option value="">Siempre</option>
+          <option value="7">7 días</option>
+          <option value="30">30 días</option>
+          <option value="90">90 días</option>
+        </select>
+      </div>
+      <div id="sessions-list" class="sessions-list"></div>
+    </div>
+
+  </main>
+
+  <!-- ══ BOTTOM TAB BAR ══ -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" onclick="showView('dashboard')">
+      <span class="tab-icon">📿</span>Prácticas
+    </button>
+    <button class="tab-btn" onclick="showView('register')">
+      <span class="tab-icon">＋</span>Registrar
+    </button>
+    <button class="tab-btn" onclick="showView('history')">
+      <span class="tab-icon">📊</span>Historial
+    </button>
+  </nav>
+
+</div>
+
+<!-- ══ BOTTOM SHEETS ══ -->
+
+<!-- Practice Form Sheet -->
+<div id="sheet-practice" class="sheet-overlay" onclick="closeSheetOnOverlay(event,'sheet-practice')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="sheet-title" id="sheet-practice-title">Nueva práctica</h2>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input type="text" id="p-name" placeholder="ej. Vajrasattva, Tara Verde…" />
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tipo</label>
+        <select id="p-type">
+          <option value="ngondro">Ngöndro</option>
+          <option value="sadhana">Sadhana</option>
+          <option value="tummo">Tummo</option>
+          <option value="postraciones">Postraciones</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Unidad</label>
+        <select id="p-unit">
+          <option value="mantras">Mantras</option>
+          <option value="repeticiones">Repeticiones</option>
+          <option value="vueltas">Vueltas mala</option>
+          <option value="postraciones">Postraciones</option>
+          <option value="ciclos">Ciclos</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Meta total</label>
+        <input type="number" id="p-goal" inputmode="numeric" placeholder="100000" />
+      </div>
+      <div class="form-group">
+        <label>Meta diaria</label>
+        <input type="number" id="p-daily" inputmode="numeric" placeholder="108" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Total acumulado actual</label>
+      <input type="number" id="p-current" inputmode="numeric" placeholder="0" />
+    </div>
+    <div class="form-group">
+      <label>Mantra / descripción</label>
+      <textarea id="p-desc" placeholder="OM VAJRASATTVA HUM…" rows="2"></textarea>
+    </div>
+    <div class="sheet-actions">
+      <button class="btn btn-primary btn-full" onclick="savePractice()">Guardar práctica</button>
+      <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-practice')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Add Mantras Sheet -->
+<div id="sheet-mantras" class="sheet-overlay" onclick="closeSheetOnOverlay(event,'sheet-mantras')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="sheet-title" id="sheet-mantras-title">Añadir mantras</h2>
+    <div class="form-group">
+      <label>Cantidad</label>
+      <input type="number" id="quick-mantras" inputmode="numeric" placeholder="108" />
+    </div>
+    <div class="form-group">
+      <label>Notas (opcional)</label>
+      <input type="text" id="quick-notes" placeholder="Sesión de tarde…" />
+    </div>
+    <div class="sheet-actions">
+      <button class="btn btn-accent btn-full" onclick="confirmAddMantras()">Añadir</button>
+      <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-mantras')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Context Menu Sheet -->
+<div id="sheet-menu" class="sheet-overlay" onclick="closeSheetOnOverlay(event,'sheet-menu')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="sheet-title" id="sheet-menu-title"></h2>
+    <button class="menu-item" onclick="menuAddMantras()"><span class="menu-icon">＋</span> Añadir sesión</button>
+    <button class="menu-item" onclick="menuEdit()"><span class="menu-icon">✎</span> Editar práctica</button>
+    <button class="menu-item danger" onclick="menuDelete()"><span class="menu-icon">✕</span> Eliminar práctica</button>
+  </div>
+</div>
+
+<!-- Edit Session Sheet -->
+<div id="sheet-edit-session" class="sheet-overlay" onclick="closeSheetOnOverlay(event,'sheet-edit-session')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="sheet-title">Editar sesión</h2>
+    <input type="hidden" id="edit-session-id" />
+    <div class="form-group">
+      <label>Práctica</label>
+      <select id="edit-session-practice"></select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Mantras</label>
+        <input type="number" id="edit-session-mantras" inputmode="numeric" />
+      </div>
+      <div class="form-group">
+        <label>Duración (min)</label>
+        <input type="number" id="edit-session-duration" inputmode="numeric" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Fecha</label>
+      <input type="date" id="edit-session-date" />
+    </div>
+    <div class="form-group">
+      <label>Notas</label>
+      <textarea id="edit-session-notes" rows="3"></textarea>
+    </div>
+    <div class="sheet-actions">
+      <button class="btn btn-primary btn-full" onclick="saveEditSession()">Guardar cambios</button>
+      <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-edit-session')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Sheet -->
+<div id="sheet-confirm" class="sheet-overlay" onclick="closeSheetOnOverlay(event,'sheet-confirm')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="sheet-title">¿Confirmar?</h2>
+    <p class="confirm-text" id="confirm-text"></p>
+    <div class="sheet-actions">
+      <button class="btn btn-danger btn-full" id="confirm-action-btn">Eliminar</button>
+      <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-confirm')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Install Banner -->
+<div id="install-banner" class="install-banner">
+  <span class="install-banner-icon">☸️</span>
+  <span class="install-banner-text">
+    Instala la app: pulsa <strong>Compartir</strong> → <strong>«Añadir a pantalla de inicio»</strong>
+  </span>
+  <button class="install-banner-close" onclick="dismissInstallBanner()">✕</button>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════
+// DATA LAYER
+// ══════════════════════════════════════════════
+const DB = {
+  getPractices: () => JSON.parse(localStorage.getItem('vj_practices') || '[]'),
+  savePractices: d => localStorage.setItem('vj_practices', JSON.stringify(d)),
+  getSessions: () => JSON.parse(localStorage.getItem('vj_sessions') || '[]'),
+  saveSessions: d => localStorage.setItem('vj_sessions', JSON.stringify(d)),
+};
+
+const ICONS = { ngondro:'🔔', sadhana:'☸️', tummo:'🔥', postraciones:'🙏', otro:'📿' };
+const TYPE_LABELS = { ngondro:'Ngöndro', sadhana:'Sadhana', tummo:'Tummo / Pranayama', postraciones:'Postraciones', otro:'Otra práctica' };
+const MONTHS = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+
+// ══════════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════════
+function showView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+  const idx = ['dashboard','register','history'].indexOf(v);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  if (v === 'dashboard') renderDashboard();
+  if (v === 'register') initRegForm();
+  if (v === 'history') { renderStats(); renderHistory(); }
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════════
+function renderDashboard() {
+  const practices = DB.getPractices();
+  const grid = document.getElementById('practices-grid');
+  document.getElementById('today-date').textContent =
+    new Date().toLocaleDateString('es-ES', { weekday:'long', day:'numeric', month:'long' });
+
+  if (!practices.length) {
+    grid.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">📿</div>
+      <div class="empty-title">Sin prácticas aún</div>
+      <div class="empty-text">Toca «+ Nueva» para empezar</div>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = practices.map(p => {
+    const total = p.current || 0;
+    const goal = p.goal || 100000;
+    const daily = p.daily || 108;
+    const pct = Math.min(100, (total / goal) * 100);
+    return `<div class="practice-card">
+      <div class="card-top">
+        <div class="card-info">
+          <div class="card-icon">${ICONS[p.type]||'📿'}</div>
+          <div class="card-name">${p.name}</div>
+          <div class="card-type">${TYPE_LABELS[p.type]||p.type}</div>
+        </div>
+        <button class="card-menu-btn" onclick="openCardMenu('${p.id}')">···</button>
+      </div>
+      <div class="progress-label">
+        <span>${p.unit||'mantras'} acumulados</span>
+        <span class="progress-count" id="count-${p.id}">${total.toLocaleString('es-ES')}</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="fill-${p.id}" style="width:${pct}%"></div>
+      </div>
+      <div class="progress-meta">Meta: ${goal.toLocaleString('es-ES')} · <span id="pct-${p.id}">${pct.toFixed(1)}</span>%</div>
+      <div class="daily-row">
+        <span class="daily-label">Objetivo diario</span>
+        <span class="daily-value">${daily.toLocaleString('es-ES')} ${p.unit||'mantras'}</span>
+      </div>
+      ${p.desc ? `<div style="font-size:0.75rem;color:var(--text-muted);margin-bottom:12px;font-style:italic;">${p.desc}</div>` : ''}
+      <button class="btn-add-session" onclick="openQuickAdd('${p.id}')">+ Añadir sesión</button>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════
+// CARD MENU
+// ══════════════════════════════════════════════
+let menuPracticeId = null;
+
+function openCardMenu(id) {
+  menuPracticeId = id;
+  const p = DB.getPractices().find(x => x.id === id);
+  document.getElementById('sheet-menu-title').textContent = p.name;
+  openSheet('sheet-menu');
+}
+
+function menuAddMantras() { closeSheet('sheet-menu'); openQuickAdd(menuPracticeId); }
+function menuEdit() { closeSheet('sheet-menu'); setTimeout(() => openEditPractice(menuPracticeId), 150); }
+function menuDelete() { closeSheet('sheet-menu'); setTimeout(() => confirmDeletePractice(menuPracticeId), 150); }
+
+// ══════════════════════════════════════════════
+// PRACTICE CRUD
+// ══════════════════════════════════════════════
+let editingPracticeId = null;
+
+function openNewPractice() {
+  editingPracticeId = null;
+  document.getElementById('sheet-practice-title').textContent = 'Nueva práctica';
+  ['p-name','p-goal','p-daily','p-current','p-desc'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('p-type').value = 'sadhana';
+  document.getElementById('p-unit').value = 'mantras';
+  openSheet('sheet-practice');
+}
+
+function openEditPractice(id) {
+  const p = DB.getPractices().find(x => x.id === id);
+  if (!p) return;
+  editingPracticeId = id;
+  document.getElementById('sheet-practice-title').textContent = 'Editar práctica';
+  document.getElementById('p-name').value = p.name || '';
+  document.getElementById('p-type').value = p.type || 'sadhana';
+  document.getElementById('p-unit').value = p.unit || 'mantras';
+  document.getElementById('p-goal').value = p.goal || '';
+  document.getElementById('p-daily').value = p.daily || '';
+  document.getElementById('p-current').value = p.current || 0;
+  document.getElementById('p-desc').value = p.desc || '';
+  openSheet('sheet-practice');
+}
+
+function savePractice() {
+  const name = document.getElementById('p-name').value.trim();
+  if (!name) { showToast('El nombre es obligatorio'); return; }
+  const practices = DB.getPractices();
+  const obj = {
+    name,
+    type: document.getElementById('p-type').value,
+    unit: document.getElementById('p-unit').value,
+    goal: parseInt(document.getElementById('p-goal').value) || 100000,
+    daily: parseInt(document.getElementById('p-daily').value) || 108,
+    current: parseInt(document.getElementById('p-current').value) || 0,
+    desc: document.getElementById('p-desc').value.trim(),
+  };
+  if (editingPracticeId) {
+    const idx = practices.findIndex(x => x.id === editingPracticeId);
+    practices[idx] = { ...practices[idx], ...obj };
+    showToast('Práctica actualizada ✓');
+  } else {
+    obj.id = 'p_' + Date.now();
+    obj.createdAt = new Date().toISOString();
+    practices.push(obj);
+    showToast('Práctica creada ✓');
+  }
+  DB.savePractices(practices);
+  closeSheet('sheet-practice');
+  renderDashboard();
+}
+
+function confirmDeletePractice(id) {
+  const p = DB.getPractices().find(x => x.id === id);
+  document.getElementById('confirm-text').textContent = `¿Eliminar "${p.name}"? Se borrarán también todas sus sesiones.`;
+  document.getElementById('confirm-action-btn').onclick = () => deletePractice(id);
+  openSheet('sheet-confirm');
+}
+
+function deletePractice(id) {
+  DB.savePractices(DB.getPractices().filter(x => x.id !== id));
+  DB.saveSessions(DB.getSessions().filter(x => x.practiceId !== id));
+  closeSheet('sheet-confirm');
+  renderDashboard();
+  showToast('Práctica eliminada');
+}
+
+// ══════════════════════════════════════════════
+// QUICK ADD MANTRAS
+// ══════════════════════════════════════════════
+let quickPracticeId = null;
+
+function openQuickAdd(id) {
+  quickPracticeId = id;
+  const p = DB.getPractices().find(x => x.id === id);
+  document.getElementById('sheet-mantras-title').textContent = p.name;
+  document.getElementById('quick-mantras').value = '';
+  document.getElementById('quick-notes').value = '';
+  openSheet('sheet-mantras');
+  setTimeout(() => document.getElementById('quick-mantras').focus(), 300);
+}
+
+function confirmAddMantras() {
+  const qty = parseInt(document.getElementById('quick-mantras').value);
+  if (!qty || qty < 1) { showToast('Introduce una cantidad válida'); return; }
+  const notes = document.getElementById('quick-notes').value.trim();
+
+  const practices = DB.getPractices();
+  const idx = practices.findIndex(x => x.id === quickPracticeId);
+  if (idx < 0) return;
+  practices[idx].current = (practices[idx].current || 0) + qty;
+  DB.savePractices(practices);
+
+  const sessions = DB.getSessions();
+  sessions.unshift({ id:'s_'+Date.now(), practiceId:quickPracticeId,
+    date: new Date().toISOString().split('T')[0], mantras:qty, duration:null, notes,
+    createdAt: new Date().toISOString() });
+  DB.saveSessions(sessions);
+
+  // Animate
+  const countEl = document.getElementById('count-' + quickPracticeId);
+  const fillEl = document.getElementById('fill-' + quickPracticeId);
+  const pctEl = document.getElementById('pct-' + quickPracticeId);
+  if (countEl) {
+    const newTotal = practices[idx].current;
+    const pct = Math.min(100, (newTotal / (practices[idx].goal || 100000)) * 100);
+    animateCounter(countEl, newTotal);
+    if (fillEl) fillEl.style.width = pct + '%';
+    if (pctEl) pctEl.textContent = pct.toFixed(1);
+  }
+
+  closeSheet('sheet-mantras');
+  showToast(`+${qty.toLocaleString('es-ES')} ${practices[idx].unit||'mantras'} 🙏`);
+}
+
+function animateCounter(el, target) {
+  const current = parseInt(el.textContent.replace(/\./g,'').replace(/,/g,'')) || 0;
+  const diff = target - current; const steps = 25; let i = 0;
+  const t = setInterval(() => {
+    i++; el.textContent = Math.round(current + diff*(i/steps)).toLocaleString('es-ES');
+    if (i >= steps) { el.textContent = target.toLocaleString('es-ES'); clearInterval(t); }
+  }, 16);
+}
+
+// ══════════════════════════════════════════════
+// REGISTER FORM
+// ══════════════════════════════════════════════
+function initRegForm() {
+  const practices = DB.getPractices();
+  const sel = document.getElementById('reg-practice');
+  sel.innerHTML = practices.length
+    ? practices.map(p => `<option value="${p.id}">${p.name}</option>`).join('')
+    : '<option value="">Sin prácticas — crea una primero</option>';
+  document.getElementById('reg-date').value = new Date().toISOString().split('T')[0];
+}
+
+function saveSession() {
+  const practiceId = document.getElementById('reg-practice').value;
+  if (!practiceId) { showToast('Selecciona una práctica'); return; }
+  const mantras = parseInt(document.getElementById('reg-mantras').value) || 0;
+  const duration = parseInt(document.getElementById('reg-duration').value) || null;
+  const date = document.getElementById('reg-date').value || new Date().toISOString().split('T')[0];
+  const notes = document.getElementById('reg-notes').value.trim();
+
+  const sessions = DB.getSessions();
+  sessions.unshift({ id:'s_'+Date.now(), practiceId, date, mantras, duration, notes, createdAt:new Date().toISOString() });
+  DB.saveSessions(sessions);
+
+  if (mantras > 0) {
+    const practices = DB.getPractices();
+    const idx = practices.findIndex(x => x.id === practiceId);
+    if (idx >= 0) { practices[idx].current = (practices[idx].current||0) + mantras; DB.savePractices(practices); }
+  }
+
+  showToast('Sesión guardada 🙏');
+  clearRegForm();
+}
+
+function clearRegForm() {
+  document.getElementById('reg-mantras').value = '';
+  document.getElementById('reg-duration').value = '';
+  document.getElementById('reg-notes').value = '';
+  document.getElementById('reg-date').value = new Date().toISOString().split('T')[0];
+}
+
+// ══════════════════════════════════════════════
+// HISTORY
+// ══════════════════════════════════════════════
+function renderStats() {
+  const sessions = DB.getSessions();
+  const practices = DB.getPractices();
+  const totalMantras = practices.reduce((a,p) => a+(p.current||0), 0);
+  const today = new Date().toISOString().split('T')[0];
+  const todayMantras = sessions.filter(s=>s.date===today).reduce((a,s)=>a+(s.mantras||0),0);
+  const totalMin = sessions.reduce((a,s)=>a+(s.duration||0),0);
+
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-value">${totalMantras.toLocaleString('es-ES')}</div>
+      <div class="stat-label">Total acumulado</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${sessions.length}</div>
+      <div class="stat-label">Sesiones totales</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${Math.round(totalMin/60)||0}</div>
+      <div class="stat-label">Horas de práctica</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${todayMantras.toLocaleString('es-ES')}</div>
+      <div class="stat-label">Mantras hoy</div>
+    </div>`;
+}
+
+function renderHistory() {
+  const sessions = DB.getSessions();
+  const practices = DB.getPractices();
+  const fp = document.getElementById('filter-practice');
+  const filterPractice = fp.value;
+  const filterPeriod = parseInt(document.getElementById('filter-period').value)||0;
+
+  // Repopulate filter
+  const saved = fp.value;
+  fp.innerHTML = '<option value="">Todas</option>' +
+    practices.map(p=>`<option value="${p.id}" ${saved===p.id?'selected':''}>${p.name}</option>`).join('');
+  fp.value = saved;
+
+  let filtered = [...sessions];
+  if (filterPractice) filtered = filtered.filter(s=>s.practiceId===filterPractice);
+  if (filterPeriod) {
+    const cutoff = new Date(); cutoff.setDate(cutoff.getDate()-filterPeriod);
+    filtered = filtered.filter(s=>new Date(s.date)>=cutoff);
+  }
+
+  const list = document.getElementById('sessions-list');
+  if (!filtered.length) {
+    list.innerHTML = `<div class="empty-state"><div class="empty-icon">📋</div><div class="empty-title">Sin sesiones</div><div class="empty-text">Registra tu primera práctica</div></div>`;
+    return;
+  }
+
+  list.innerHTML = filtered.map(s => {
+    const p = practices.find(x=>x.id===s.practiceId);
+    const pName = p ? p.name : 'Práctica eliminada';
+    const d = new Date(s.date+'T12:00:00');
+    return `<div class="session-item">
+      <div class="session-date-badge">
+        <div class="session-day">${d.getDate()}</div>
+        <div class="session-month">${MONTHS[d.getMonth()]}</div>
+      </div>
+      <div class="session-body">
+        <div class="session-practice">${pName}</div>
+        <div class="session-meta">${s.duration ? s.duration+' min · ' : ''}${p?.unit||'mantras'}</div>
+        ${s.notes ? `<div class="session-note">${s.notes}</div>` : ''}
+      </div>
+      <div>
+        <div class="session-mantras">${s.mantras ? s.mantras.toLocaleString('es-ES') : '—'}</div>
+        <div class="session-mantras-label">${p?.unit||'mantras'}</div>
+      </div>
+      <div class="session-actions">
+        <button class="btn-icon-sm btn-edit" onclick="openEditSession('${s.id}')">✎</button>
+        <button class="btn-icon-sm btn-delete" onclick="confirmDeleteSession('${s.id}')">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// EDIT SESSION
+function openEditSession(id) {
+  const s = DB.getSessions().find(x=>x.id===id);
+  if (!s) return;
+  const practices = DB.getPractices();
+  document.getElementById('edit-session-practice').innerHTML =
+    practices.map(p=>`<option value="${p.id}" ${p.id===s.practiceId?'selected':''}>${p.name}</option>`).join('');
+  document.getElementById('edit-session-id').value = s.id;
+  document.getElementById('edit-session-mantras').value = s.mantras||'';
+  document.getElementById('edit-session-duration').value = s.duration||'';
+  document.getElementById('edit-session-date').value = s.date;
+  document.getElementById('edit-session-notes').value = s.notes||'';
+  openSheet('sheet-edit-session');
+}
+
+function saveEditSession() {
+  const id = document.getElementById('edit-session-id').value;
+  const sessions = DB.getSessions();
+  const idx = sessions.findIndex(x=>x.id===id);
+  if (idx<0) return;
+  const oldPracticeId = sessions[idx].practiceId;
+  const newPracticeId = document.getElementById('edit-session-practice').value;
+  sessions[idx] = { ...sessions[idx],
+    practiceId: newPracticeId,
+    mantras: parseInt(document.getElementById('edit-session-mantras').value)||0,
+    duration: parseInt(document.getElementById('edit-session-duration').value)||null,
+    date: document.getElementById('edit-session-date').value,
+    notes: document.getElementById('edit-session-notes').value.trim(),
+  };
+  DB.saveSessions(sessions);
+  recalcPracticeTotal(oldPracticeId);
+  if (newPracticeId !== oldPracticeId) recalcPracticeTotal(newPracticeId);
+  closeSheet('sheet-edit-session');
+  renderHistory(); renderStats();
+  showToast('Sesión actualizada ✓');
+}
+
+function confirmDeleteSession(id) {
+  document.getElementById('confirm-text').textContent = '¿Eliminar esta sesión? El total de la práctica se recalculará.';
+  document.getElementById('confirm-action-btn').onclick = () => deleteSession(id);
+  openSheet('sheet-confirm');
+}
+
+function deleteSession(id) {
+  const s = DB.getSessions().find(x=>x.id===id);
+  DB.saveSessions(DB.getSessions().filter(x=>x.id!==id));
+  if (s?.practiceId) recalcPracticeTotal(s.practiceId);
+  closeSheet('sheet-confirm');
+  renderHistory(); renderStats();
+  showToast('Sesión eliminada');
+}
+
+function recalcPracticeTotal(practiceId) {
+  const total = DB.getSessions().filter(s=>s.practiceId===practiceId).reduce((a,s)=>a+(s.mantras||0),0);
+  const practices = DB.getPractices();
+  const idx = practices.findIndex(x=>x.id===practiceId);
+  if (idx>=0) { practices[idx].current=total; DB.savePractices(practices); }
+}
+
+// ══════════════════════════════════════════════
+// SHEETS
+// ══════════════════════════════════════════════
+function openSheet(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeSheet(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function closeSheetOnOverlay(e, id) { if (e.target.id===id) closeSheet(id); }
+
+// Close sheets on back swipe (iOS)
+document.querySelectorAll('.sheet-overlay').forEach(overlay => {
+  let startY=0;
+  overlay.querySelector('.sheet').addEventListener('touchstart', e=>{ startY=e.touches[0].clientY; }, {passive:true});
+  overlay.querySelector('.sheet').addEventListener('touchmove', e=>{
+    const dy = e.touches[0].clientY - startY;
+    if (dy > 60) closeSheet(overlay.id);
+  }, {passive:true});
+});
+
+// ══════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════
+let toastTimer = null;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>el.classList.remove('show'), 2400);
+}
+
+// ══════════════════════════════════════════════
+// INSTALL BANNER (iOS Safari only)
+// ══════════════════════════════════════════════
+function isIOS() { return /iphone|ipad|ipod/i.test(navigator.userAgent); }
+function isInStandalone() { return window.navigator.standalone === true; }
+
+function showInstallBannerIfNeeded() {
+  if (isIOS() && !isInStandalone() && !localStorage.getItem('vj_install_dismissed')) {
+    setTimeout(()=>document.getElementById('install-banner').classList.add('show'), 2000);
+  }
+}
+
+function dismissInstallBanner() {
+  document.getElementById('install-banner').classList.remove('show');
+  localStorage.setItem('vj_install_dismissed', '1');
+}
+
+// ══════════════════════════════════════════════
+// SERVICE WORKER
+// ══════════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW error:', err));
+  });
+}
+
+// ══════════════════════════════════════════════
+// SEED DEFAULT PRACTICES
+// ══════════════════════════════════════════════
+function seedIfEmpty() {
+  if (DB.getPractices().length > 0) return;
+  DB.savePractices([
+    { id:'p_1', name:'Vajrasattva', type:'ngondro', unit:'mantras', goal:100000, daily:108, current:0, desc:'OM VAJRASATTVA HUM', createdAt:new Date().toISOString() },
+    { id:'p_2', name:'Postraciones Ngöndro', type:'postraciones', unit:'postraciones', goal:100000, daily:111, current:0, desc:'', createdAt:new Date().toISOString() },
+    { id:'p_3', name:'Tara Verde', type:'sadhana', unit:'mantras', goal:100000, daily:108, current:0, desc:'OM TARE TUTTARE TURE SVAHA', createdAt:new Date().toISOString() },
+    { id:'p_4', name:'Tummo / Vase Breathing', type:'tummo', unit:'ciclos', goal:10000, daily:21, current:0, desc:'', createdAt:new Date().toISOString() },
+  ]);
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+seedIfEmpty();
+renderDashboard();
+showInstallBannerIfNeeded();
+</script>
+</body>
+</html>
