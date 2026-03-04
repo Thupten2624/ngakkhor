@@ -1,68 +1,45 @@
-# ☸ Vajrayana · Registro de Práctica
+# Vajrayana · Práctica v2
 
-App PWA para registro de prácticas de meditación budista Vajrayana.
-Instálala en tu iPhone directamente desde Safari, sin App Store.
+PWA completa para registro de prácticas Vajrayana con familias, horarios y recordatorios.
 
----
+## Contenido del ZIP
 
-## 📲 Cómo instalar en iPhone (paso a paso)
+```
+vajrayana-v2/
+├── index.html       ← app completa
+├── manifest.json    ← configuración PWA
+├── sw.js            ← offline + recordatorios
+├── icons/           ← iconos para iPhone
+└── README.md
+```
 
-### Paso 1 — Sube a GitHub Pages
+## Subir a GitHub Pages (paso a paso)
 
-1. Ve a **github.com** e inicia sesión (o crea cuenta gratis)
-2. Pulsa **"New repository"** (botón verde)
-3. Nombre: `vajrayana-practica` (o el que quieras)
-4. Marca **"Public"** ✓
-5. Pulsa **"Create repository"**
+1. Ve a **github.com** → New repository → nombre: `vajrayana` → Public → Create
+2. Pulsa **"uploading an existing file"** → arrastra todos los archivos y la carpeta `icons/`
+3. **Settings** → **Pages** → Branch: **main** / **root** → Save
+4. Espera 1-2 min → tu URL: `https://TU_USUARIO.github.io/vajrayana/`
 
-### Paso 2 — Sube los archivos
+## Instalar en iPhone
 
-En la página del repositorio vacío:
-1. Pulsa **"uploading an existing file"**
-2. Arrastra TODOS estos archivos/carpetas:
-   - `index.html`
-   - `manifest.json`
-   - `sw.js`
-   - Carpeta `icons/` (con todas las imágenes dentro)
-3. Pulsa **"Commit changes"**
+1. Abre la URL en **Safari**
+2. Compartir (icono cuadrado con flecha) → **"Añadir a pantalla de inicio"**
+3. Aparece como app nativa con icono azul lapislázuli
 
-### Paso 3 — Activa GitHub Pages
+## Activar recordatorios
 
-1. Ve a **Settings** (pestaña del repositorio)
-2. En el menú izquierdo: **Pages**
-3. En "Branch": selecciona **main** → carpeta **/ (root)**
-4. Pulsa **Save**
-5. Espera 1-2 minutos → aparecerá tu URL:
-   `https://TU_USUARIO.github.io/vajrayana-practica/`
+Los recordatorios funcionan con **Web Push** (iOS 16.4+, solo si está instalada como PWA):
+- Al abrir la app por primera vez te pedirá permiso para notificaciones
+- Acepta para recibir los recordatorios configurados en cada práctica
 
-### Paso 4 — Instala en tu iPhone
+## Funcionalidades
 
-1. Abre Safari en tu iPhone
-2. Ve a tu URL de GitHub Pages
-3. Pulsa el botón **Compartir** (cuadrado con flecha ↑)
-4. Desplázate y pulsa **"Añadir a pantalla de inicio"**
-5. Ponle nombre → **Añadir**
-
-¡Listo! Aparece en tu pantalla de inicio como una app nativa 🎉
-
----
-
-## ✅ Funcionalidades
-
-- Registro completo de prácticas Vajrayana
-- CRUD: crear, editar, eliminar prácticas y sesiones
-- Contador de mantras en tiempo real con animación
-- Progreso hacia objetivo final (100.000 u otro personalizable)
-- Objetivo diario visible siempre
-- Historial completo con filtros
-- Estadísticas: total acumulado, horas, mantras de hoy
-- Funciona **offline** (Service Worker)
-- Datos guardados en el dispositivo (localStorage)
-- Diseño optimizado para iPhone con bottom sheets nativos
-
----
-
-## 🔒 Privacidad
-
-Todos los datos se guardan **únicamente en tu dispositivo**.
-No hay servidor, no hay cuenta, no hay nube.
+- **Familias de prácticas**: Ngöndro, Yidam, o las que crees
+- **Prácticas por familia**: CRUD completo con metas y progreso
+- **Días de práctica**: marca qué días de la semana se practica
+- **Horarios**: añade una o varias horas por práctica
+- **Recordatorios**: 5, 10, 15, 30, 60 o 120 min antes
+- **Destacar prácticas de hoy** al abrir una familia
+- **Historial** con filtros y estadísticas
+- **Funciona offline**
+- **Datos en el dispositivo** (localStorage, sin servidor)
