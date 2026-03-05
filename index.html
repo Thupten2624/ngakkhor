@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0a1628">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -10,387 +10,343 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-180x180.png">
 <title>Vajrayana · Práctica</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#0a1628;--bg2:#0f1e36;--bg3:#162440;
-  --surf:#1a2d4a;--surf2:#1f3558;
-  --bord:#2a3f5f;--bord2:#1e3050;
-  --lapis:#2563a8;--lapis-l:#3577c0;
-  --cyan:#4ab8cc;--cyan-d:#38a0b4;--cyan-dim:rgba(74,184,204,.13);
-  --text:#e8edf5;--text-m:#8fa3c0;--text-d:#506480;
-  --danger:#e05555;--danger-dim:rgba(224,85,85,.15);
-  --gold:#c9a84c;--gold-dim:rgba(201,168,76,.12);
-  --success:#4acc8a;--success-dim:rgba(74,204,138,.12);
-  --green:#2a9d6a;
-  --radius:14px;--radius-s:8px;--radius-xs:5px;
-  --shadow:0 2px 8px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.2);
-  --shadow-l:0 8px 32px rgba(0,0,0,.45);
-  --glow:0 0 24px rgba(74,184,204,.12);
-  --safe-t:env(safe-area-inset-top,0px);--safe-b:env(safe-area-inset-bottom,0px);
+  --s:#1a2d4a;--s2:#1f3558;--bord:#2a3f5f;--bord2:#1e3050;
+  --lapis:#2563a8;--lapis2:#3577c0;
+  --cyan:#4ab8cc;--cyan2:#38a0b4;--cyandim:rgba(74,184,204,.13);
+  --tx:#e8edf5;--txm:#8fa3c0;--txd:#506480;
+  --red:#e05555;--reddim:rgba(224,85,85,.15);
+  --gold:#c9a84c;--golddim:rgba(201,168,76,.14);
+  --grn:#4acc8a;--grndim:rgba(74,204,138,.13);
+  --r:14px;--rs:8px;--rxs:5px;
+  --sh:0 2px 8px rgba(0,0,0,.3),0 1px 2px rgba(0,0,0,.2);
+  --shl:0 8px 32px rgba(0,0,0,.45);
+  --glow:0 0 24px rgba(74,184,204,.11);
+  --st:env(safe-area-inset-top,0px);--sb:env(safe-area-inset-bottom,0px);
 }
 @media(prefers-color-scheme:light){:root{
-  --bg:#f0f4fa;--bg2:#e8eef8;--bg3:#dde5f2;
-  --surf:#fff;--surf2:#f5f8ff;--bord:#d0daea;--bord2:#e0e8f5;
-  --lapis:#1a4a8a;--lapis-l:#2563a8;--cyan:#2a90a8;--cyan-d:#1e7a90;
-  --cyan-dim:rgba(42,144,168,.1);
-  --text:#0f1e36;--text-m:#4a6080;--text-d:#8a9cb0;
-  --danger:#c43030;--danger-dim:rgba(196,48,48,.1);
-  --gold:#8a6820;--gold-dim:rgba(138,104,32,.1);
-  --success:#1a8a50;--success-dim:rgba(26,138,80,.1);--green:#1a7a50;
-  --shadow:0 2px 8px rgba(15,30,54,.08),0 1px 2px rgba(15,30,54,.05);
-  --shadow-l:0 8px 32px rgba(15,30,54,.12);--glow:0 0 24px rgba(42,144,168,.07);
+  --bg:#f0f4fa;--bg2:#e8eef8;--bg3:#dde5f2;--s:#fff;--s2:#f5f8ff;
+  --bord:#d0daea;--bord2:#e0e8f5;--lapis:#1a4a8a;--lapis2:#2563a8;
+  --cyan:#2a90a8;--cyan2:#1e7a90;--cyandim:rgba(42,144,168,.1);
+  --tx:#0f1e36;--txm:#4a6080;--txd:#8a9cb0;
+  --red:#c43030;--reddim:rgba(196,48,48,.1);
+  --gold:#8a6820;--golddim:rgba(138,104,32,.1);
+  --grn:#1a8a50;--grndim:rgba(26,138,80,.1);
+  --sh:0 2px 8px rgba(15,30,54,.08),0 1px 2px rgba(15,30,54,.05);
+  --shl:0 8px 32px rgba(15,30,54,.12);--glow:0 0 24px rgba(42,144,168,.07);
 }}
 html{height:100%;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
-body{font-family:'Jost',sans-serif;font-weight:300;background:var(--bg);color:var(--text);min-height:100dvh;line-height:1.6;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-#app{display:flex;flex-direction:column;min-height:100dvh;padding-top:var(--safe-t)}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--bg);color:var(--tx);min-height:100dvh;line-height:1.6;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+#app{display:flex;flex-direction:column;min-height:100dvh;padding-top:var(--st)}
 
 /* HEADER */
-header{background:rgba(10,22,40,.88);border-bottom:1px solid var(--bord2);padding:0 16px;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-@media(prefers-color-scheme:light){header{background:rgba(240,244,250,.92)}}
-.hi{display:flex;align-items:center;height:52px;gap:10px}
-.hback{width:34px;height:34px;border-radius:50%;border:none;background:var(--surf2);color:var(--cyan);font-size:.95rem;cursor:pointer;display:none;align-items:center;justify-content:center;flex-shrink:0}
+header{background:rgba(10,22,40,.88);border-bottom:1px solid var(--bord2);padding:0 15px;position:sticky;top:0;z-index:100;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+@media(prefers-color-scheme:light){header{background:rgba(240,244,250,.93)}}
+.hi{display:flex;align-items:center;height:52px;gap:9px}
+.hback{width:34px;height:34px;border-radius:50%;border:none;background:var(--s2);color:var(--cyan);font-size:.95rem;cursor:pointer;display:none;align-items:center;justify-content:center;flex-shrink:0}
 .hback.on{display:flex}
-.htitle{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;letter-spacing:.02em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hacts{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
+.htitle{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;letter-spacing:.02em;color:var(--tx);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hacts{display:flex;gap:5px;margin-left:auto;flex-shrink:0}
 
 /* MAIN */
-main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px;padding-bottom:calc(68px + var(--safe-b))}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;padding-bottom:calc(66px + var(--sb))}
 
-/* TAB BAR */
-.tabbar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,.94);border-top:1px solid var(--bord2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;padding-bottom:var(--safe-b);z-index:200}
-@media(prefers-color-scheme:light){.tabbar{background:rgba(240,244,250,.96)}}
-.tbtn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 0 7px;border:none;background:transparent;color:var(--text-d);font-family:'Jost',sans-serif;font-size:.58rem;font-weight:400;cursor:pointer;transition:color .2s;letter-spacing:.05em;text-transform:uppercase}
-.tbtn.active{color:var(--cyan)}
-.tico{font-size:1.1rem;line-height:1}
+/* TABS */
+.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,.94);border-top:1px solid var(--bord2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;padding-bottom:var(--sb);z-index:200}
+@media(prefers-color-scheme:light){.tabs{background:rgba(240,244,250,.96)}}
+.tb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:8px 0 6px;border:none;background:transparent;color:var(--txd);font-family:'Jost',sans-serif;font-size:.57rem;font-weight:400;cursor:pointer;transition:color .2s;letter-spacing:.05em;text-transform:uppercase}
+.tb.active{color:var(--cyan)}
+.ti{font-size:1.05rem;line-height:1}
 
 /* VIEWS */
 .view{display:none}
-.view.active{display:block;animation:fadeUp .16s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.view.active{display:block;animation:fu .15s ease}
+@keyframes fu{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-/* SEC HEADER */
-.sechdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:10px}
-.sectitle{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;color:var(--text);line-height:1.15}
-.secsub{font-size:.72rem;color:var(--text-m);margin-top:2px}
+/* ══ BREADCRUMB ══ */
+.bc{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:12px;font-size:.7rem;color:var(--txm)}
+.bc-a{cursor:pointer;color:var(--cyan);white-space:nowrap}
+.bc-a:active{text-decoration:underline}
+.bc-sep{color:var(--txd)}
+.bc-cur{color:var(--txm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+
+/* ══ TREE NODES ══ */
+.node-list{display:flex;flex-direction:column;gap:7px}
+
+.node-card{background:var(--s);border:1px solid var(--bord);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.node-card.type-practice{border-left:3px solid var(--cyan)}
+.node-card.type-school{border-left:3px solid var(--gold)}
+.node-card.type-lineage{border-left:3px solid var(--lapis)}
+.node-card.type-cycle{border-left:3px solid var(--grn)}
+
+.node-row{display:flex;align-items:flex-start;padding:12px 12px 10px;gap:9px;cursor:pointer}
+.node-row:active{background:var(--s2)}
+.node-type-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.dot-school{background:var(--gold)}
+.dot-lineage{background:var(--lapis2)}
+.dot-cycle{background:var(--grn)}
+.dot-practice{background:var(--cyan)}
+.dot-node{background:var(--txd)}
+
+.node-body{flex:1;min-width:0}
+.node-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--tx);line-height:1.25}
+.node-desc{font-size:.68rem;color:var(--txm);margin-top:2px;line-height:1.5}
+.node-meta{font-size:.63rem;color:var(--txd);margin-top:3px;display:flex;gap:8px;flex-wrap:wrap}
+.node-tag{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;padding:1px 6px;border-radius:100px;flex-shrink:0;margin-top:2px}
+.tag-school{background:var(--golddim);color:var(--gold)}
+.tag-lineage{background:rgba(37,99,168,.22);color:var(--lapis2)}
+.tag-cycle{background:var(--grndim);color:var(--grn)}
+.tag-practice{background:var(--cyandim);color:var(--cyan)}
+.tag-node{background:var(--bord2);color:var(--txm)}
+.node-menu{width:30px;height:30px;border-radius:50%;border:none;background:transparent;color:var(--txd);font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.node-arrow{color:var(--txd);font-size:.85rem;flex-shrink:0;margin-top:4px}
+
+/* practice extra section */
+.node-prac{padding:0 12px 12px;border-top:1px solid var(--bord2)}
+.np-prog-row{display:flex;justify-content:space-between;align-items:center;font-size:.68rem;color:var(--txm);margin:8px 0 4px}
+.np-cnt{font-family:'Cormorant Garamond',serif;font-size:.92rem;color:var(--tx)}
+.np-bar{height:3px;background:var(--bord2);border-radius:100px;overflow:hidden;margin-bottom:3px}
+.np-fill{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .5s ease;min-width:2px}
+.np-pct{font-size:.62rem;color:var(--txd);text-align:right;margin-bottom:7px}
+.np-daily{display:flex;justify-content:space-between;align-items:center;background:var(--cyandim);border-radius:var(--rxs);padding:6px 10px;margin-bottom:7px}
+.np-dl{font-size:.67rem;color:var(--txm)}.np-dv{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--cyan)}
+.np-days{display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap}
+.dd{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;background:var(--bg3);color:var(--txd)}
+.dd.on{background:var(--lapis);color:#fff}.dd.now{background:var(--cyan);color:#fff}
+.np-times{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px}
+.np-t{font-size:.65rem;background:var(--cyandim);color:var(--cyan);padding:2px 7px;border-radius:100px}
+.np-proj{font-size:.63rem;color:var(--gold);margin-bottom:7px}
+.btn-addsess{width:100%;padding:9px;background:var(--lapis);color:#fff;border:none;border-radius:var(--rxs);font-family:'Jost',sans-serif;font-size:.8rem;cursor:pointer}
+.btn-addsess:active{background:var(--lapis2)}
+
+/* add child button */
+.add-child-btn{display:flex;align-items:center;justify-content:center;gap:7px;padding:12px;border:1.5px dashed var(--bord);border-radius:var(--r);background:transparent;color:var(--txm);font-family:'Jost',sans-serif;font-size:.8rem;cursor:pointer;width:100%;margin-top:4px}
+.add-child-btn:active{background:var(--s2)}
 
 /* ══ TODAY ══ */
-.today-hero{background:linear-gradient(135deg,var(--surf),var(--surf2));border:1px solid var(--bord);border-radius:var(--radius);padding:18px;margin-bottom:14px;box-shadow:var(--shadow),var(--glow);position:relative;overflow:hidden}
-.today-hero::before{content:'';position:absolute;top:-30px;right:-30px;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,var(--cyan-dim),transparent 70%);pointer-events:none}
-.today-date{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:300;color:var(--text);text-transform:capitalize;margin-bottom:6px}
-.streak-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.streak-n{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold)}
-.streak-l{font-size:.7rem;color:var(--text-m)}
-.streak-bar{display:flex;gap:3px}
-.sd{width:26px;height:4px;border-radius:100px;background:var(--bord)}
-.sd.done{background:var(--gold)}.sd.tod{background:var(--cyan)}
-.today-stats{display:flex;gap:8px;margin-top:12px}
-.tsc{flex:1;background:var(--bg2);border-radius:var(--radius-s);padding:9px 11px;border:1px solid var(--bord2)}
-.tsc-v{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--cyan);line-height:1}
-.tsc-l{font-size:.62rem;color:var(--text-m);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
-.today-sec-lbl{font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-weight:500;margin:14px 0 8px}
-.ti{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius-s);padding:12px;margin-bottom:7px;display:flex;align-items:center;gap:10px}
-.ti.done{opacity:.45}
-.ti-chk{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bord);background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:transparent;font-size:.75rem;transition:all .2s}
-.ti-chk.on{background:var(--success);border-color:var(--success);color:#fff}
-.ti-body{flex:1;min-width:0}
-.ti-name{font-size:.88rem;color:var(--text);font-weight:400}
-.ti-meta{font-size:.68rem;color:var(--text-m);margin-top:1px}
-.ti-add{padding:5px 11px;border-radius:100px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font-family:'Jost',sans-serif;font-size:.7rem;cursor:pointer;flex-shrink:0}
-.ti-add:active{background:var(--cyan-dim)}
-
-/* ══ CATALOG TREE ══ */
-.tree-search{display:flex;gap:8px;margin-bottom:14px}
-.tree-search input{flex:1;padding:10px 13px;border:1px solid var(--bord);border-radius:var(--radius-s);font-family:'Jost',sans-serif;font-size:.9rem;background:var(--bg2);color:var(--text);outline:none}
-.tree-search input:focus{border-color:var(--cyan)}
-.tree-search input::placeholder{color:var(--text-d)}
-
-.breadcrumb{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:14px;font-size:.72rem;color:var(--text-m)}
-.bc-item{cursor:pointer;color:var(--cyan)}
-.bc-item:hover{text-decoration:underline}
-.bc-sep{color:var(--text-d)}
-.bc-current{color:var(--text-m)}
-
-.tree-node{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius-s);margin-bottom:7px;overflow:hidden;box-shadow:var(--shadow)}
-.tree-node.active-node{border-color:var(--green);border-left:3px solid var(--green)}
-.tn-row{display:flex;align-items:center;padding:12px 13px;gap:10px;cursor:pointer}
-.tn-row:active{background:var(--surf2)}
-.tn-expand{width:22px;height:22px;border-radius:50%;border:1px solid var(--bord);background:transparent;color:var(--text-m);font-size:.75rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s}
-.tn-expand.open{transform:rotate(90deg)}
-.tn-expand.leaf{border-color:transparent;background:transparent;color:var(--text-d)}
-.tn-body{flex:1;min-width:0}
-.tn-name{font-size:.9rem;color:var(--text);font-weight:400;line-height:1.3}
-.tn-desc{font-size:.68rem;color:var(--text-m);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tn-badge{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;padding:2px 7px;border-radius:100px;flex-shrink:0}
-.badge-school{background:rgba(37,99,168,.25);color:var(--cyan)}
-.badge-lineage{background:rgba(201,168,76,.18);color:var(--gold)}
-.badge-cycle{background:rgba(74,184,204,.15);color:var(--cyan)}
-.badge-practice{background:var(--success-dim);color:var(--success)}
-.badge-active{background:var(--success-dim);color:var(--success)}
-.tn-activate{padding:5px 11px;border-radius:100px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font-family:'Jost',sans-serif;font-size:.68rem;cursor:pointer;flex-shrink:0;white-space:nowrap}
-.tn-activate.activated{border-color:var(--green);color:var(--green);background:var(--success-dim)}
-.tn-info{padding:0 13px 12px 45px;font-size:.72rem;color:var(--text-m);line-height:1.6;border-top:1px solid var(--bord2);padding-top:10px;display:none}
-.tn-info.open{display:block}
-.tn-children{padding-left:14px;border-left:1px solid var(--bord2);margin:0 13px 10px 32px;display:none}
-.tn-children.open{display:block}
-
-/* ══ MY PRACTICES ══ */
-.fam-card{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:box-shadow .2s,transform .12s;margin-bottom:10px}
-.fam-card:active{transform:scale(.985);box-shadow:var(--shadow-l)}
-.fc-hdr{padding:15px 15px 11px;display:flex;align-items:flex-start;gap:11px}
-.fc-stripe{width:3px;border-radius:100px;background:linear-gradient(180deg,var(--lapis),var(--cyan));flex-shrink:0;align-self:stretch;min-height:34px}
-.fc-body{flex:1;min-width:0}
-.fc-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);line-height:1.2}
-.fc-meta{font-size:.68rem;color:var(--text-m);margin-top:2px}
-.fc-img{width:40px;height:40px;border-radius:var(--radius-s);object-fit:cover;flex-shrink:0;border:1px solid var(--bord)}
-.fc-menu{width:28px;height:28px;border-radius:50%;border:none;background:var(--bg2);color:var(--text-m);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.fc-arrow{color:var(--text-d);font-size:.85rem;flex-shrink:0;margin-top:4px}
-.fc-prog{padding:0 15px 13px 29px}
-.pbar-row{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-m);margin-bottom:4px}
-.pbar{height:3px;background:var(--bord2);border-radius:100px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .5s ease;min-width:2px}
-
-/* practice item */
-.pi-card{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow)}
-.pi-card.is-today{border-color:var(--lapis);border-left:3px solid var(--cyan)}
-.pi-top{display:flex;align-items:center;padding:12px 12px 0;gap:9px}
-.pi-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;color:var(--text);flex:1;min-width:0;line-height:1.2}
-.pi-tag{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;background:var(--lapis);color:#fff;border-radius:100px;padding:2px 7px;flex-shrink:0}
-.pi-menu{width:27px;height:27px;border-radius:50%;border:none;background:transparent;color:var(--text-d);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.pi-body{padding:9px 12px 12px}
-.pi-prog-row{display:flex;justify-content:space-between;align-items:center;font-size:.68rem;color:var(--text-m);margin-bottom:4px}
-.pi-cnt{font-family:'Cormorant Garamond',serif;font-size:.92rem;color:var(--text)}
-.pi-b{height:3px;background:var(--bord2);border-radius:100px;overflow:hidden;margin-bottom:3px}
-.pi-f{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .6s ease;min-width:2px}
-.pi-pct{font-size:.63rem;color:var(--text-d);text-align:right;margin-bottom:7px}
-.pi-daily{display:flex;justify-content:space-between;align-items:center;background:var(--cyan-dim);border:1px solid var(--bord2);border-radius:var(--radius-xs);padding:6px 10px;margin-bottom:7px}
-.pi-dl{font-size:.68rem;color:var(--text-m)}.pi-dv{font-family:'Cormorant Garamond',serif;font-size:.92rem;color:var(--cyan)}
-.pi-days{display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap}
-.dd{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;background:var(--bg3);color:var(--text-d)}
-.dd.on{background:var(--lapis);color:#fff}.dd.now{background:var(--cyan);color:#fff}
-.pi-times{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px}
-.pi-ttag{font-size:.66rem;background:var(--cyan-dim);color:var(--cyan);padding:2px 7px;border-radius:100px}
-.pi-desc{font-size:.68rem;color:var(--text-m);font-style:italic;margin-bottom:7px;line-height:1.5}
-.pi-proj{font-size:.65rem;color:var(--gold);margin-bottom:7px}
-.btn-addpi{width:100%;padding:9px;background:var(--lapis);color:#fff;border:none;border-radius:var(--radius-xs);font-family:'Jost',sans-serif;font-size:.8rem;cursor:pointer;transition:background .15s}
-.btn-addpi:active{background:var(--lapis-l)}
+.hero{background:linear-gradient(135deg,var(--s),var(--s2));border:1px solid var(--bord);border-radius:var(--r);padding:17px;margin-bottom:13px;box-shadow:var(--sh),var(--glow);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-28px;right:-28px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,var(--cyandim),transparent 70%);pointer-events:none}
+.hero-date{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--tx);text-transform:capitalize;margin-bottom:5px}
+.streak-row{display:flex;align-items:center;gap:9px;margin-bottom:7px}
+.sn{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--gold)}
+.sl{font-size:.68rem;color:var(--txm)}
+.sbar{display:flex;gap:3px}
+.sd2{width:25px;height:4px;border-radius:100px;background:var(--bord)}
+.sd2.done{background:var(--gold)}.sd2.tod{background:var(--cyan)}
+.hero-stats{display:flex;gap:7px;margin-top:11px}
+.hsc{flex:1;background:var(--bg2);border-radius:var(--rs);padding:8px 10px;border:1px solid var(--bord2)}
+.hscv{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cyan);line-height:1}
+.hscl{font-size:.6rem;color:var(--txm);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.today-lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-weight:500;margin:13px 0 7px}
+.titem{background:var(--s);border:1px solid var(--bord);border-radius:var(--rs);padding:11px;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.titem.done{opacity:.45}
+.tchk{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--bord);background:transparent;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:transparent;font-size:.72rem;transition:all .2s}
+.tchk.on{background:var(--grn);border-color:var(--grn);color:#fff}
+.tbody{flex:1;min-width:0}
+.tname{font-size:.86rem;color:var(--tx);font-weight:400}
+.tmeta{font-size:.67rem;color:var(--txm);margin-top:1px}
+.tadd{padding:5px 10px;border-radius:100px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font-family:'Jost',sans-serif;font-size:.68rem;cursor:pointer;flex-shrink:0}
 
 /* ══ STATS ══ */
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}
-.stat-card{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius);padding:13px;text-align:center;box-shadow:var(--shadow)}
-.sv{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;color:var(--cyan);line-height:1;margin-bottom:3px}
-.sl{font-size:.6rem;color:var(--text-m);text-transform:uppercase;letter-spacing:.07em}
-.chart-card{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius);padding:15px;margin-bottom:14px;box-shadow:var(--shadow)}
-.chart-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m);margin-bottom:11px}
-.chart-wrap{display:flex;align-items:flex-end;gap:2px;height:56px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.sc{background:var(--s);border:1px solid var(--bord);border-radius:var(--r);padding:12px;text-align:center;box-shadow:var(--sh)}
+.scv{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--cyan);line-height:1;margin-bottom:3px}
+.scl{font-size:.59rem;color:var(--txm);text-transform:uppercase;letter-spacing:.07em}
+.chart-card{background:var(--s);border:1px solid var(--bord);border-radius:var(--r);padding:14px;margin-bottom:13px;box-shadow:var(--sh)}
+.chart-lbl{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--txm);margin-bottom:10px}
+.chart-wrap{display:flex;align-items:flex-end;gap:2px;height:54px}
 .cbc{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-.cbar{width:100%;border-radius:2px 2px 0 0;background:var(--lapis);min-height:2px;transition:height .4s ease}
+.cbar{width:100%;border-radius:2px 2px 0 0;background:var(--lapis);min-height:2px;transition:height .4s}
 .cbar.tod{background:var(--cyan)}
-.cdl{font-size:.52rem;color:var(--text-d);text-align:center}
-.ret-item{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius-s);padding:11px 13px;margin-bottom:7px;box-shadow:var(--shadow)}
-.ret-name{font-size:.88rem;color:var(--text);font-weight:400;margin-bottom:2px}
-.ret-dates{font-size:.68rem;color:var(--text-m)}
-.ret-cnt{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold)}
-.filter-row{display:flex;gap:6px;margin-bottom:11px;flex-wrap:wrap}
-.fsel{padding:6px 22px 6px 9px;border:1px solid var(--bord);border-radius:100px;font-family:'Jost',sans-serif;font-size:.72rem;background:var(--surf);color:var(--text);outline:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238fa3c0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;-webkit-appearance:none;appearance:none}
-.sess-item{background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius-s);padding:10px 12px;display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.sd2{min-width:32px;flex-shrink:0;text-align:center}
-.sday{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cyan);line-height:1}
-.smon{font-size:.56rem;text-transform:uppercase;color:var(--text-m);letter-spacing:.05em}
-.sbody{flex:1;min-width:0}
-.sname{font-size:.8rem;color:var(--text);font-weight:400}
-.smeta{font-size:.65rem;color:var(--text-m);margin-top:1px}
-.snote{font-size:.62rem;color:var(--text-d);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.scnt{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text);flex-shrink:0}
-.sunit{font-size:.56rem;color:var(--text-m);font-family:'Jost',sans-serif;text-align:right}
-.sacts{display:flex;gap:3px;flex-shrink:0}
-.sbe{padding:4px 8px;border-radius:100px;border:none;font-family:'Jost',sans-serif;font-size:.65rem;cursor:pointer}
-.sbe-e{background:var(--surf2);color:var(--text-m)}.sbe-d{background:var(--danger-dim);color:var(--danger)}
-.export-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:12px 15px;background:var(--surf);border:1px solid var(--bord);border-radius:var(--radius-s);font-family:'Jost',sans-serif;font-size:.82rem;color:var(--text);cursor:pointer;margin-bottom:7px}
-.export-btn:active{background:var(--surf2)}
+.cdl{font-size:.5rem;color:var(--txd);text-align:center}
+.ret-item{background:var(--s);border:1px solid var(--bord);border-radius:var(--rs);padding:10px 12px;margin-bottom:6px;box-shadow:var(--sh)}
+.ret-name{font-size:.86rem;color:var(--tx);font-weight:400;margin-bottom:2px}
+.ret-dates{font-size:.66rem;color:var(--txm)}
+.ret-cnt{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--gold)}
+.frow2{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.fsel{padding:5px 20px 5px 9px;border:1px solid var(--bord);border-radius:100px;font-family:'Jost',sans-serif;font-size:.7rem;background:var(--s);color:var(--tx);outline:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238fa3c0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;-webkit-appearance:none}
+.sess-item{background:var(--s);border:1px solid var(--bord);border-radius:var(--rs);padding:9px 11px;display:flex;align-items:center;gap:9px;margin-bottom:5px}
+.s-date{min-width:30px;flex-shrink:0;text-align:center}
+.s-day{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cyan);line-height:1}
+.s-mon{font-size:.55rem;text-transform:uppercase;color:var(--txm);letter-spacing:.05em}
+.s-body{flex:1;min-width:0}
+.s-name{font-size:.78rem;color:var(--tx);font-weight:400}
+.s-meta{font-size:.63rem;color:var(--txm);margin-top:1px}
+.s-note{font-size:.6rem;color:var(--txd);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-cnt{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--tx);flex-shrink:0}
+.s-unit{font-size:.55rem;color:var(--txm);text-align:right;font-family:'Jost',sans-serif}
+.s-acts{display:flex;gap:3px;flex-shrink:0}
+.sbe{padding:4px 7px;border-radius:100px;border:none;font-family:'Jost',sans-serif;font-size:.63rem;cursor:pointer}
+.sbe-e{background:var(--s2);color:var(--txm)}.sbe-d{background:var(--reddim);color:var(--red)}
+.exp-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:11px 14px;background:var(--s);border:1px solid var(--bord);border-radius:var(--rs);font-family:'Jost',sans-serif;font-size:.8rem;color:var(--tx);cursor:pointer;margin-bottom:6px}
+.exp-btn:active{background:var(--s2)}
 
 /* BUTTONS */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 17px;border-radius:var(--radius-s);border:none;font-family:'Jost',sans-serif;font-size:.83rem;font-weight:400;cursor:pointer;transition:all .15s;min-height:44px;-webkit-tap-highlight-color:transparent}
-.btn-p{background:var(--lapis);color:#fff}.btn-p:active{background:var(--lapis-l)}
-.btn-g{background:transparent;color:var(--text-m);border:1px solid var(--bord)}.btn-g:active{background:var(--surf2)}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-full{width:100%}.btn-sm{padding:7px 13px;min-height:34px;font-size:.75rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:10px 16px;border-radius:var(--rs);border:none;font-family:'Jost',sans-serif;font-size:.82rem;font-weight:400;cursor:pointer;transition:all .15s;min-height:43px;-webkit-tap-highlight-color:transparent}
+.btn-p{background:var(--lapis);color:#fff}.btn-p:active{background:var(--lapis2)}
+.btn-g{background:transparent;color:var(--txm);border:1px solid var(--bord)}.btn-g:active{background:var(--s2)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-full{width:100%}.btn-sm{padding:6px 12px;min-height:32px;font-size:.73rem}
 
 /* FORM */
-.fg{margin-bottom:13px}
-label{display:block;font-size:.67rem;color:var(--text-m);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
-input[type=text],input[type=number],input[type=date],input[type=time],select,textarea{width:100%;padding:10px 12px;border:1px solid var(--bord);border-radius:var(--radius-s);font-family:'Jost',sans-serif;font-size:1rem;background:var(--bg2);color:var(--text);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.fg{margin-bottom:12px}
+label{display:block;font-size:.65rem;color:var(--txm);text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+input[type=text],input[type=number],input[type=date],input[type=time],select,textarea{width:100%;padding:10px 11px;border:1px solid var(--bord);border-radius:var(--rs);font-family:'Jost',sans-serif;font-size:.98rem;background:var(--bg2);color:var(--tx);outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
 input:focus,select:focus,textarea:focus{border-color:var(--cyan)}
-input::placeholder,textarea::placeholder{color:var(--text-d)}
-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238fa3c0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
-textarea{resize:vertical;min-height:68px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+input::placeholder,textarea::placeholder{color:var(--txd)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238fa3c0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center;padding-right:30px}
+textarea{resize:vertical;min-height:65px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .days-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
-.dtog{width:35px;height:35px;border-radius:50%;border:1.5px solid var(--bord);background:var(--bg2);color:var(--text-m);font-family:'Jost',sans-serif;font-size:.68rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.dtog{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--bord);background:var(--bg2);color:var(--txm);font-family:'Jost',sans-serif;font-size:.67rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
 .dtog.sel{background:var(--lapis);color:#fff;border-color:var(--lapis)}
-.times-list,.rem-list{display:flex;flex-direction:column;gap:6px;margin-top:4px}
-.tr-row,.rr-row{display:flex;align-items:center;gap:6px}
-.tr-row input,.rr-row select{flex:1}
-.trm{width:30px;height:30px;border-radius:50%;border:none;background:var(--danger-dim);color:var(--danger);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.btn-addt{margin-top:4px;padding:6px 11px;border-radius:var(--radius-s);border:1.5px dashed var(--bord);background:transparent;color:var(--text-m);font-family:'Jost',sans-serif;font-size:.75rem;cursor:pointer;width:100%;text-align:center}
-.img-up{border:1.5px dashed var(--bord);border-radius:var(--radius-s);padding:16px;text-align:center;cursor:pointer;color:var(--text-m);font-size:.78rem}
-.img-prev{width:100%;max-height:130px;object-fit:cover;border-radius:var(--radius-s);margin-top:7px;display:none}
+.tlist,.rlist{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+.trow,.rrow{display:flex;align-items:center;gap:6px}
+.trow input,.rrow select{flex:1}
+.trm{width:29px;height:29px;border-radius:50%;border:none;background:var(--reddim);color:var(--red);font-size:.82rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.addt{margin-top:4px;padding:6px 10px;border-radius:var(--rs);border:1.5px dashed var(--bord);background:transparent;color:var(--txm);font-family:'Jost',sans-serif;font-size:.73rem;cursor:pointer;width:100%;text-align:center}
 
 /* SHEET */
-.sh-ov{display:none;position:fixed;inset:0;background:rgba(5,10,20,.62);z-index:500;align-items:flex-end;justify-content:center}
-.sh-ov.open{display:flex}
-.sheet{background:var(--bg2);border-radius:20px 20px 0 0;border-top:1px solid var(--bord);padding:0 17px;padding-bottom:calc(19px + var(--safe-b));max-width:600px;width:100%;max-height:92dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:slideUp .21s cubic-bezier(.34,1.2,.64,1)}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.sh-hdl{width:36px;height:4px;background:var(--bord);border-radius:100px;margin:11px auto 15px}
-.sh-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--text);margin-bottom:15px;line-height:1.3}
-.sh-acts{display:flex;flex-direction:column;gap:8px;margin-top:15px}
-.mitem{display:flex;align-items:center;gap:11px;padding:11px 0;border:none;background:transparent;font-family:'Jost',sans-serif;font-size:.88rem;color:var(--text);cursor:pointer;width:100%;border-bottom:1px solid var(--bord2)}
-.mitem:last-child{border-bottom:none}
-.mitem.danger{color:var(--danger)}
+.shov{display:none;position:fixed;inset:0;background:rgba(5,10,20,.65);z-index:500;align-items:flex-end;justify-content:center}
+.shov.open{display:flex}
+.sheet{background:var(--bg2);border-radius:20px 20px 0 0;border-top:1px solid var(--bord);padding:0 16px;padding-bottom:calc(18px + var(--sb));max-width:600px;width:100%;max-height:92dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;animation:su .21s cubic-bezier(.34,1.2,.64,1)}
+@keyframes su{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.shdl{width:36px;height:4px;background:var(--bord);border-radius:100px;margin:10px auto 14px}
+.shtitle{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;color:var(--tx);margin-bottom:14px;line-height:1.3}
+.shacts{display:flex;flex-direction:column;gap:7px;margin-top:14px}
+.mi{display:flex;align-items:center;gap:10px;padding:11px 0;border:none;background:transparent;font-family:'Jost',sans-serif;font-size:.86rem;color:var(--tx);cursor:pointer;width:100%;border-bottom:1px solid var(--bord2)}
+.mi:last-child{border-bottom:none}
+.mi.danger{color:var(--red)}
 
 /* TOAST */
-.toast{position:fixed;bottom:calc(64px + var(--safe-b) + 10px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--lapis);color:#fff;padding:8px 17px;border-radius:100px;font-size:.76rem;z-index:9999;opacity:0;transition:all .22s;white-space:nowrap;max-width:calc(100vw - 32px);text-align:center;pointer-events:none}
+.toast{position:fixed;bottom:calc(63px + var(--sb) + 10px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--lapis);color:#fff;padding:7px 16px;border-radius:100px;font-size:.74rem;z-index:9999;opacity:0;transition:all .22s;white-space:nowrap;max-width:calc(100vw - 30px);text-align:center;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.ib{display:none;position:fixed;bottom:calc(60px + var(--safe-b) + 8px);left:11px;right:11px;background:var(--lapis);color:#fff;border-radius:var(--radius);padding:11px 13px;box-shadow:var(--shadow-l);z-index:300;align-items:center;gap:9px;font-size:.75rem;line-height:1.5}
+.ib{display:none;position:fixed;bottom:calc(60px + var(--sb) + 8px);left:10px;right:10px;background:var(--lapis);color:#fff;border-radius:var(--r);padding:10px 12px;box-shadow:var(--shl);z-index:300;align-items:center;gap:8px;font-size:.73rem;line-height:1.5}
 .ib.show{display:flex}
-.ibx{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;width:23px;height:23px;font-size:.7rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ibx{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;width:22px;height:22px;font-size:.68rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-@media(max-width:380px){.frow{grid-template-columns:1fr}.days-row{gap:4px}.dtog{width:31px;height:31px}}
+@media(max-width:380px){.frow{grid-template-columns:1fr}.days-row{gap:4px}.dtog{width:30px;height:30px}}
 </style>
 </head>
 <body>
 <div id="app">
 <header><div class="hi">
-  <button class="hback" id="hback" onclick="goBack()">&#8592;</button>
+  <button class="hback" id="hback" onclick="navBack()">&#8592;</button>
   <div class="htitle" id="htitle">Vajrayana</div>
   <div class="hacts" id="hacts"></div>
 </div></header>
-
-<main id="mscroll">
-  <div id="view-today"    class="view active"></div>
-  <div id="view-catalog"  class="view"></div>
-  <div id="view-mine"     class="view"></div>
-  <div id="view-stats"    class="view"></div>
+<main id="ms">
+  <div id="vw-today"  class="view active"></div>
+  <div id="vw-tree"   class="view"></div>
+  <div id="vw-stats"  class="view"></div>
 </main>
-
-<nav class="tabbar">
-  <button class="tbtn active" onclick="showTab('today')">  <span class="tico">&#9788;</span>Hoy</button>
-  <button class="tbtn"        onclick="showTab('catalog')"><span class="tico">&#9783;</span>Árbol</button>
-  <button class="tbtn"        onclick="showTab('mine')">   <span class="tico">&#9635;</span>Mis prácticas</button>
-  <button class="tbtn"        onclick="showTab('stats')">  <span class="tico">&#9650;</span>Registros</button>
+<nav class="tabs">
+  <button class="tb active" onclick="showTab('today')"><span class="ti">&#9788;</span>Hoy</button>
+  <button class="tb"        onclick="showTab('tree')"> <span class="ti">&#9783;</span>Árbol</button>
+  <button class="tb"        onclick="showTab('stats')"><span class="ti">&#9650;</span>Registros</button>
 </nav>
 </div>
 
-<!-- SHEETS -->
-<!-- Practice activate/edit form -->
-<div id="sh-prac" class="sh-ov" onclick="shOvClose(event,'sh-prac')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title" id="sh-prac-title">Activar práctica</h2>
-  <div class="fg"><label>Nombre</label><input type="text" id="p-name" placeholder="Nombre de la práctica"/></div>
-  <div class="fg"><label>Linaje / Ciclo (referencia)</label><input type="text" id="p-lineage" placeholder="Longchen Nyingtik · Nyingma"/></div>
-  <div class="frow">
-    <div class="fg"><label>Unidad</label>
-      <select id="p-unit">
-        <option value="mantras">Mantras</option><option value="repeticiones">Repeticiones</option>
-        <option value="vueltas">Vueltas mala</option><option value="postraciones">Postraciones</option>
-        <option value="ciclos">Ciclos</option><option value="oraciones">Oraciones</option>
-      </select>
+<!-- NODE FORM -->
+<div id="sh-node" class="shov" onclick="shOvClose(event,'sh-node')"><div class="sheet">
+  <div class="shdl"></div>
+  <h2 class="shtitle" id="sh-node-title">Nuevo nodo</h2>
+  <input type="hidden" id="n-id"/>
+  <input type="hidden" id="n-parent"/>
+  <div class="fg"><label>Nombre</label><input type="text" id="n-name" placeholder="Nombre…"/></div>
+  <div class="fg"><label>Tipo</label>
+    <select id="n-type" onchange="togglePracFields()">
+      <option value="node">Nodo genérico</option>
+      <option value="school">Escuela</option>
+      <option value="lineage">Linaje</option>
+      <option value="cycle">Ciclo / Colección</option>
+      <option value="practice">Práctica registrable</option>
+    </select>
+  </div>
+  <div class="fg"><label>Descripción</label><textarea id="n-desc" rows="2" placeholder="Descripción, tradición, maestro…"></textarea></div>
+  <!-- Practice-only fields -->
+  <div id="prac-fields" style="display:none">
+    <div class="frow">
+      <div class="fg"><label>Unidad</label>
+        <select id="n-unit">
+          <option value="mantras">Mantras</option><option value="repeticiones">Repeticiones</option>
+          <option value="vueltas">Vueltas mala</option><option value="postraciones">Postraciones</option>
+          <option value="ciclos">Ciclos</option><option value="oraciones">Oraciones</option><option value="sesiones">Sesiones</option>
+        </select>
+      </div>
+      <div class="fg"><label>Meta diaria</label><input type="number" id="n-daily" inputmode="numeric" placeholder="108"/></div>
     </div>
-    <div class="fg"><label>Familia</label><select id="p-fam"></select></div>
-  </div>
-  <div class="frow">
-    <div class="fg"><label>Meta total</label><input type="number" id="p-goal" inputmode="numeric" placeholder="100000"/></div>
-    <div class="fg"><label>Meta diaria</label><input type="number" id="p-daily" inputmode="numeric" placeholder="108"/></div>
-  </div>
-  <div class="fg"><label>Total acumulado</label><input type="number" id="p-current" inputmode="numeric" placeholder="0"/></div>
-  <div class="fg"><label>Mantra / descripción</label><textarea id="p-desc" rows="2" placeholder="OM VAJRASATTVA HUM…"></textarea></div>
-  <div class="fg"><label>Días de práctica</label>
-    <div class="days-row" id="days-row">
-      <button class="dtog" data-d="1">L</button><button class="dtog" data-d="2">M</button>
-      <button class="dtog" data-d="3">X</button><button class="dtog" data-d="4">J</button>
-      <button class="dtog" data-d="5">V</button><button class="dtog" data-d="6">S</button>
-      <button class="dtog" data-d="0">D</button>
+    <div class="frow">
+      <div class="fg"><label>Meta total</label><input type="number" id="n-goal" inputmode="numeric" placeholder="100000"/></div>
+      <div class="fg"><label>Acumulado</label><input type="number" id="n-current" inputmode="numeric" placeholder="0"/></div>
     </div>
+    <div class="fg"><label>Mantra / texto</label><textarea id="n-mantra" rows="2" placeholder="OM VAJRASATTVA HUM…"></textarea></div>
+    <div class="fg"><label>Días de práctica</label>
+      <div class="days-row" id="days-row">
+        <button class="dtog" data-d="1">L</button><button class="dtog" data-d="2">M</button>
+        <button class="dtog" data-d="3">X</button><button class="dtog" data-d="4">J</button>
+        <button class="dtog" data-d="5">V</button><button class="dtog" data-d="6">S</button>
+        <button class="dtog" data-d="0">D</button>
+      </div>
+    </div>
+    <div class="fg"><label>Horas</label><div class="tlist" id="tlist"></div><button class="addt" onclick="addTR()">+ Hora</button></div>
+    <div class="fg"><label>Recordatorios</label><div class="rlist" id="rlist"></div><button class="addt" onclick="addRR()">+ Recordatorio</button></div>
   </div>
-  <div class="fg"><label>Horas</label><div class="times-list" id="times-list"></div><button class="btn-addt" onclick="addTR()">+ Hora</button></div>
-  <div class="fg"><label>Recordatorios</label><div class="rem-list" id="rem-list"></div><button class="btn-addt" onclick="addRR()">+ Recordatorio</button></div>
-  <div class="sh-acts">
-    <button class="btn btn-p btn-full" onclick="savePrac()">Guardar</button>
-    <button class="btn btn-g btn-full" onclick="closeSheet('sh-prac')">Cancelar</button>
+  <div class="shacts">
+    <button class="btn btn-p btn-full" onclick="saveNode()">Guardar</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-node')">Cancelar</button>
   </div>
 </div></div>
 
-<!-- Family form -->
-<div id="sh-fam" class="sh-ov" onclick="shOvClose(event,'sh-fam')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title" id="sh-fam-title">Nueva familia</h2>
-  <div class="fg"><label>Nombre</label><input type="text" id="f-name" placeholder="ej. Ngöndro, Yidam…"/></div>
-  <div class="fg"><label>Descripción</label><textarea id="f-desc" rows="2"></textarea></div>
-  <div class="fg"><label>Imagen (opcional)</label>
-    <div class="img-up" onclick="document.getElementById('f-img-inp').click()">Toca para añadir imagen<img id="f-img-prev" class="img-prev"/></div>
-    <input type="file" id="f-img-inp" accept="image/*" style="display:none" onchange="handleFImg(event)"/>
-    <input type="hidden" id="f-img-data"/>
-  </div>
-  <div class="sh-acts">
-    <button class="btn btn-p btn-full" onclick="saveFam()">Guardar familia</button>
-    <button class="btn btn-g btn-full" onclick="closeSheet('sh-fam')">Cancelar</button>
-  </div>
+<!-- NODE MENU -->
+<div id="sh-menu" class="shov" onclick="shOvClose(event,'sh-menu')"><div class="sheet">
+  <div class="shdl"></div>
+  <h2 class="shtitle" id="sh-menu-title"></h2>
+  <button class="mi" onclick="menuAddChild()">Añadir hijo</button>
+  <button class="mi" onclick="menuEdit()">Editar</button>
+  <button class="mi" id="menu-add-sess-btn" onclick="menuAddSess()" style="display:none">Añadir sesión</button>
+  <button class="mi danger" onclick="menuDelete()">Eliminar</button>
 </div></div>
 
-<!-- Quick add -->
-<div id="sh-add" class="sh-ov" onclick="shOvClose(event,'sh-add')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title" id="sh-add-title">Añadir sesión</h2>
+<!-- ADD SESSION -->
+<div id="sh-sess" class="shov" onclick="shOvClose(event,'sh-sess')"><div class="sheet">
+  <div class="shdl"></div>
+  <h2 class="shtitle" id="sh-sess-title">Añadir sesión</h2>
   <div class="fg"><label>Cantidad</label><input type="number" id="q-qty" inputmode="numeric" placeholder="108"/></div>
   <div class="fg"><label>Duración (min)</label><input type="number" id="q-dur" inputmode="numeric" placeholder="30"/></div>
-  <div class="fg"><label>Notas</label><input type="text" id="q-notes" placeholder="Dedicatoria, sensaciones…"/></div>
-  <div class="sh-acts">
-    <button class="btn btn-p btn-full" onclick="confirmAdd()">Guardar</button>
-    <button class="btn btn-g btn-full" onclick="closeSheet('sh-add')">Cancelar</button>
+  <div class="fg"><label>Notas</label><input type="text" id="q-notes" placeholder="Dedicatoria…"/></div>
+  <div class="shacts">
+    <button class="btn btn-p btn-full" onclick="confirmAddSess()">Guardar</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-sess')">Cancelar</button>
   </div>
 </div></div>
 
-<!-- Family menu -->
-<div id="sh-fmenu" class="sh-ov" onclick="shOvClose(event,'sh-fmenu')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title" id="sh-fmenu-t"></h2>
-  <button class="mitem" onclick="fmAddP()">Añadir práctica</button>
-  <button class="mitem" onclick="fmEdit()">Editar familia</button>
-  <button class="mitem danger" onclick="fmDel()">Eliminar familia</button>
-</div></div>
-
-<!-- Practice menu -->
-<div id="sh-pmenu" class="sh-ov" onclick="shOvClose(event,'sh-pmenu')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title" id="sh-pmenu-t"></h2>
-  <button class="mitem" onclick="pmAdd()">Añadir sesión</button>
-  <button class="mitem" onclick="pmEdit()">Editar práctica</button>
-  <button class="mitem danger" onclick="pmDel()">Eliminar práctica</button>
-</div></div>
-
-<!-- Edit session -->
-<div id="sh-esess" class="sh-ov" onclick="shOvClose(event,'sh-esess')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title">Editar sesión</h2>
+<!-- EDIT SESSION -->
+<div id="sh-esess" class="shov" onclick="shOvClose(event,'sh-esess')"><div class="sheet">
+  <div class="shdl"></div>
+  <h2 class="shtitle">Editar sesión</h2>
   <input type="hidden" id="es-id"/>
-  <div class="fg"><label>Práctica</label><select id="es-prac"></select></div>
+  <div class="fg"><label>Práctica</label><select id="es-node"></select></div>
   <div class="frow">
     <div class="fg"><label>Cantidad</label><input type="number" id="es-qty" inputmode="numeric"/></div>
     <div class="fg"><label>Duración (min)</label><input type="number" id="es-dur" inputmode="numeric"/></div>
   </div>
   <div class="fg"><label>Fecha</label><input type="date" id="es-date"/></div>
   <div class="fg"><label>Notas</label><textarea id="es-notes" rows="2"></textarea></div>
-  <div class="sh-acts">
+  <div class="shacts">
     <button class="btn btn-p btn-full" onclick="saveEditSess()">Guardar</button>
     <button class="btn btn-g btn-full" onclick="closeSheet('sh-esess')">Cancelar</button>
   </div>
 </div></div>
 
-<!-- Retreat form -->
-<div id="sh-ret" class="sh-ov" onclick="shOvClose(event,'sh-ret')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title">Nuevo retiro</h2>
+<!-- RETREAT -->
+<div id="sh-ret" class="shov" onclick="shOvClose(event,'sh-ret')"><div class="sheet">
+  <div class="shdl"></div>
+  <h2 class="shtitle">Nuevo retiro</h2>
   <div class="fg"><label>Nombre</label><input type="text" id="ret-name" placeholder="Retiro de Vajrasattva…"/></div>
   <div class="frow">
     <div class="fg"><label>Inicio</label><input type="date" id="ret-s"/></div>
@@ -398,18 +354,18 @@ textarea{resize:vertical;min-height:68px}
   </div>
   <div class="fg"><label>Total acumulado</label><input type="number" id="ret-n" inputmode="numeric" placeholder="0"/></div>
   <div class="fg"><label>Notas</label><textarea id="ret-notes" rows="2"></textarea></div>
-  <div class="sh-acts">
+  <div class="shacts">
     <button class="btn btn-p btn-full" onclick="saveRet()">Guardar retiro</button>
     <button class="btn btn-g btn-full" onclick="closeSheet('sh-ret')">Cancelar</button>
   </div>
 </div></div>
 
-<!-- Confirm -->
-<div id="sh-conf" class="sh-ov" onclick="shOvClose(event,'sh-conf')"><div class="sheet">
-  <div class="sh-hdl"></div>
-  <h2 class="sh-title">Confirmar</h2>
-  <p id="conf-txt" style="font-size:.83rem;color:var(--text-m);line-height:1.65;margin-bottom:4px"></p>
-  <div class="sh-acts">
+<!-- CONFIRM -->
+<div id="sh-conf" class="shov" onclick="shOvClose(event,'sh-conf')"><div class="sheet">
+  <div class="shdl"></div>
+  <h2 class="shtitle">Confirmar</h2>
+  <p id="conf-txt" style="font-size:.82rem;color:var(--txm);line-height:1.65;margin-bottom:4px"></p>
+  <div class="shacts">
     <button class="btn btn-danger btn-full" id="conf-btn">Eliminar</button>
     <button class="btn btn-g btn-full" onclick="closeSheet('sh-conf')">Cancelar</button>
   </div>
@@ -419,18 +375,19 @@ textarea{resize:vertical;min-height:68px}
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════
-// DB
-// ══════════════════════════════════════════
+// ══════════════════════════════════════════════════
+// DB  — tree stored as flat list with parentId
+// node: { id, parentId, name, type, desc, order,
+//   — if practice: unit, goal, daily, current, mantra, days[], times[], reminders[] }
+// sessions: { id, nodeId, date, mantras, duration, notes }
+// ══════════════════════════════════════════════════
 const DB = {
-  get families()  { return JSON.parse(localStorage.getItem('vj4_fam')  ||'[]') },
-  get practices() { return JSON.parse(localStorage.getItem('vj4_prac') ||'[]') },
-  get sessions()  { return JSON.parse(localStorage.getItem('vj4_sess') ||'[]') },
-  get retreats()  { return JSON.parse(localStorage.getItem('vj4_ret')  ||'[]') },
-  saveFamilies:  v => localStorage.setItem('vj4_fam',  JSON.stringify(v)),
-  savePractices: v => localStorage.setItem('vj4_prac', JSON.stringify(v)),
-  saveSessions:  v => localStorage.setItem('vj4_sess', JSON.stringify(v)),
-  saveRetreats:  v => localStorage.setItem('vj4_ret',  JSON.stringify(v)),
+  get nodes()    { return JSON.parse(localStorage.getItem('vj5_nodes')   ||'[]') },
+  get sessions() { return JSON.parse(localStorage.getItem('vj5_sess')    ||'[]') },
+  get retreats() { return JSON.parse(localStorage.getItem('vj5_ret')     ||'[]') },
+  saveNodes:    v => localStorage.setItem('vj5_nodes',  JSON.stringify(v)),
+  saveSessions: v => localStorage.setItem('vj5_sess',   JSON.stringify(v)),
+  saveRetreats: v => localStorage.setItem('vj5_ret',    JSON.stringify(v)),
 };
 
 const MONTHS=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
@@ -439,197 +396,383 @@ const DLBLS=['D','L','M','X','J','V','S'];
 const DORDER=[1,2,3,4,5,6,0]; const DOLBLS=['L','M','X','J','V','S','D'];
 function today(){return new Date().toISOString().split('T')[0]}
 function todayDow(){return new Date().getDay()}
+function uid(){return '_'+Math.random().toString(36).slice(2,9)+Date.now().toString(36)}
 
-// ══════════════════════════════════════════
-// FULL VAJRAYANA CATALOG TREE
-// ══════════════════════════════════════════
-const CATALOG = [
-  { id:'nyingma', name:'Nyingma', type:'school', desc:'Escuela Antigua, s. VIII, fundada por Padmasambhava (Guru Rinpoche)', children:[
-    { id:'nyingma-kama', name:'Kama', type:'lineage', desc:'Linaje largo de transmisión oral ininterrumpida', children:[
-      { id:'nyingma-kama-mahayoga', name:'Mahayoga', type:'cycle', desc:'Tantras de la fase de generación · Guhyagarbha Tantra', children:[
-        { id:'p-mahayoga-sadhana', name:'Sadhana Mahayoga', type:'practice', desc:'Práctica de generación', unit:'repeticiones', goal:100000, daily:108 },
-      ]},
-      { id:'nyingma-kama-anuyoga', name:'Anuyoga', type:'cycle', desc:'Tantras de la fase de consumación', children:[
-        { id:'p-anuyoga-prac', name:'Práctica Anuyoga', type:'practice', desc:'Fase de consumación', unit:'ciclos', goal:10000, daily:21 },
-      ]},
-      { id:'nyingma-kama-atiyoga', name:'Atiyoga / Dzogchen', type:'cycle', desc:'La Gran Perfección — el camino más directo', children:[
-        { id:'p-dzogchen-trekcho', name:'Trekchö', type:'practice', desc:'Cortar desde la raíz · Rigpa', unit:'sesiones', goal:1000, daily:1 },
-        { id:'p-dzogchen-togal', name:'Tögal', type:'practice', desc:'Cruzar directamente · Visión luminosa', unit:'sesiones', goal:1000, daily:1 },
-      ]},
-    ]},
-    { id:'nyingma-terma', name:'Terma', type:'lineage', desc:'Tesoros revelados (>5000) — transmisiones ocultas por Padmasambhava', children:[
-      { id:'lnt', name:'Longchen Nyingtik', type:'cycle', desc:'Jigme Lingpa tertön · Corazón del Gran Espacio', active:true, children:[
-        { id:'p-lnt-ngondro', name:'Ngöndro Longchen Nyingtik', type:'practice', desc:'Prácticas preliminares del LNT', unit:'repeticiones', goal:111000, daily:111, active:true },
-        { id:'p-lnt-rigdzin', name:'Rigdzin Düpa', type:'practice', desc:'Acumulación del Vidyadhara · práctica de guru', unit:'mantras', goal:100000, daily:108, active:true },
-        { id:'p-lnt-yumka', name:'Yumka Dechen Gyalmo', type:'practice', desc:'Reina del Gran Gozo · dakini', unit:'mantras', goal:100000, daily:108, active:true },
-        { id:'p-lnt-khandro', name:'Khandro Nyingtik', type:'practice', desc:'Corazón de la Dakini', unit:'sesiones', goal:1000, daily:1 },
-      ]},
-      { id:'dudjom-tersar', name:'Dudjom Tersar', type:'cycle', desc:'Dudjom Lingpa (1835-1904) · Nueva transmisión de Dudjom', active:true, children:[
-        { id:'p-dudjom-ngondro', name:'Ngöndro Dudjom Tersar', type:'practice', desc:'Preliminares de la Nueva Transmisión de Dudjom', unit:'repeticiones', goal:111000, daily:111, active:true },
-        { id:'p-troma', name:'Troma Nakmo', type:'practice', desc:'Dakini Negra Iracunda · práctica de Chöd', unit:'mantras', goal:100000, daily:108, active:true },
-        { id:'p-padma-khandro', name:'Padma Khandro', type:'practice', desc:'Dakini del Loto', unit:'mantras', goal:100000, daily:108 },
-      ]},
-      { id:'chokling', name:'Chokling Tersar', type:'cycle', desc:'Chokgyur Lingpa (1829-1870)', children:[
-        { id:'p-vajrakilaya', name:'Vajrakilaya', type:'practice', desc:'Kila de vajra · rompe obstáculos', unit:'mantras', goal:100000, daily:108 },
-        { id:'p-dorje-drolo', name:'Dorje Drolö', type:'practice', desc:'Emanación de Padmasambhava', unit:'mantras', goal:100000, daily:108 },
-      ]},
-      { id:'rinchen-terdzo', name:'Rinchen Terdzö', type:'cycle', desc:'Jamgön Kongtrul · 63 volúmenes, 900+ transmisiones', children:[
-        { id:'p-dakini-nyingtik', name:'Dakini Nyingtik', type:'practice', desc:'Sadhanas dakini de longevidad (tshe grub)', unit:'repeticiones', goal:100000, daily:108 },
-      ]},
-      { id:'nyingtik-yabshi', name:'Nyingtik Yabshi', type:'cycle', desc:'Los cuatro grandes Nyingtik', children:[
-        { id:'p-vima-nyingtik', name:'Vima Nyingtik', type:'practice', desc:'Corazón de Vimalamitra', unit:'sesiones', goal:1000, daily:1 },
-      ]},
-    ]},
-    { id:'nyingma-sublin', name:'Sub-linajes Nyingma', type:'lineage', desc:'Mindrolling · Dorje Drak · Katok · Palyul · Shechen', children:[
-      { id:'p-mindrolling', name:'Tradición Mindrolling', type:'practice', desc:'Linaje de Terdak Lingpa', unit:'sesiones', goal:1000, daily:1 },
-      { id:'p-palyul', name:'Tradición Palyul', type:'practice', desc:'Linaje de Karma Chakme', unit:'sesiones', goal:1000, daily:1 },
-    ]},
-  ]},
+function childrenOf(parentId){
+  return DB.nodes.filter(n=>n.parentId===(parentId||null)).sort((a,b)=>(a.order||0)-(b.order||0));
+}
+function allDescendantIds(id){
+  const kids=DB.nodes.filter(n=>n.parentId===id);
+  return kids.reduce((acc,k)=>[...acc,k.id,...allDescendantIds(k.id)],[]);
+}
+function allPracticeNodes(){return DB.nodes.filter(n=>n.type==='practice')}
 
-  { id:'kagyu', name:'Kagyu', type:'school', desc:'Línea Oral · Marpa Lotsawa > Milarepa > Gampopa', children:[
-    { id:'karma-kagyu', name:'Karma Kagyu', type:'lineage', desc:'Linaje de los Karmapas (actualmente 17º)', active:true, children:[
-      { id:'p-kk-ngondro', name:'Ngöndro Karma Kamtsang', type:'practice', desc:'Preliminares del linaje Karma Kagyu', unit:'repeticiones', goal:111000, daily:111, active:true },
-      { id:'p-mahamudra', name:'Mahamudra · Cuatro Yogas', type:'practice', desc:'Un solo yoga, simple, sin elaboración, un solo sabor, Mahamudra', unit:'sesiones', goal:1000, daily:1, active:true },
-      { id:'p-six-yogas', name:'Six Yogas of Naropa', type:'practice', desc:'Tummo · Luz Clara · Cuerpo Ilusorio · Sueño · Bardo · Phowa', unit:'ciclos', goal:10000, daily:21, active:true },
-      { id:'p-tummo', name:'Tummo (Fuego Interior)', type:'practice', desc:'Vase breathing · calor interior · nadi-vayu', unit:'ciclos', goal:10000, daily:21, active:true },
-      { id:'p-phowa', name:'Phowa · Transferencia de Conciencia', type:'practice', desc:'Práctica del canal central', unit:'repeticiones', goal:10000, daily:21 },
-    ]},
-    { id:'shangpa-kagyu', name:'Shangpa Kagyu', type:'lineage', desc:'Khyungpo Naljor · transmisión de Niguma', children:[
-      { id:'p-niguma', name:'Six Yogas of Niguma', type:'practice', desc:'Transmisión paralela de Niguma', unit:'ciclos', goal:10000, daily:21 },
-      { id:'p-amulet-mm', name:'Amulet Mahamudra', type:'practice', desc:'Mahamudra Amuleto del Shangpa', unit:'sesiones', goal:1000, daily:1 },
-    ]},
-    { id:'drikung-kagyu', name:'Drikung Kagyu', type:'lineage', desc:'Kyobpa Jigten Sumgön', children:[
-      { id:'p-drikung-mm', name:'Five Profound Paths Mahamudra', type:'practice', desc:'Los cinco profundos caminos del Drikung', unit:'sesiones', goal:1000, daily:1 },
-    ]},
-    { id:'drukpa-kagyu', name:'Drukpa Kagyu', type:'lineage', desc:'Lingje Repa', children:[
-      { id:'p-drukpa', name:'Realms of Awakening', type:'practice', desc:'Práctica principal del Drukpa Kagyu', unit:'sesiones', goal:1000, daily:1 },
-    ]},
-  ]},
+// ══════════════════════════════════════════════════
+// NAV
+// ══════════════════════════════════════════════════
+let curTab='today';
+let treeStack=[]; // array of nodeIds drilled into
 
-  { id:'sakya', name:'Sakya', type:'school', desc:'Familia Khön · fundada en 1073 · Virupa > Drogmi Lotsawa', children:[
-    { id:'lamdre', name:'Lamdre Tsongsum', type:'lineage', desc:'Sakya Pandita · El Camino y su Fruto', active:true, children:[
-      { id:'p-sakya-ngondro', name:'Ngöndro Sakya', type:'practice', desc:'4.100.000 postraciones · preliminares extraordinarios', unit:'postraciones', goal:4100000, daily:300, active:true },
-      { id:'p-hevajra', name:'Hevajra', type:'practice', desc:'Yidam principal del Lamdre', unit:'mantras', goal:100000, daily:108, active:true },
-      { id:'p-vajrayogini-sakya', name:'Vajrayogini (Sakya)', type:'practice', desc:'Naro Khechari · dakini del Sakya', unit:'mantras', goal:100000, daily:108 },
-    ]},
-    { id:'thirteen-gold', name:'Thirteen Golden Dharmas', type:'lineage', desc:'Las trece enseñanzas de oro del Sakya', children:[
-      { id:'p-kurukulle', name:'Kurukulle', type:'practice', desc:'Deidad del magnetismo rojo', unit:'mantras', goal:100000, daily:108 },
-      { id:'p-vaj-sak', name:'Vajrayogini Thirteen', type:'practice', desc:'Vajrayogini de las Trece Joyas', unit:'mantras', goal:100000, daily:108 },
-    ]},
-  ]},
+function showTab(tab){
+  curTab=tab; treeStack=[];
+  ['today','tree','stats'].forEach(v=>document.getElementById('vw-'+v).classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('vw-'+tab).classList.add('active');
+  const ti=['today','tree','stats'].indexOf(tab);
+  if(ti>=0) document.querySelectorAll('.tb')[ti].classList.add('active');
+  updateHeader();
+  if(tab==='today') renderToday();
+  if(tab==='tree')  renderTree();
+  if(tab==='stats') renderStats();
+  document.getElementById('ms').scrollTop=0;
+}
 
-  { id:'gelug', name:'Gelug', type:'school', desc:'Je Tsongkhapa (1357-1419) · Ganden · s. XIV', children:[
-    { id:'gelug-main', name:'Kama Gelug · Yidams principales', type:'lineage', desc:'Lamrim Chenmo + Cuatro Tantras principales', active:true, children:[
-      { id:'p-ganden-ngondro', name:'Ngöndro Ganden Lhagyama', type:'practice', desc:'Guru yoga de Migtsema · Ganden Lhagyama', unit:'repeticiones', goal:100000, daily:108 },
-      { id:'p-yamantaka', name:'Yamantaka', type:'practice', desc:'Vajrabhairava · vencedor de la muerte · Manjushri iracundo', unit:'mantras', goal:100000, daily:108, active:true },
-      { id:'p-guhyasamaja', name:'Guhyasamaja', type:'practice', desc:'Tantra de la Asamblea Secreta · padre tantra', unit:'mantras', goal:100000, daily:108, active:true },
-      { id:'p-chakrasamvara', name:'Chakrasamvara', type:'practice', desc:'Heruka · madre tantra · no-dualidad', unit:'mantras', goal:100000, daily:108, active:true },
-      { id:'p-vajrayogini-gelug', name:'Vajrayogini (Gelug)', type:'practice', desc:'Vajravarahi · dakini principal del Gelug', unit:'mantras', goal:100000, daily:108 },
-      { id:'p-hayagriva', name:'Hayagriva', type:'practice', desc:'Cabeza de caballo · deidad iracunda', unit:'mantras', goal:100000, daily:108 },
-    ]},
-    { id:'kalachakra-gelug', name:'Kalachakra', type:'lineage', desc:'Rueda del Tiempo · Jonang/Gelug · Sucasiddhi', active:true, children:[
-      { id:'p-kalachakra', name:'Kalachakra', type:'practice', desc:'Rueda del Tiempo · práctica avanzada de Anuttara', unit:'mantras', goal:100000, daily:108, active:true },
-      { id:'p-kalachakra-ngondro', name:'Kalachakra Ngöndro', type:'practice', desc:'Preliminares del Kalachakra', unit:'repeticiones', goal:100000, daily:108 },
-    ]},
-  ]},
+function drillInto(nodeId){
+  treeStack.push(nodeId);
+  renderTree();
+  document.getElementById('ms').scrollTop=0;
+}
 
-  { id:'bon', name:'Bon', type:'school', desc:'Tradición pre-budista tibetana · Shenrab Miwoche · paralela al Vajrayana', children:[
-    { id:'yungdrung-bon', name:'Yungdrung Bon', type:'lineage', desc:'Bon eterno · Shenrab Miwoche', active:true, children:[
-      { id:'p-bon-dzogchen', name:'Dzogchen Yungdrung', type:'practice', desc:'Gran Perfección del Bon · Zhang Zhung Nyengyü', unit:'sesiones', goal:1000, daily:1, active:true },
-      { id:'p-shenrab', name:'Práctica de Shenrab Miwoche', type:'practice', desc:'Fundador del Bon · sadhana principal', unit:'mantras', goal:100000, daily:108, active:true },
-      { id:'p-bon-tsa-lung', name:'Tsa Lung (Bon)', type:'practice', desc:'Prácticas de canales y vientos del Bon', unit:'ciclos', goal:10000, daily:21 },
-    ]},
-  ]},
-];
+function navBack(){
+  if(treeStack.length){treeStack.pop();renderTree();return;}
+  showTab('today');
+}
 
-// ══════════════════════════════════════════
-// CATALOG STATE
-// ══════════════════════════════════════════
-let catalogPath = []; // stack of node ids navigated into
-let catalogSearch = '';
-
-function findNode(id, nodes) {
-  for (const n of nodes) {
-    if (n.id === id) return n;
-    if (n.children) { const f = findNode(id, n.children); if (f) return f; }
+function updateHeader(){
+  const back=document.getElementById('hback');
+  const title=document.getElementById('htitle');
+  const acts=document.getElementById('hacts');
+  if(curTab==='tree'){
+    if(treeStack.length){
+      back.classList.add('on');
+      const cur=DB.nodes.find(n=>n.id===treeStack[treeStack.length-1]);
+      title.textContent=cur?cur.name:'';
+      acts.innerHTML=`<button class="btn btn-p btn-sm" onclick="openNewNode('${treeStack[treeStack.length-1]}')">+ Añadir</button>`;
+    } else {
+      back.classList.remove('on');
+      title.textContent='Árbol del Dharma';
+      acts.innerHTML=`<button class="btn btn-p btn-sm" onclick="openNewNode(null)">+ Raíz</button>`;
+    }
+  } else if(curTab==='today'){
+    back.classList.remove('on'); title.textContent='Vajrayana'; acts.innerHTML='';
+  } else if(curTab==='stats'){
+    back.classList.remove('on'); title.textContent='Registros'; acts.innerHTML='';
   }
-  return null;
 }
 
-function currentCatalogNodes() {
-  if (!catalogPath.length) return CATALOG;
-  const last = catalogPath[catalogPath.length-1];
-  const node = findNode(last, CATALOG);
-  return node?.children || [];
-}
+// ══════════════════════════════════════════════════
+// TREE VIEW
+// ══════════════════════════════════════════════════
+function renderTree(){
+  updateHeader();
+  const parentId=treeStack.length?treeStack[treeStack.length-1]:null;
+  const children=childrenOf(parentId);
+  const el=document.getElementById('vw-tree');
 
-function isActivated(nodeId) {
-  return DB.practices.some(p => p.catalogId === nodeId);
-}
-
-// ══════════════════════════════════════════
-// NAVIGATION
-// ══════════════════════════════════════════
-let curTab = 'today';
-let curFamId = null;
-const navStack = []; // {tab, famId, title}
-
-function showTab(tab) {
-  curTab = tab; curFamId = null; navStack.length = 0;
-  catalogPath = []; catalogSearch = '';
-  ['today','catalog','mine','stats'].forEach(v=>document.getElementById('view-'+v).classList.remove('active'));
-  document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('view-'+tab).classList.add('active');
-  const ti=['today','catalog','mine','stats'].indexOf(tab);
-  if(ti>=0) document.querySelectorAll('.tbtn')[ti].classList.add('active');
-  document.getElementById('hback').classList.remove('on');
-  document.getElementById('hacts').innerHTML='';
-  const titles={today:'Vajrayana',catalog:'Árbol del Dharma',mine:'Mis prácticas',stats:'Registros'};
-  document.getElementById('htitle').textContent=titles[tab]||'';
-  if(tab==='today')   renderToday();
-  if(tab==='catalog') renderCatalog();
-  if(tab==='mine')    renderMine();
-  if(tab==='stats')   renderStats();
-  document.getElementById('mscroll').scrollTop=0;
-}
-
-function openFam(fid) {
-  navStack.push({tab:curTab, famId:curFamId, title:document.getElementById('htitle').textContent});
-  curFamId = fid;
-  const f = DB.families.find(x=>x.id===fid);
-  ['today','catalog','mine','stats'].forEach(v=>document.getElementById('view-'+v).classList.remove('active'));
-  document.getElementById('view-mine').classList.add('active');
-  document.getElementById('hback').classList.add('on');
-  document.getElementById('htitle').textContent=f.name;
-  document.getElementById('hacts').innerHTML=`<button class="btn btn-p btn-sm" onclick="openNewPrac('${fid}')">+ Práctica</button>`;
-  renderPracs(fid);
-}
-
-function goBack() {
-  if(navStack.length) {
-    const prev=navStack.pop();
-    curFamId=prev.famId;
-    if(prev.famId) { openFam(prev.famId); return; }
-    showTab(prev.tab||'mine'); return;
+  // Breadcrumb
+  let bc='';
+  if(treeStack.length){
+    bc='<div class="bc"><span class="bc-a" onclick="treeStack=[];renderTree()">Raíz</span>';
+    treeStack.forEach((id,i)=>{
+      const n=DB.nodes.find(x=>x.id===id);
+      if(i<treeStack.length-1) bc+=`<span class="bc-sep">›</span><span class="bc-a" onclick="treeStack=treeStack.slice(0,${i+1});renderTree()">${n?n.name:id}</span>`;
+      else bc+=`<span class="bc-sep">›</span><span class="bc-cur">${n?n.name:id}</span>`;
+    });
+    bc+='</div>';
   }
-  if(catalogPath.length) { catalogPath.pop(); renderCatalog(); return; }
-  curFamId=null;
-  document.getElementById('hback').classList.remove('on');
-  showTab('mine');
+
+  let html=bc+'<div class="node-list">';
+  if(!children.length){
+    html+=`<div style="text-align:center;padding:40px 0 20px;color:var(--txm)">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--tx);margin-bottom:6px">
+        ${parentId?'Sin subnodos aún':'Árbol vacío'}
+      </div>
+      <div style="font-size:.78rem">Pulsa el botón + para añadir ${parentId?'subnodos o prácticas':'nodos raíz'}</div>
+    </div>`;
+  } else {
+    html+=children.map(n=>nodeCardHTML(n)).join('');
+  }
+  html+=`</div>
+  <button class="add-child-btn" onclick="openNewNode(${parentId?`'${parentId}'`:'null'})">
+    + Añadir ${parentId?'subnodo / práctica':'nodo raíz'}
+  </button>`;
+  el.innerHTML=html;
 }
 
-// ══════════════════════════════════════════
+function nodeCardHTML(n){
+  const hasCh=childrenOf(n.id).length>0;
+  const isPrac=n.type==='practice';
+  const typeLbl={school:'Escuela',lineage:'Linaje',cycle:'Ciclo',practice:'Práctica',node:'Nodo'}[n.type]||'Nodo';
+  const dotCls={school:'dot-school',lineage:'dot-lineage',cycle:'dot-cycle',practice:'dot-practice',node:'dot-node'}[n.type]||'dot-node';
+  const tagCls={school:'tag-school',lineage:'tag-lineage',cycle:'tag-cycle',practice:'tag-practice',node:'tag-node'}[n.type]||'tag-node';
+  const dow=todayDow();
+
+  let pracHTML='';
+  if(isPrac){
+    const total=n.current||0; const goal=n.goal||100000;
+    const pct=Math.min(100,(total/goal)*100);
+    const dayDots=DORDER.map((d,i)=>{const on=(n.days||[]).includes(d);const now2=d===dow;return`<div class="dd ${on?(now2?'now':'on'):''}">${DOLBLS[i]}</div>`;}).join('');
+    const times=(n.times||[]).map(t=>`<span class="np-t">${t}</span>`).join('');
+    let proj='';
+    const sess=DB.sessions.filter(s=>s.nodeId===n.id);
+    if(sess.length>=3&&total<goal){const l7=sess.filter(s=>(new Date()-new Date(s.date+'T12:00:00'))<7*86400000);const avg=l7.reduce((a,s)=>a+(s.mantras||0),0)/7;if(avg>0){const dl=Math.ceil((goal-total)/avg);const fd=new Date();fd.setDate(fd.getDate()+dl);proj=`<div class="np-proj">A este ritmo: ${fd.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}</div>`;}}
+    pracHTML=`<div class="node-prac">
+      <div class="np-prog-row"><span>${n.unit||'mantras'}</span><span class="np-cnt" id="nc-${n.id}">${total.toLocaleString('es-ES')}</span></div>
+      <div class="np-bar"><div class="np-fill" id="nf-${n.id}" style="width:${pct}%"></div></div>
+      <div class="np-pct">Meta: ${goal.toLocaleString('es-ES')} · <span id="np-${n.id}">${pct.toFixed(1)}</span>%</div>
+      <div class="np-daily"><span class="np-dl">Meta diaria</span><span class="np-dv">${(n.daily||108).toLocaleString('es-ES')} ${n.unit||'mantras'}</span></div>
+      <div class="np-days">${dayDots}</div>
+      ${times?`<div class="np-times">${times}</div>`:''}
+      ${n.mantra?`<div style="font-size:.67rem;color:var(--txm);font-style:italic;margin-bottom:7px;line-height:1.5">${n.mantra}</div>`:''}
+      ${proj}
+      <button class="btn-addsess" onclick="openAddSess('${n.id}')">+ Añadir sesión</button>
+    </div>`;
+  }
+
+  const childCount=childrenOf(n.id).length;
+
+  return `<div class="node-card type-${n.type||'node'}" id="nc-card-${n.id}">
+    <div class="node-row" onclick="handleNodeTap('${n.id}')">
+      <div class="node-type-dot ${dotCls}"></div>
+      <div class="node-body">
+        <div class="node-name">${n.name}</div>
+        ${n.desc?`<div class="node-desc">${n.desc}</div>`:''}
+        <div class="node-meta">
+          ${childCount?`<span>${childCount} sub${childCount!==1?'nodos':'nodo'}</span>`:''}
+          ${isPrac&&(n.days||[]).length?`<span>${(n.days||[]).length} días/sem</span>`:''}
+        </div>
+      </div>
+      <span class="node-tag ${tagCls}">${typeLbl}</span>
+      ${hasCh||!isPrac?'<div class="node-arrow">›</div>':''}
+      <button class="node-menu" onclick="event.stopPropagation();openMenu('${n.id}')">···</button>
+    </div>
+    ${pracHTML}
+  </div>`;
+}
+
+function handleNodeTap(id){
+  const n=DB.nodes.find(x=>x.id===id); if(!n) return;
+  const hasCh=childrenOf(id).length>0;
+  if(hasCh||(n.type!=='practice')) drillInto(id);
+  // if practice with no children, just stays open (prac section already visible)
+}
+
+// ══════════════════════════════════════════════════
+// NODE CRUD
+// ══════════════════════════════════════════════════
+let editNodeId=null;
+let editNodeParent=null;
+
+function togglePracFields(){
+  const v=document.getElementById('n-type').value==='practice';
+  document.getElementById('prac-fields').style.display=v?'block':'none';
+}
+
+function openNewNode(parentId){
+  editNodeId=null; editNodeParent=parentId;
+  document.getElementById('sh-node-title').textContent='Nuevo nodo';
+  document.getElementById('n-id').value='';
+  document.getElementById('n-parent').value=parentId||'';
+  document.getElementById('n-name').value='';
+  document.getElementById('n-type').value='node';
+  document.getElementById('n-desc').value='';
+  document.getElementById('n-unit').value='mantras';
+  document.getElementById('n-daily').value='';
+  document.getElementById('n-goal').value='';
+  document.getElementById('n-current').value='';
+  document.getElementById('n-mantra').value='';
+  document.querySelectorAll('.dtog').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('tlist').innerHTML='';
+  document.getElementById('rlist').innerHTML='';
+  document.getElementById('prac-fields').style.display='none';
+  openSheet('sh-node');
+  setTimeout(()=>document.getElementById('n-name').focus(),350);
+}
+
+function openEditNode(id){
+  const n=DB.nodes.find(x=>x.id===id); if(!n) return;
+  editNodeId=id;
+  document.getElementById('sh-node-title').textContent='Editar · '+n.name;
+  document.getElementById('n-id').value=n.id;
+  document.getElementById('n-parent').value=n.parentId||'';
+  document.getElementById('n-name').value=n.name||'';
+  document.getElementById('n-type').value=n.type||'node';
+  document.getElementById('n-desc').value=n.desc||'';
+  document.getElementById('n-unit').value=n.unit||'mantras';
+  document.getElementById('n-daily').value=n.daily||'';
+  document.getElementById('n-goal').value=n.goal||'';
+  document.getElementById('n-current').value=n.current||0;
+  document.getElementById('n-mantra').value=n.mantra||'';
+  togglePracFields();
+  document.querySelectorAll('.dtog').forEach(b=>b.classList.toggle('sel',(n.days||[]).includes(parseInt(b.dataset.d))));
+  document.getElementById('tlist').innerHTML=''; (n.times||[]).forEach(t=>addTR(t));
+  document.getElementById('rlist').innerHTML=''; (n.reminders||[]).forEach(r=>addRR(r));
+  openSheet('sh-node');
+}
+
+document.querySelectorAll('.dtog').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('sel')));
+
+function addTR(v){const r=document.createElement('div');r.className='trow';r.innerHTML=`<input type="time" value="${v||'07:00'}"/><button class="trm" onclick="this.parentElement.remove()">&#10005;</button>`;document.getElementById('tlist').appendChild(r);}
+function addRR(v){const r=document.createElement('div');r.className='rrow';r.innerHTML=`<select><option value="5" ${v==5?'selected':''}>5 min antes</option><option value="10" ${v==10?'selected':''}>10 min antes</option><option value="15" ${v==15?'selected':''}>15 min antes</option><option value="30" ${v==30?'selected':''}>30 min antes</option><option value="60" ${v==60?'selected':''}>1 hora antes</option><option value="120" ${v==120?'selected':''}>2 horas antes</option></select><button class="trm" onclick="this.parentElement.remove()">&#10005;</button>`;document.getElementById('rlist').appendChild(r);}
+
+function saveNode(){
+  const name=document.getElementById('n-name').value.trim();
+  if(!name){showToast('El nombre es obligatorio');return;}
+  const type=document.getElementById('n-type').value;
+  const isPrac=type==='practice';
+  const days=Array.from(document.querySelectorAll('.dtog.sel')).map(b=>parseInt(b.dataset.d));
+  const times=Array.from(document.querySelectorAll('#tlist input')).map(i=>i.value).filter(Boolean);
+  const reminders=Array.from(document.querySelectorAll('#rlist select')).map(s=>parseInt(s.value));
+  const nodes=DB.nodes;
+  const obj={
+    name, type,
+    desc:document.getElementById('n-desc').value.trim(),
+    parentId:document.getElementById('n-parent').value||null,
+    ...(isPrac?{
+      unit:document.getElementById('n-unit').value,
+      goal:parseInt(document.getElementById('n-goal').value)||100000,
+      daily:parseInt(document.getElementById('n-daily').value)||108,
+      current:parseInt(document.getElementById('n-current').value)||0,
+      mantra:document.getElementById('n-mantra').value.trim(),
+      days, times, reminders,
+    }:{})
+  };
+  if(editNodeId){
+    const idx=nodes.findIndex(x=>x.id===editNodeId);
+    nodes[idx]={...nodes[idx],...obj};
+    DB.saveNodes(nodes); showToast('Actualizado');
+  } else {
+    const siblings=childrenOf(obj.parentId||null);
+    obj.id=uid(); obj.order=siblings.length; obj.createdAt=new Date().toISOString();
+    nodes.push(obj); DB.saveNodes(nodes); showToast('Creado');
+  }
+  if(isPrac) scheduleReminders(obj.id||editNodeId);
+  closeSheet('sh-node');
+  renderTree();
+  if(curTab==='today') renderToday();
+}
+
+// ══════════════════════════════════════════════════
+// NODE MENU
+// ══════════════════════════════════════════════════
+let menuNodeId=null;
+function openMenu(id){
+  menuNodeId=id;
+  const n=DB.nodes.find(x=>x.id===id);
+  document.getElementById('sh-menu-title').textContent=n?n.name:'';
+  const sessBtn=document.getElementById('menu-add-sess-btn');
+  sessBtn.style.display=n?.type==='practice'?'flex':'none';
+  openSheet('sh-menu');
+}
+function menuAddChild(){closeSheet('sh-menu');setTimeout(()=>openNewNode(menuNodeId),160);}
+function menuEdit(){closeSheet('sh-menu');setTimeout(()=>openEditNode(menuNodeId),160);}
+function menuAddSess(){closeSheet('sh-menu');setTimeout(()=>openAddSess(menuNodeId),160);}
+function menuDelete(){
+  closeSheet('sh-menu');
+  setTimeout(()=>{
+    const n=DB.nodes.find(x=>x.id===menuNodeId);
+    const descIds=allDescendantIds(menuNodeId);
+    const total=descIds.length;
+    document.getElementById('conf-txt').textContent=
+      `¿Eliminar "${n?.name}"?${total?` Se eliminarán también ${total} subnodo${total!==1?'s':''} y todas sus sesiones.`:''}`;
+    document.getElementById('conf-btn').onclick=()=>deleteNode(menuNodeId);
+    openSheet('sh-conf');
+  },160);
+}
+function deleteNode(id){
+  const descIds=allDescendantIds(id);
+  const allIds=[id,...descIds];
+  DB.saveNodes(DB.nodes.filter(n=>!allIds.includes(n.id)));
+  DB.saveSessions(DB.sessions.filter(s=>!allIds.includes(s.nodeId)));
+  closeSheet('sh-conf');
+  // if we deleted a node we're currently inside, pop back
+  if(treeStack.includes(id)) treeStack=treeStack.slice(0,treeStack.indexOf(id));
+  renderTree();
+  if(curTab==='today') renderToday();
+  showToast('Eliminado');
+}
+
+// ══════════════════════════════════════════════════
+// SESSIONS
+// ══════════════════════════════════════════════════
+let quickNodeId=null;
+function openAddSess(id){
+  quickNodeId=id;
+  const n=DB.nodes.find(x=>x.id===id);
+  document.getElementById('sh-sess-title').textContent=n?n.name:'Añadir sesión';
+  document.getElementById('q-qty').value='';
+  document.getElementById('q-dur').value='';
+  document.getElementById('q-notes').value='';
+  openSheet('sh-sess');
+  setTimeout(()=>document.getElementById('q-qty').focus(),330);
+}
+function confirmAddSess(){
+  const qty=parseInt(document.getElementById('q-qty').value);
+  if(!qty||qty<1){showToast('Introduce una cantidad válida');return;}
+  const dur=parseInt(document.getElementById('q-dur').value)||null;
+  const notes=document.getElementById('q-notes').value.trim();
+  const nodes=DB.nodes; const idx=nodes.findIndex(x=>x.id===quickNodeId); if(idx<0)return;
+  nodes[idx].current=(nodes[idx].current||0)+qty;
+  DB.saveNodes(nodes);
+  const sess=DB.sessions;
+  sess.unshift({id:uid(),nodeId:quickNodeId,date:today(),mantras:qty,duration:dur,notes,createdAt:new Date().toISOString()});
+  DB.saveSessions(sess);
+  // animate
+  const ce=document.getElementById('nc-'+quickNodeId);
+  const fe=document.getElementById('nf-'+quickNodeId);
+  const pe=document.getElementById('np-'+quickNodeId);
+  if(ce){const nt=nodes[idx].current;const np=Math.min(100,(nt/(nodes[idx].goal||100000))*100);animN(ce,nt);if(fe)fe.style.width=np+'%';if(pe)pe.textContent=np.toFixed(1);}
+  closeSheet('sh-sess');
+  showToast(`+${qty.toLocaleString('es-ES')} ${nodes[idx].unit||'mantras'} guardados`);
+  if(curTab==='today') renderToday();
+}
+function animN(el,target){const from=parseInt(el.textContent.replace(/\D/g,''))||0;const diff=target-from;const steps=24;let i=0;const t=setInterval(()=>{i++;el.textContent=Math.round(from+diff*(i/steps)).toLocaleString('es-ES');if(i>=steps){el.textContent=target.toLocaleString('es-ES');clearInterval(t);}},16);}
+
+function openEditSess(id){
+  const s=DB.sessions.find(x=>x.id===id);if(!s)return;
+  const pracs=allPracticeNodes();
+  document.getElementById('es-node').innerHTML=pracs.map(n=>`<option value="${n.id}" ${n.id===s.nodeId?'selected':''}>${n.name}</option>`).join('');
+  document.getElementById('es-id').value=s.id;
+  document.getElementById('es-qty').value=s.mantras||'';
+  document.getElementById('es-dur').value=s.duration||'';
+  document.getElementById('es-date').value=s.date;
+  document.getElementById('es-notes').value=s.notes||'';
+  openSheet('sh-esess');
+}
+function saveEditSess(){
+  const id=document.getElementById('es-id').value;
+  const sess=DB.sessions;const idx=sess.findIndex(x=>x.id===id);if(idx<0)return;
+  const oldN=sess[idx].nodeId;const newN=document.getElementById('es-node').value;
+  sess[idx]={...sess[idx],nodeId:newN,mantras:parseInt(document.getElementById('es-qty').value)||0,duration:parseInt(document.getElementById('es-dur').value)||null,date:document.getElementById('es-date').value,notes:document.getElementById('es-notes').value.trim()};
+  DB.saveSessions(sess);recalcNode(oldN);if(newN!==oldN)recalcNode(newN);
+  closeSheet('sh-esess');renderStats();showToast('Sesión actualizada');
+}
+function confDelSess(id){
+  document.getElementById('conf-txt').textContent='¿Eliminar esta sesión?';
+  document.getElementById('conf-btn').onclick=()=>{
+    const s=DB.sessions.find(x=>x.id===id);
+    DB.saveSessions(DB.sessions.filter(x=>x.id!==id));
+    if(s?.nodeId)recalcNode(s.nodeId);
+    closeSheet('sh-conf');renderStats();showToast('Sesión eliminada');
+  };
+  openSheet('sh-conf');
+}
+function recalcNode(nid){
+  const total=DB.sessions.filter(s=>s.nodeId===nid).reduce((a,s)=>a+(s.mantras||0),0);
+  const nodes=DB.nodes;const idx=nodes.findIndex(x=>x.id===nid);
+  if(idx>=0){nodes[idx].current=total;DB.saveNodes(nodes);}
+}
+
+// ══════════════════════════════════════════════════
 // TODAY
-// ══════════════════════════════════════════
+// ══════════════════════════════════════════════════
 function calcStreak(){
   const days=[...new Set(DB.sessions.map(s=>s.date))].sort().reverse();
-  const t=today(); let streak=0;
-  let d=new Date(t);
+  let streak=0;let d=new Date();
   for(let i=0;i<365;i++){
     const ds=d.toISOString().split('T')[0];
     if(days.includes(ds)){streak++;d.setDate(d.getDate()-1);}
-    else if(i===0){d.setDate(d.getDate()-1);}
-    else break;
+    else if(i===0){d.setDate(d.getDate()-1);}else break;
   }
   const last7=[];
   for(let i=6;i>=0;i--){const dd=new Date();dd.setDate(dd.getDate()-i);last7.push(days.includes(dd.toISOString().split('T')[0]));}
@@ -638,430 +781,207 @@ function calcStreak(){
 
 function renderToday(){
   const dow=todayDow();
-  const pracs=DB.practices; const sess=DB.sessions;
-  const todaySess=sess.filter(s=>s.date===today());
-  const todayMan=todaySess.reduce((a,s)=>a+(s.mantras||0),0);
-  const todayPracs=pracs.filter(p=>(p.days||[]).includes(dow));
-  const doneIds=new Set(todaySess.map(s=>s.practiceId));
+  const pracs=allPracticeNodes();
+  const sess=DB.sessions;
+  const tSess=sess.filter(s=>s.date===today());
+  const tMan=tSess.reduce((a,s)=>a+(s.mantras||0),0);
+  const tPracs=pracs.filter(p=>(p.days||[]).includes(dow));
+  const doneIds=new Set(tSess.map(s=>s.nodeId));
   const streak=calcStreak();
   const dateStr=new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
-  const sdots=streak.last7.map((d,i)=>`<div class="sd ${d?(i===6?'tod':'done'):''}"></div>`).join('');
+  const sdots=streak.last7.map((d,i)=>`<div class="sd2 ${d?(i===6?'tod':'done'):''}"></div>`).join('');
   let tiHTML='';
-  if(todayPracs.length){
-    const done=todayPracs.filter(p=>doneIds.has(p.id)).length;
-    tiHTML=`<div class="today-sec-lbl">Hoy · ${done}/${todayPracs.length} completadas</div>`+
-    todayPracs.map(p=>{
+  if(tPracs.length){
+    const done=tPracs.filter(p=>doneIds.has(p.id)).length;
+    tiHTML=`<div class="today-lbl">Hoy · ${done}/${tPracs.length} completadas</div>`+
+    tPracs.map(p=>{
       const isDone=doneIds.has(p.id);
-      return `<div class="ti ${isDone?'done':''}" id="ti-${p.id}">
-        <button class="ti-chk ${isDone?'on':''}" onclick="toggleChk('${p.id}')">&#10003;</button>
-        <div class="ti-body">
-          <div class="ti-name">${p.name}</div>
-          <div class="ti-meta">${p.daily||108} ${p.unit||'mantras'} · ${(p.times||[]).join(', ')||'sin hora'}</div>
-        </div>
-        <button class="ti-add" onclick="openQuickAdd('${p.id}')">+ Añadir</button>
+      return`<div class="titem ${isDone?'done':''}" id="ti-${p.id}">
+        <button class="tchk ${isDone?'on':''}" onclick="toggleChk('${p.id}')">&#10003;</button>
+        <div class="tbody"><div class="tname">${p.name}</div><div class="tmeta">${p.daily||108} ${p.unit||'mantras'} · ${(p.times||[]).join(', ')||'sin hora'}</div></div>
+        <button class="tadd" onclick="openAddSess('${p.id}')">+ Añadir</button>
       </div>`;
     }).join('');
   } else {
-    tiHTML=`<div style="padding:14px 0;font-size:.8rem;color:var(--text-m);text-align:center">No hay prácticas programadas para hoy</div>`;
+    tiHTML=`<div style="padding:14px 0;font-size:.78rem;color:var(--txm);text-align:center">No hay prácticas programadas para hoy.<br><span style="font-size:.7rem;color:var(--txd)">Edita las prácticas en el Árbol y configura sus días.</span></div>`;
   }
-  document.getElementById('view-today').innerHTML=`
-    <div class="today-hero">
-      <div class="today-date">${dateStr}</div>
-      <div class="streak-row"><span class="streak-n">${streak.current}</span><span class="streak-l">día${streak.current!==1?'s':''} consecutivo${streak.current!==1?'s':''}</span></div>
-      <div class="streak-bar">${sdots}</div>
-      <div class="today-stats">
-        <div class="tsc"><div class="tsc-v">${todayMan.toLocaleString('es-ES')}</div><div class="tsc-l">Hoy</div></div>
-        <div class="tsc"><div class="tsc-v">${todayPracs.length}</div><div class="tsc-l">Programadas</div></div>
-        <div class="tsc"><div class="tsc-v">${todaySess.length}</div><div class="tsc-l">Sesiones</div></div>
+  document.getElementById('vw-today').innerHTML=`
+    <div class="hero">
+      <div class="hero-date">${dateStr}</div>
+      <div class="streak-row"><span class="sn">${streak.current}</span><span class="sl">día${streak.current!==1?'s':''} consecutivo${streak.current!==1?'s':''}</span></div>
+      <div class="sbar">${sdots}</div>
+      <div class="hero-stats">
+        <div class="hsc"><div class="hscv">${tMan.toLocaleString('es-ES')}</div><div class="hscl">Hoy</div></div>
+        <div class="hsc"><div class="hscv">${tPracs.length}</div><div class="hscl">Programadas</div></div>
+        <div class="hsc"><div class="hscv">${tSess.length}</div><div class="hscl">Sesiones</div></div>
       </div>
     </div>
     ${tiHTML}`;
 }
+function toggleChk(id){const el=document.querySelector(`#ti-${id} .tchk`);const item=document.getElementById('ti-'+id);if(el){el.classList.toggle('on');item.classList.toggle('done');}}
 
-function toggleChk(pid){
-  const el=document.querySelector(`#ti-${pid} .ti-chk`);
-  const item=document.getElementById('ti-'+pid);
-  if(el){el.classList.toggle('on');item.classList.toggle('done');}
-}
-
-// ══════════════════════════════════════════
-// CATALOG
-// ══════════════════════════════════════════
-function renderCatalog(){
-  const nodes=currentCatalogNodes();
-  const el=document.getElementById('view-catalog');
-
-  // Update header
-  if(catalogPath.length){
-    document.getElementById('hback').classList.add('on');
-    const cur=findNode(catalogPath[catalogPath.length-1],CATALOG);
-    document.getElementById('htitle').textContent=cur?.name||'Árbol';
-  } else {
-    document.getElementById('hback').classList.remove('on');
-    document.getElementById('htitle').textContent='Árbol del Dharma';
-  }
-  document.getElementById('hacts').innerHTML='';
-
-  // Breadcrumb
-  let bcHTML='';
-  if(catalogPath.length){
-    bcHTML='<div class="breadcrumb"><span class="bc-item" onclick="catalogPath=[];renderCatalog()">Raíz</span>';
-    catalogPath.forEach((id,i)=>{
-      const n=findNode(id,CATALOG);
-      if(i<catalogPath.length-1) bcHTML+=`<span class="bc-sep">›</span><span class="bc-item" onclick="catalogPath=catalogPath.slice(0,${i+1});renderCatalog()">${n?.name||id}</span>`;
-      else bcHTML+=`<span class="bc-sep">›</span><span class="bc-current">${n?.name||id}</span>`;
-    });
-    bcHTML+='</div>';
-  }
-
-  // Filter by search
-  let filtered=nodes;
-  if(catalogSearch){
-    const q=catalogSearch.toLowerCase();
-    filtered=nodes.filter(n=>n.name.toLowerCase().includes(q)||(n.desc||'').toLowerCase().includes(q));
-  }
-
-  const nodesHTML=filtered.map(n=>catalogNodeHTML(n,0)).join('');
-
-  el.innerHTML=`
-    <div class="tree-search">
-      <input type="text" placeholder="Buscar en el árbol…" value="${catalogSearch}"
-        oninput="catalogSearch=this.value;renderCatalog()" />
-    </div>
-    ${bcHTML}
-    ${nodesHTML||'<div style="text-align:center;padding:30px;color:var(--text-m);font-size:.82rem">Sin resultados</div>'}`;
-}
-
-function catalogNodeHTML(n, depth){
-  const hasChildren=n.children&&n.children.length>0;
-  const isLeaf=n.type==='practice'||!hasChildren;
-  const activated=isActivated(n.id);
-  const typeLabels={school:'Escuela',lineage:'Linaje',cycle:'Ciclo',practice:'Práctica'};
-  const typeBadges={school:'badge-school',lineage:'badge-lineage',cycle:'badge-cycle',practice:'badge-practice'};
-
-  return `<div class="tree-node ${activated?'active-node':''}">
-    <div class="tn-row" onclick="onCatalogNodeTap('${n.id}')">
-      <div class="tn-expand ${isLeaf?'leaf':''}">${isLeaf?'·':'›'}</div>
-      <div class="tn-body">
-        <div class="tn-name">${n.name}</div>
-        ${n.desc?`<div class="tn-desc">${n.desc}</div>`:''}
-      </div>
-      <span class="tn-badge ${typeBadges[n.type]||'badge-cycle'}">${typeLabels[n.type]||n.type}</span>
-      ${isLeaf?`<button class="tn-activate ${activated?'activated':''}"
-        onclick="event.stopPropagation();${activated?`openEditFromCatalog('${n.id}')`:`activateFromCatalog('${n.id}')`}">
-        ${activated?'Activa':'Activar'}</button>`:''}
-    </div>
-  </div>`;
-}
-
-function onCatalogNodeTap(id){
-  const n=findNode(id,CATALOG);
-  if(!n) return;
-  if(n.children&&n.children.length){
-    catalogPath.push(id);
-    renderCatalog();
-  }
-}
-
-function activateFromCatalog(nodeId){
-  const n=findNode(nodeId,CATALOG);
-  if(!n) return;
-  // Pre-fill the practice form
-  editPracId=null;
-  document.getElementById('sh-prac-title').textContent='Activar · '+n.name;
-  document.getElementById('p-name').value=n.name||'';
-  document.getElementById('p-lineage').value=getNodePath(nodeId);
-  document.getElementById('p-unit').value=n.unit||'mantras';
-  document.getElementById('p-goal').value=n.goal||100000;
-  document.getElementById('p-daily').value=n.daily||108;
-  document.getElementById('p-current').value=0;
-  document.getElementById('p-desc').value=n.desc||'';
-  populateFamSel(null);
-  document.querySelectorAll('.dtog').forEach(b=>b.classList.remove('sel'));
-  document.getElementById('times-list').innerHTML='';
-  document.getElementById('rem-list').innerHTML='';
-  // Store catalogId
-  document._activatingCatalogId=nodeId;
-  openSheet('sh-prac');
-}
-
-function openEditFromCatalog(nodeId){
-  const p=DB.practices.find(x=>x.catalogId===nodeId);
-  if(p) openEditPrac(p.id);
-}
-
-function getNodePath(id){
-  const parts=[];
-  function search(nodes,target,path){
-    for(const n of nodes){
-      path.push(n.name);
-      if(n.id===target) return true;
-      if(n.children&&search(n.children,target,path)) return true;
-      path.pop();
-    }
-    return false;
-  }
-  search(CATALOG,id,parts);
-  return parts.slice(0,-1).join(' › ');
-}
-
-// ══════════════════════════════════════════
-// MY PRACTICES (families + practices)
-// ══════════════════════════════════════════
-function renderMine(){
-  const families=DB.families; const pracs=DB.practices; const dow=todayDow();
-  const el=document.getElementById('view-mine');
-  document.getElementById('htitle').textContent='Mis prácticas';
-  document.getElementById('hback').classList.remove('on');
-  document.getElementById('hacts').innerHTML='';
-
-  let html=`<div class="sechdr"><div><h1 class="sectitle">Mis prácticas</h1></div>
-    <button class="btn btn-p btn-sm" onclick="openNewFam()">+ Familia</button>
-  </div>`;
-
-  if(!families.length){
-    html+=`<div style="text-align:center;padding:40px 0;color:var(--text-m)">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:6px;color:var(--text)">Sin prácticas activas</div>
-      <div style="font-size:.8rem">Ve al Árbol y activa las prácticas que realizas,<br>o crea familias y prácticas manualmente.</div>
-    </div>`;
-  } else {
-    html+=families.map(f=>{
-      const fps=pracs.filter(p=>p.familyId===f.id);
-      const total=fps.reduce((a,p)=>a+(p.current||0),0);
-      const goal=fps.reduce((a,p)=>a+(p.goal||100000),0);
-      const pct=goal>0?Math.min(100,(total/goal)*100):0;
-      const todayN=fps.filter(p=>(p.days||[]).includes(dow)).length;
-      const imgHTML=f.img?`<img class="fc-img" src="${f.img}"/>`:'';
-      return `<div class="fam-card" onclick="openFam('${f.id}')">
-        <div class="fc-hdr">
-          <div class="fc-stripe"></div>
-          <div class="fc-body">
-            <div class="fc-name">${f.name}</div>
-            <div class="fc-meta">${fps.length} práctica${fps.length!==1?'s':''} · ${todayN} hoy</div>
-          </div>
-          ${imgHTML}
-          <button class="fc-menu" onclick="event.stopPropagation();openFamMenu('${f.id}')">···</button>
-          <div class="fc-arrow">›</div>
-        </div>
-        ${fps.length?`<div class="fc-prog">
-          <div class="pbar-row"><span>${total.toLocaleString('es-ES')}</span><span>${pct.toFixed(1)}%</span></div>
-          <div class="pbar"><div class="pfill" style="width:${pct}%"></div></div>
-        </div>`:''}
-      </div>`;
-    }).join('');
-  }
-  el.innerHTML=html;
-}
-
-function renderPracs(fid){
-  const pracs=DB.practices.filter(p=>p.familyId===fid);
-  const dow=todayDow();
-  const el=document.getElementById('view-mine');
-  if(!pracs.length){
-    el.innerHTML=`<div style="text-align:center;padding:50px 0;color:var(--text-m)">
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:6px;color:var(--text)">Sin prácticas</div>
-      <div style="font-size:.8rem">Usa + Práctica o activa desde el Árbol</div>
-    </div>`; return;
-  }
-  const todayPs=pracs.filter(p=>(p.days||[]).includes(dow));
-  const otherPs=pracs.filter(p=>!(p.days||[]).includes(dow));
-  let html='';
-  if(todayPs.length) html+=`<div style="background:linear-gradient(135deg,var(--lapis),var(--cyan-d));border-radius:var(--radius-s);padding:9px 13px;margin-bottom:12px;font-size:.76rem;color:rgba(255,255,255,.9)">Hoy · <strong>${DNAMES[dow]}</strong> — ${todayPs.length} práctica${todayPs.length!==1?'s':''}</div>`;
-  if(todayPs.length) html+=`<div style="margin-bottom:16px">${todayPs.map(p=>piHTML(p,true)).join('')}</div>`;
-  if(otherPs.length) html+=`${todayPs.length?'<div style="font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-d);font-weight:500;margin-bottom:8px">Otras prácticas</div>':''}<div>${otherPs.map(p=>piHTML(p,false)).join('')}</div>`;
-  el.innerHTML=html;
-}
-
-function piHTML(p,isToday){
-  const total=p.current||0; const goal=p.goal||100000;
-  const pct=Math.min(100,(total/goal)*100); const dow=todayDow();
-  const dayDots=DORDER.map((d,i)=>{const on=(p.days||[]).includes(d);const now=d===dow;return `<div class="dd ${on?(now?'now':'on'):''}">${DOLBLS[i]}</div>`;}).join('');
-  const times=(p.times||[]).map(t=>`<span class="pi-ttag">${t}</span>`).join('');
-  let proj='';
-  const sess=DB.sessions.filter(s=>s.practiceId===p.id);
-  if(sess.length>=3&&total<goal){
-    const l7=sess.filter(s=>{const d=new Date(s.date+'T12:00:00');return(new Date()-d)<7*86400000;});
-    const avg=l7.reduce((a,s)=>a+(s.mantras||0),0)/7;
-    if(avg>0){const dl=Math.ceil((goal-total)/avg);const fd=new Date();fd.setDate(fd.getDate()+dl);proj=`<div class="pi-proj">A este ritmo: ${fd.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'})}</div>`;}
-  }
-  const lineage=p.lineage?`<div style="font-size:.62rem;color:var(--text-d);margin-bottom:6px">${p.lineage}</div>`:'';
-  return `<div class="pi-card ${isToday?'is-today':''}" id="pi-${p.id}">
-    <div class="pi-top">
-      <div class="pi-name">${p.name}</div>
-      ${isToday?'<span class="pi-tag">Hoy</span>':''}
-      <button class="pi-menu" onclick="openPracMenu('${p.id}')">···</button>
-    </div>
-    <div class="pi-body">
-      ${lineage}
-      <div class="pi-prog-row"><span>${p.unit||'mantras'}</span><span class="pi-cnt" id="pic-${p.id}">${total.toLocaleString('es-ES')}</span></div>
-      <div class="pi-b"><div class="pi-f" id="pif-${p.id}" style="width:${pct}%"></div></div>
-      <div class="pi-pct">Meta: ${goal.toLocaleString('es-ES')} · <span id="pipc-${p.id}">${pct.toFixed(1)}</span>%</div>
-      <div class="pi-daily"><span class="pi-dl">Meta diaria</span><span class="pi-dv">${(p.daily||108).toLocaleString('es-ES')} ${p.unit||'mantras'}</span></div>
-      <div class="pi-days">${dayDots}</div>
-      ${times?`<div class="pi-times">${times}</div>`:''}
-      ${p.desc?`<div class="pi-desc">${p.desc}</div>`:''}
-      ${proj}
-      <button class="btn-addpi" onclick="openQuickAdd('${p.id}')">+ Añadir sesión</button>
-    </div>
-  </div>`;
-}
-
-// ══════════════════════════════════════════
-// FAMILY CRUD
-// ══════════════════════════════════════════
-let editFamId=null;
-function openNewFam(){editFamId=null;document.getElementById('sh-fam-title').textContent='Nueva familia';document.getElementById('f-name').value='';document.getElementById('f-desc').value='';document.getElementById('f-img-data').value='';document.getElementById('f-img-prev').style.display='none';openSheet('sh-fam');}
-function openEditFam(id){const f=DB.families.find(x=>x.id===id);editFamId=id;document.getElementById('sh-fam-title').textContent='Editar familia';document.getElementById('f-name').value=f.name||'';document.getElementById('f-desc').value=f.desc||'';document.getElementById('f-img-data').value=f.img||'';const p=document.getElementById('f-img-prev');if(f.img){p.src=f.img;p.style.display='block';}else p.style.display='none';openSheet('sh-fam');}
-function handleFImg(e){const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=ev=>{document.getElementById('f-img-data').value=ev.target.result;const p=document.getElementById('f-img-prev');p.src=ev.target.result;p.style.display='block';};r.readAsDataURL(file);}
-function saveFam(){const name=document.getElementById('f-name').value.trim();if(!name){showToast('El nombre es obligatorio');return;}const families=DB.families;const obj={name,desc:document.getElementById('f-desc').value.trim(),img:document.getElementById('f-img-data').value||null};if(editFamId){const idx=families.findIndex(x=>x.id===editFamId);families[idx]={...families[idx],...obj};showToast('Familia actualizada');}else{obj.id='f_'+Date.now();obj.createdAt=new Date().toISOString();families.push(obj);showToast('Familia creada');}DB.saveFamilies(families);closeSheet('sh-fam');renderMine();}
-let menuFamId=null;
-function openFamMenu(id){menuFamId=id;const f=DB.families.find(x=>x.id===id);document.getElementById('sh-fmenu-t').textContent=f.name;openSheet('sh-fmenu');}
-function fmAddP(){closeSheet('sh-fmenu');setTimeout(()=>openNewPrac(menuFamId),150);}
-function fmEdit(){closeSheet('sh-fmenu');setTimeout(()=>openEditFam(menuFamId),150);}
-function fmDel(){closeSheet('sh-fmenu');setTimeout(()=>{const f=DB.families.find(x=>x.id===menuFamId);document.getElementById('conf-txt').textContent=`¿Eliminar "${f.name}"? Se eliminarán todas sus prácticas y sesiones.`;document.getElementById('conf-btn').onclick=()=>deleteFam(menuFamId);openSheet('sh-conf');},150);}
-function deleteFam(id){const pids=DB.practices.filter(p=>p.familyId===id).map(p=>p.id);DB.saveFamilies(DB.families.filter(f=>f.id!==id));DB.savePractices(DB.practices.filter(p=>p.familyId!==id));DB.saveSessions(DB.sessions.filter(s=>!pids.includes(s.practiceId)));closeSheet('sh-conf');renderMine();showToast('Familia eliminada');}
-
-// ══════════════════════════════════════════
-// PRACTICE CRUD
-// ══════════════════════════════════════════
-let editPracId=null;
-function populateFamSel(selId){document.getElementById('p-fam').innerHTML=DB.families.map(f=>`<option value="${f.id}" ${f.id===selId?'selected':''}>${f.name}</option>`).join('');}
-function openNewPrac(fid){editPracId=null;document._activatingCatalogId=null;document.getElementById('sh-prac-title').textContent='Nueva práctica';['p-name','p-goal','p-daily','p-current','p-desc','p-lineage'].forEach(id=>document.getElementById(id).value='');document.getElementById('p-unit').value='mantras';populateFamSel(fid||curFamId);document.querySelectorAll('.dtog').forEach(b=>b.classList.remove('sel'));document.getElementById('times-list').innerHTML='';document.getElementById('rem-list').innerHTML='';openSheet('sh-prac');}
-function openEditPrac(id){const p=DB.practices.find(x=>x.id===id);editPracId=id;document._activatingCatalogId=null;document.getElementById('sh-prac-title').textContent='Editar práctica';document.getElementById('p-name').value=p.name||'';document.getElementById('p-lineage').value=p.lineage||'';document.getElementById('p-unit').value=p.unit||'mantras';document.getElementById('p-goal').value=p.goal||'';document.getElementById('p-daily').value=p.daily||'';document.getElementById('p-current').value=p.current||0;document.getElementById('p-desc').value=p.desc||'';populateFamSel(p.familyId);document.querySelectorAll('.dtog').forEach(b=>b.classList.toggle('sel',(p.days||[]).includes(parseInt(b.dataset.d))));document.getElementById('times-list').innerHTML='';(p.times||[]).forEach(t=>addTR(t));document.getElementById('rem-list').innerHTML='';(p.reminders||[]).forEach(r=>addRR(r));openSheet('sh-prac');}
-document.querySelectorAll('.dtog').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('sel')));
-function addTR(v){const r=document.createElement('div');r.className='tr-row';r.innerHTML=`<input type="time" value="${v||'07:00'}"/><button class="trm" onclick="this.parentElement.remove()">&#10005;</button>`;document.getElementById('times-list').appendChild(r);}
-function addRR(v){const r=document.createElement('div');r.className='rr-row';r.innerHTML=`<select><option value="5" ${v==5?'selected':''}>5 min antes</option><option value="10" ${v==10?'selected':''}>10 min antes</option><option value="15" ${v==15?'selected':''}>15 min antes</option><option value="30" ${v==30?'selected':''}>30 min antes</option><option value="60" ${v==60?'selected':''}>1 hora antes</option><option value="120" ${v==120?'selected':''}>2 horas antes</option></select><button class="trm" onclick="this.parentElement.remove()">&#10005;</button>`;document.getElementById('rem-list').appendChild(r);}
-function savePrac(){
-  const name=document.getElementById('p-name').value.trim();if(!name){showToast('El nombre es obligatorio');return;}
-  const fid=document.getElementById('p-fam').value;if(!fid){showToast('Selecciona una familia');return;}
-  const days=Array.from(document.querySelectorAll('.dtog.sel')).map(b=>parseInt(b.dataset.d));
-  const times=Array.from(document.querySelectorAll('#times-list input')).map(i=>i.value).filter(Boolean);
-  const reminders=Array.from(document.querySelectorAll('#rem-list select')).map(s=>parseInt(s.value));
-  const practices=DB.practices;
-  const obj={name,familyId:fid,lineage:document.getElementById('p-lineage').value.trim(),unit:document.getElementById('p-unit').value,goal:parseInt(document.getElementById('p-goal').value)||100000,daily:parseInt(document.getElementById('p-daily').value)||108,current:parseInt(document.getElementById('p-current').value)||0,desc:document.getElementById('p-desc').value.trim(),days,times,reminders};
-  if(document._activatingCatalogId) obj.catalogId=document._activatingCatalogId;
-  if(editPracId){const idx=practices.findIndex(x=>x.id===editPracId);practices[idx]={...practices[idx],...obj};showToast('Práctica actualizada');}
-  else{obj.id='p_'+Date.now();obj.createdAt=new Date().toISOString();practices.push(obj);showToast('Práctica activada');}
-  DB.savePractices(practices);scheduleReminders(obj.id||editPracId);closeSheet('sh-prac');
-  if(curFamId) renderPracs(curFamId);else renderMine();
-  if(curTab==='catalog') renderCatalog();
-  document._activatingCatalogId=null;
-}
-let menuPracId=null;
-function openPracMenu(id){menuPracId=id;const p=DB.practices.find(x=>x.id===id);document.getElementById('sh-pmenu-t').textContent=p.name;openSheet('sh-pmenu');}
-function pmAdd(){closeSheet('sh-pmenu');setTimeout(()=>openQuickAdd(menuPracId),150);}
-function pmEdit(){closeSheet('sh-pmenu');setTimeout(()=>openEditPrac(menuPracId),150);}
-function pmDel(){closeSheet('sh-pmenu');setTimeout(()=>{const p=DB.practices.find(x=>x.id===menuPracId);document.getElementById('conf-txt').textContent=`¿Eliminar "${p.name}"?`;document.getElementById('conf-btn').onclick=()=>deletePrac(menuPracId);openSheet('sh-conf');},150);}
-function deletePrac(id){DB.savePractices(DB.practices.filter(x=>x.id!==id));DB.saveSessions(DB.sessions.filter(s=>s.practiceId!==id));closeSheet('sh-conf');if(curFamId)renderPracs(curFamId);else renderMine();showToast('Práctica eliminada');}
-
-// ══════════════════════════════════════════
-// QUICK ADD
-// ══════════════════════════════════════════
-let quickPid=null;
-function openQuickAdd(id){quickPid=id;const p=DB.practices.find(x=>x.id===id);document.getElementById('sh-add-title').textContent=p.name;document.getElementById('q-qty').value='';document.getElementById('q-dur').value='';document.getElementById('q-notes').value='';openSheet('sh-add');setTimeout(()=>document.getElementById('q-qty').focus(),320);}
-function confirmAdd(){
-  const qty=parseInt(document.getElementById('q-qty').value);if(!qty||qty<1){showToast('Introduce una cantidad válida');return;}
-  const dur=parseInt(document.getElementById('q-dur').value)||null;
-  const notes=document.getElementById('q-notes').value.trim();
-  const pracs=DB.practices;const idx=pracs.findIndex(x=>x.id===quickPid);if(idx<0)return;
-  pracs[idx].current=(pracs[idx].current||0)+qty;DB.savePractices(pracs);
-  const sess=DB.sessions;sess.unshift({id:'s_'+Date.now(),practiceId:quickPid,date:today(),mantras:qty,duration:dur,notes,createdAt:new Date().toISOString()});DB.saveSessions(sess);
-  const ce=document.getElementById('pic-'+quickPid);const fe=document.getElementById('pif-'+quickPid);const pe=document.getElementById('pipc-'+quickPid);
-  if(ce){const nt=pracs[idx].current;const np=Math.min(100,(nt/(pracs[idx].goal||100000))*100);animN(ce,nt);if(fe)fe.style.width=np+'%';if(pe)pe.textContent=np.toFixed(1);}
-  closeSheet('sh-add');showToast(`+${qty.toLocaleString('es-ES')} ${pracs[idx].unit||'mantras'} guardados`);
-  if(curTab==='today')renderToday();
-}
-function animN(el,target){const from=parseInt(el.textContent.replace(/\D/g,''))||0;const diff=target-from;const steps=24;let i=0;const t=setInterval(()=>{i++;el.textContent=Math.round(from+diff*(i/steps)).toLocaleString('es-ES');if(i>=steps){el.textContent=target.toLocaleString('es-ES');clearInterval(t);}},16);}
-
-// ══════════════════════════════════════════
+// ══════════════════════════════════════════════════
 // STATS
-// ══════════════════════════════════════════
+// ══════════════════════════════════════════════════
 function renderStats(){
-  const sess=DB.sessions;const pracs=DB.practices;const fams=DB.families;const rets=DB.retreats;
+  const sess=DB.sessions;const pracs=allPracticeNodes();const rets=DB.retreats;
   const totalMan=pracs.reduce((a,p)=>a+(p.current||0),0);
-  const todayMan=sess.filter(s=>s.date===today()).reduce((a,s)=>a+(s.mantras||0),0);
   const totalMin=sess.reduce((a,s)=>a+(s.duration||0),0);
   const streak=calcStreak();
+  // chart
   const chartData=[];for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const ds=d.toISOString().split('T')[0];const tot=sess.filter(s=>s.date===ds).reduce((a,s)=>a+(s.mantras||0),0);chartData.push({tot,isToday:i===0,lbl:DLBLS[d.getDay()]});}
   const maxV=Math.max(...chartData.map(c=>c.tot),1);
-  const chartHTML=chartData.map(c=>`<div class="cbc"><div class="cbar ${c.isToday?'tod':''}" style="height:${Math.max(2,(c.tot/maxV)*50)}px"></div><div class="cdl ${c.isToday?'style="color:var(--cyan)"':''}">${c.lbl}</div></div>`).join('');
-  const filterFam=document.getElementById('sf-fam')?.value||'';
-  const filterPer=parseInt(document.getElementById('sf-per')?.value)||0;
-  let filtSess=[...sess];
-  if(filterFam){const pids=pracs.filter(p=>p.familyId===filterFam).map(p=>p.id);filtSess=filtSess.filter(s=>pids.includes(s.practiceId));}
-  if(filterPer){const cut=new Date();cut.setDate(cut.getDate()-filterPer);filtSess=filtSess.filter(s=>new Date(s.date)>=cut);}
-  const sessHTML=filtSess.length?filtSess.map(s=>{const p=pracs.find(x=>x.id===s.practiceId);const d=new Date(s.date+'T12:00:00');return `<div class="sess-item"><div class="sd2"><div class="sday">${d.getDate()}</div><div class="smon">${MONTHS[d.getMonth()]}</div></div><div class="sbody"><div class="sname">${p?p.name:'Eliminada'}</div><div class="smeta">${s.duration?s.duration+' min · ':''}${p?.unit||''}</div>${s.notes?`<div class="snote">${s.notes}</div>`:''}</div><div><div class="scnt">${s.mantras?s.mantras.toLocaleString('es-ES'):'—'}</div><div class="sunit">${p?.unit||''}</div></div><div class="sacts"><button class="sbe sbe-e" onclick="openEditSess('${s.id}')">Editar</button><button class="sbe sbe-d" onclick="confDelSess('${s.id}')">Borrar</button></div></div>`;}).join(''):`<div style="text-align:center;padding:24px;color:var(--text-m);font-size:.8rem">Sin sesiones</div>`;
-  const retsHTML=rets.length?rets.map(r=>`<div class="ret-item"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="ret-name">${r.name}</div><div class="ret-dates">${r.start||''} → ${r.end||'en curso'}</div>${r.notes?`<div style="font-size:.67rem;color:var(--text-m);margin-top:2px">${r.notes}</div>`:''}</div><div class="ret-cnt">${(r.count||0).toLocaleString('es-ES')}</div></div></div>`).join(''):`<div style="font-size:.78rem;color:var(--text-m);text-align:center;padding:14px 0">Sin retiros</div>`;
-  document.getElementById('view-stats').innerHTML=`
-    <div class="sechdr"><div><h1 class="sectitle">Registros</h1></div></div>
-    <div class="stats-grid">
-      <div class="stat-card"><div class="sv">${totalMan.toLocaleString('es-ES')}</div><div class="sl">Total acumulado</div></div>
-      <div class="stat-card"><div class="sv">${sess.length}</div><div class="sl">Sesiones</div></div>
-      <div class="stat-card"><div class="sv">${Math.round(totalMin/60)||0}</div><div class="sl">Horas práctica</div></div>
-      <div class="stat-card"><div class="sv" style="color:var(--gold)">${streak.current}</div><div class="sl">Racha actual</div></div>
+  const chartHTML=chartData.map(c=>`<div class="cbc"><div class="cbar ${c.isToday?'tod':''}" style="height:${Math.max(2,(c.tot/maxV)*50)}px"></div><div class="cdl" ${c.isToday?'style="color:var(--cyan)"':''}>${c.lbl}</div></div>`).join('');
+  // filter
+  const fv=document.getElementById('sf-node')?.value||'';
+  const fp=parseInt(document.getElementById('sf-per')?.value)||0;
+  let fSess=[...sess];
+  if(fv)fSess=fSess.filter(s=>s.nodeId===fv);
+  if(fp){const cut=new Date();cut.setDate(cut.getDate()-fp);fSess=fSess.filter(s=>new Date(s.date)>=cut);}
+  const sessHTML=fSess.length?fSess.map(s=>{const n=pracs.find(x=>x.id===s.nodeId);const d=new Date(s.date+'T12:00:00');return`<div class="sess-item"><div class="s-date"><div class="s-day">${d.getDate()}</div><div class="s-mon">${MONTHS[d.getMonth()]}</div></div><div class="s-body"><div class="s-name">${n?n.name:'Eliminada'}</div><div class="s-meta">${s.duration?s.duration+' min · ':''}${n?.unit||''}</div>${s.notes?`<div class="s-note">${s.notes}</div>`:''}</div><div><div class="s-cnt">${s.mantras?s.mantras.toLocaleString('es-ES'):'—'}</div><div class="s-unit">${n?.unit||''}</div></div><div class="s-acts"><button class="sbe sbe-e" onclick="openEditSess('${s.id}')">Editar</button><button class="sbe sbe-d" onclick="confDelSess('${s.id}')">Borrar</button></div></div>`;}).join(''):`<div style="text-align:center;padding:22px;color:var(--txm);font-size:.78rem">Sin sesiones</div>`;
+  const retsHTML=rets.length?rets.map(r=>`<div class="ret-item"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div class="ret-name">${r.name}</div><div class="ret-dates">${r.start||''} → ${r.end||'en curso'}</div>${r.notes?`<div style="font-size:.65rem;color:var(--txm);margin-top:2px">${r.notes}</div>`:''}</div><div class="ret-cnt">${(r.count||0).toLocaleString('es-ES')}</div></div></div>`).join(''):`<div style="font-size:.76rem;color:var(--txm);text-align:center;padding:12px 0">Sin retiros</div>`;
+  document.getElementById('vw-stats').innerHTML=`
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:8px">
+      <div><div style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--tx)">Registros</div></div>
     </div>
-    <div class="chart-card"><div class="chart-title">Últimos 30 días</div><div class="chart-wrap">${chartHTML}</div></div>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px"><div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m)">Retiros</div><button class="btn btn-p btn-sm" onclick="openSheet('sh-ret')">+ Retiro</button></div>
-    <div style="margin-bottom:18px">${retsHTML}</div>
-    <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m);margin-bottom:9px">Exportar</div>
-    <button class="export-btn" onclick="exportCSV()"><span>Sesiones CSV</span><span style="color:var(--cyan)">&#8595;</span></button>
-    <button class="export-btn" onclick="exportJSON()"><span>Copia de seguridad JSON</span><span style="color:var(--cyan)">&#8595;</span></button>
-    <div style="display:flex;justify-content:space-between;align-items:center;margin:18px 0 9px"><div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m)">Historial</div></div>
-    <div class="filter-row">
-      <select class="fsel" id="sf-fam" onchange="renderStats()"><option value="">Todas las familias</option>${fams.map(f=>`<option value="${f.id}">${f.name}</option>`).join('')}</select>
+    <div class="stats-grid">
+      <div class="sc"><div class="scv">${totalMan.toLocaleString('es-ES')}</div><div class="scl">Total acumulado</div></div>
+      <div class="sc"><div class="scv">${sess.length}</div><div class="scl">Sesiones</div></div>
+      <div class="sc"><div class="scv">${Math.round(totalMin/60)||0}</div><div class="scl">Horas práctica</div></div>
+      <div class="sc"><div class="scv" style="color:var(--gold)">${streak.current}</div><div class="scl">Racha actual</div></div>
+    </div>
+    <div class="chart-card"><div class="chart-lbl">Últimos 30 días</div><div class="chart-wrap">${chartHTML}</div></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--txm)">Retiros</div><button class="btn btn-p btn-sm" onclick="openSheet('sh-ret')">+ Retiro</button></div>
+    <div style="margin-bottom:16px">${retsHTML}</div>
+    <div style="font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--txm);margin-bottom:8px">Exportar</div>
+    <button class="exp-btn" onclick="exportCSV()"><span>Sesiones CSV</span><span style="color:var(--cyan)">&#8595;</span></button>
+    <button class="exp-btn" onclick="exportJSON()"><span>Copia de seguridad JSON</span><span style="color:var(--cyan)">&#8595;</span></button>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px"><div style="font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:var(--txm)">Historial</div></div>
+    <div class="frow2">
+      <select class="fsel" id="sf-node" onchange="renderStats()"><option value="">Todas las prácticas</option>${pracs.map(n=>`<option value="${n.id}">${n.name}</option>`).join('')}</select>
       <select class="fsel" id="sf-per" onchange="renderStats()"><option value="">Siempre</option><option value="7">7 días</option><option value="30">30 días</option><option value="90">90 días</option></select>
     </div>
     <div>${sessHTML}</div>`;
 }
 
-function openEditSess(id){const s=DB.sessions.find(x=>x.id===id);if(!s)return;document.getElementById('es-prac').innerHTML=DB.practices.map(p=>`<option value="${p.id}" ${p.id===s.practiceId?'selected':''}>${p.name}</option>`).join('');document.getElementById('es-id').value=s.id;document.getElementById('es-qty').value=s.mantras||'';document.getElementById('es-dur').value=s.duration||'';document.getElementById('es-date').value=s.date;document.getElementById('es-notes').value=s.notes||'';openSheet('sh-esess');}
-function saveEditSess(){const id=document.getElementById('es-id').value;const sess=DB.sessions;const idx=sess.findIndex(x=>x.id===id);if(idx<0)return;const oldP=sess[idx].practiceId;const newP=document.getElementById('es-prac').value;sess[idx]={...sess[idx],practiceId:newP,mantras:parseInt(document.getElementById('es-qty').value)||0,duration:parseInt(document.getElementById('es-dur').value)||null,date:document.getElementById('es-date').value,notes:document.getElementById('es-notes').value.trim()};DB.saveSessions(sess);recalc(oldP);if(newP!==oldP)recalc(newP);closeSheet('sh-esess');renderStats();showToast('Sesión actualizada');}
-function confDelSess(id){document.getElementById('conf-txt').textContent='¿Eliminar esta sesión?';document.getElementById('conf-btn').onclick=()=>{const s=DB.sessions.find(x=>x.id===id);DB.saveSessions(DB.sessions.filter(x=>x.id!==id));if(s?.practiceId)recalc(s.practiceId);closeSheet('sh-conf');renderStats();showToast('Sesión eliminada');};openSheet('sh-conf');}
-function recalc(pid){const total=DB.sessions.filter(s=>s.practiceId===pid).reduce((a,s)=>a+(s.mantras||0),0);const pr=DB.practices;const idx=pr.findIndex(x=>x.id===pid);if(idx>=0){pr[idx].current=total;DB.savePractices(pr);}}
-
-function saveRet(){const name=document.getElementById('ret-name').value.trim();if(!name){showToast('El nombre es obligatorio');return;}const rets=DB.retreats;rets.unshift({id:'r_'+Date.now(),name,start:document.getElementById('ret-s').value,end:document.getElementById('ret-e').value,count:parseInt(document.getElementById('ret-n').value)||0,notes:document.getElementById('ret-notes').value.trim(),createdAt:new Date().toISOString()});DB.saveRetreats(rets);closeSheet('sh-ret');renderStats();showToast('Retiro guardado');}
-
-function exportCSV(){const sess=DB.sessions;const pracs=DB.practices;let csv='Fecha,Práctica,Linaje,Familia,Cantidad,Unidad,Duración(min),Notas\n';sess.forEach(s=>{const p=pracs.find(x=>x.id===s.practiceId);const f=p?DB.families.find(x=>x.id===p.familyId):null;csv+=`${s.date},"${p?.name||''}","${p?.lineage||''}","${f?.name||''}",${s.mantras||0},"${p?.unit||''}",${s.duration||''},"${(s.notes||'').replace(/"/g,'""')}"\n`;});downloadFile('vajrayana-sesiones.csv',csv,'text/csv');}
-function exportJSON(){const data={families:DB.families,practices:DB.practices,sessions:DB.sessions,retreats:DB.retreats,exportedAt:new Date().toISOString()};downloadFile('vajrayana-backup.json',JSON.stringify(data,null,2),'application/json');}
-function downloadFile(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();}
+function saveRet(){const name=document.getElementById('ret-name').value.trim();if(!name){showToast('El nombre es obligatorio');return;}const rets=DB.retreats;rets.unshift({id:uid(),name,start:document.getElementById('ret-s').value,end:document.getElementById('ret-e').value,count:parseInt(document.getElementById('ret-n').value)||0,notes:document.getElementById('ret-notes').value.trim(),createdAt:new Date().toISOString()});DB.saveRetreats(rets);closeSheet('sh-ret');renderStats();showToast('Retiro guardado');}
+function exportCSV(){const sess=DB.sessions;const nodes=DB.nodes;let csv='Fecha,Práctica,Cantidad,Unidad,Duración(min),Notas\n';sess.forEach(s=>{const n=nodes.find(x=>x.id===s.nodeId);csv+=`${s.date},"${n?.name||''}",${s.mantras||0},"${n?.unit||''}",${s.duration||''},"${(s.notes||'').replace(/"/g,'""')}"\n`;});dl('vajrayana-sesiones.csv',csv,'text/csv');}
+function exportJSON(){dl('vajrayana-backup.json',JSON.stringify({nodes:DB.nodes,sessions:DB.sessions,retreats:DB.retreats,exportedAt:new Date().toISOString()},null,2),'application/json');}
+function dl(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();}
 
 // NOTIFICATIONS
-async function requestNotifPerm(){if(!('Notification' in window))return false;if(Notification.permission==='granted')return true;if(Notification.permission==='denied')return false;return(await Notification.requestPermission())==='granted';}
-function scheduleReminders(pid){if(!navigator.serviceWorker?.controller)return;const p=DB.practices.find(x=>x.id===pid);if(!p?.times?.length||!p?.reminders?.length||!p?.days?.length)return;if(!(p.days.includes(todayDow())))return;const now=new Date();p.times.forEach(t=>p.reminders.forEach(m=>{const[h,mn]=t.split(':').map(Number);const target=new Date(now);target.setHours(h,mn-m,0,0);const delay=target-now;if(delay>0&&delay<86400000)navigator.serviceWorker.controller.postMessage({type:'SCHEDULE_REMINDER',delay,title:'Vajrayana · Práctica',body:`En ${m} min: ${p.name}`,tag:`r-${p.id}-${t}`});;}));}
-function scheduleAll(){DB.practices.forEach(p=>scheduleReminders(p.id));}
+async function reqNotif(){if(!('Notification'in window))return false;if(Notification.permission==='granted')return true;if(Notification.permission==='denied')return false;return(await Notification.requestPermission())==='granted';}
+function scheduleReminders(nid){if(!navigator.serviceWorker?.controller)return;const n=DB.nodes.find(x=>x.id===nid);if(!n?.times?.length||!n?.reminders?.length||!n?.days?.length)return;if(!n.days.includes(todayDow()))return;const now=new Date();n.times.forEach(t=>n.reminders.forEach(m=>{const[h,mn]=t.split(':').map(Number);const target=new Date(now);target.setHours(h,mn-m,0,0);const delay=target-now;if(delay>0&&delay<86400000)navigator.serviceWorker.controller.postMessage({type:'SCHEDULE_REMINDER',delay,title:'Vajrayana · Práctica',body:`En ${m} min: ${n.name}`,tag:`r-${n.id}-${t}`});}));}
+function scheduleAll(){DB.nodes.filter(n=>n.type==='practice').forEach(n=>scheduleReminders(n.id));}
 
 // SHEETS
 function openSheet(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
 function closeSheet(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
 function shOvClose(e,id){if(e.target.id===id)closeSheet(id);}
-document.querySelectorAll('.sh-ov').forEach(ov=>{const sh=ov.querySelector('.sheet');let sy=0;sh.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;},{passive:true});sh.addEventListener('touchmove',e=>{if(e.touches[0].clientY-sy>70)closeSheet(ov.id);},{passive:true});});
+document.querySelectorAll('.shov').forEach(ov=>{const sh=ov.querySelector('.sheet');let sy=0;sh.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;},{passive:true});sh.addEventListener('touchmove',e=>{if(e.touches[0].clientY-sy>70)closeSheet(ov.id);},{passive:true});});
 
 // TOAST
 let tt=null;
 function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2300);}
-function dimIB(){document.getElementById('ib').classList.remove('show');localStorage.setItem('vj4_ib','1');}
+function dimIB(){document.getElementById('ib').classList.remove('show');localStorage.setItem('vj5_ib','1');}
 
 // SW
-if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').then(async()=>{if(await requestNotifPerm())setTimeout(scheduleAll,1000);}).catch(e=>console.log('SW:',e));});}
+if('serviceWorker'in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').then(async()=>{if(await reqNotif())setTimeout(scheduleAll,1000);}).catch(e=>console.log('SW:',e));});}
 
-// SEED — only empty families/practices, no seed data (user starts fresh)
+// ══════════════════════════════════════════════════
+// SEED — precargado editable
+// ══════════════════════════════════════════════════
 function seed(){
-  // Only create default families if completely empty
-  if(DB.families.length||DB.practices.length) return;
-  DB.saveFamilies([
-    {id:'f_lnt',name:'Longchen Nyingtik',desc:'Nyingma · Jigme Lingpa',img:null,createdAt:new Date().toISOString()},
-    {id:'f_dudjom',name:'Dudjom Tersar',desc:'Nyingma · Dudjom Lingpa',img:null,createdAt:new Date().toISOString()},
-    {id:'f_kagyu',name:'Karma Kagyu',desc:'Kagyu · Karmapas',img:null,createdAt:new Date().toISOString()},
-    {id:'f_gelug',name:'Gelug · Yidams',desc:'Gelug · Tsongkhapa',img:null,createdAt:new Date().toISOString()},
-    {id:'f_sakya',name:'Sakya · Lamdre',desc:'Sakya · familia Khön',img:null,createdAt:new Date().toISOString()},
-    {id:'f_kalachakra',name:'Kalachakra',desc:'Rueda del Tiempo',img:null,createdAt:new Date().toISOString()},
-    {id:'f_bon',name:'Yungdrung Bon',desc:'Bon · Shenrab Miwoche',img:null,createdAt:new Date().toISOString()},
-  ]);
+  if(DB.nodes.length) return;
+  const now=new Date().toISOString();
+  const nodes=[];
+  let order=0;
+  function addN(id,parentId,name,type,desc,extra={}){nodes.push({id,parentId,name,type,desc,order:order++,createdAt:now,...extra});}
+
+  // ── NYINGMA
+  addN('nyingma',null,'Nyingma','school','Escuela Antigua, s. VIII · Padmasambhava');
+    addN('ny-kama','nyingma','Kama','lineage','Linaje largo de transmisión oral');
+      addN('ny-k-mahayoga','ny-kama','Mahayoga','cycle','Tantras de la fase de generación · Guhyagarbha Tantra');
+        addN('ny-k-maha-p1','ny-k-mahayoga','Sadhana Mahayoga','practice','Práctica de generación',{unit:'repeticiones',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('ny-k-anuyoga','ny-kama','Anuyoga','cycle','Tantras de la fase de consumación');
+        addN('ny-k-anu-p1','ny-k-anuyoga','Práctica Anuyoga','practice','Fase de consumación',{unit:'ciclos',goal:10000,daily:21,current:0,days:[],times:[],reminders:[]});
+      addN('ny-k-ati','ny-kama','Atiyoga / Dzogchen','cycle','La Gran Perfección');
+        addN('ny-k-ati-trekcho','ny-k-ati','Trekchö','practice','Cortar desde la raíz · Rigpa',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+        addN('ny-k-ati-togal','ny-k-ati','Tögal','practice','Cruzar directamente · Visión luminosa',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+    addN('ny-terma','nyingma','Terma','lineage','Tesoros revelados (>5000)');
+      addN('lnt','ny-terma','Longchen Nyingtik','cycle','Jigme Lingpa tertön · Corazón del Gran Espacio');
+        addN('lnt-ngondro','lnt','Ngöndro Longchen Nyingtik','practice','Prácticas preliminares del LNT',{unit:'repeticiones',goal:111000,daily:111,current:0,mantra:'',days:[1,2,3,4,5],times:['07:00'],reminders:[15]});
+        addN('lnt-rigdzin','lnt','Rigdzin Düpa','practice','Acumulación del Vidyadhara',{unit:'mantras',goal:100000,daily:108,current:0,mantra:'OM AH HUM VAJRA GURU PADMA SIDDHI HUM',days:[1,2,3,4,5,6,0],times:['08:00'],reminders:[10]});
+        addN('lnt-yumka','lnt','Yumka Dechen Gyalmo','practice','Reina del Gran Gozo · dakini',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+        addN('lnt-khandro','lnt','Khandro Nyingtik','practice','Corazón de la Dakini',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+      addN('dudjom','ny-terma','Dudjom Tersar','cycle','Dudjom Lingpa (1835-1904)');
+        addN('dud-ngondro','dudjom','Ngöndro Dudjom Tersar','practice','Preliminares de la Nueva Transmisión',{unit:'repeticiones',goal:111000,daily:111,current:0,days:[1,2,3,4,5],times:['07:30'],reminders:[15]});
+        addN('dud-troma','dudjom','Troma Nakmo','practice','Dakini Negra Iracunda · Chöd',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+        addN('dud-padma','dudjom','Padma Khandro','practice','Dakini del Loto',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('chokling','ny-terma','Chokling Tersar','cycle','Chokgyur Lingpa (1829-1870)');
+        addN('chok-kilaya','chokling','Vajrakilaya','practice','Kila de vajra · rompe obstáculos',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+        addN('chok-drolo','chokling','Dorje Drolö','practice','Emanación iracunda de Padmasambhava',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('rinchen','ny-terma','Rinchen Terdzö','cycle','Jamgön Kongtrul · 63 vols · 900+ wang');
+        addN('rinchen-dakini','rinchen','Dakini Nyingtik','practice','Sadhanas dakini de longevidad (tshe grub)',{unit:'repeticiones',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('nyingtik-yabshi','ny-terma','Nyingtik Yabshi','cycle','Los cuatro grandes Nyingtik');
+        addN('vima','nyingtik-yabshi','Vima Nyingtik','practice','Corazón de Vimalamitra',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+    addN('ny-sublin','nyingma','Sub-linajes Nyingma','lineage','Mindrolling · Dorje Drak · Katok · Palyul · Shechen');
+      addN('mindrolling','ny-sublin','Mindrolling','node','Terdak Lingpa');
+      addN('palyul','ny-sublin','Palyul','node','Karma Chakme');
+      addN('shechen','ny-sublin','Shechen','node','Shechen Gyaltsap');
+
+  // ── KAGYU
+  addN('kagyu',null,'Kagyu','school','Línea Oral · Marpa > Milarepa > Gampopa');
+    addN('karma-kagyu','kagyu','Karma Kagyu','lineage','Linaje de los Karmapas');
+      addN('kk-ngondro','karma-kagyu','Ngöndro Karma Kamtsang','practice','Preliminares del Karma Kagyu',{unit:'repeticiones',goal:111000,daily:111,current:0,days:[1,2,3,4,5],times:['07:00'],reminders:[15]});
+      addN('kk-mahamudra','karma-kagyu','Mahamudra · Cuatro Yogas','practice','Un solo yoga · simple · sin elaboración · Mahamudra',{unit:'sesiones',goal:1000,daily:1,current:0,days:[1,2,3,4,5,6,0],times:['06:00'],reminders:[10]});
+      addN('six-yogas','karma-kagyu','Six Yogas of Naropa','cycle','Tummo · Luz Clara · Cuerpo Ilusorio · Sueño · Bardo · Phowa');
+        addN('tummo','six-yogas','Tummo (Fuego Interior)','practice','Vase breathing · calor interior · nadi-vayu',{unit:'ciclos',goal:10000,daily:21,current:0,days:[1,2,3,4,5,6,0],times:['06:00'],reminders:[10]});
+        addN('luz-clara','six-yogas','Yoga de la Luz Clara','practice','Práctica del sueño profundo y bardo',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+        addN('phowa','six-yogas','Phowa','practice','Transferencia de conciencia · canal central',{unit:'repeticiones',goal:10000,daily:21,current:0,days:[],times:[],reminders:[]});
+    addN('shangpa','kagyu','Shangpa Kagyu','lineage','Khyungpo Naljor · transmisión de Niguma');
+      addN('niguma-6','shangpa','Six Yogas of Niguma','practice','Transmisión paralela de Niguma',{unit:'ciclos',goal:10000,daily:21,current:0,days:[],times:[],reminders:[]});
+      addN('amulet-mm','shangpa','Amulet Mahamudra','practice','Mahamudra Amuleto del Shangpa',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+    addN('drikung','kagyu','Drikung Kagyu','lineage','Kyobpa Jigten Sumgön');
+      addN('drik-mm','drikung','Five Profound Paths Mahamudra','practice','Los cinco profundos caminos',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+    addN('drukpa','kagyu','Drukpa Kagyu','lineage','Lingje Repa');
+      addN('dru-p','drukpa','Realms of Awakening','practice','Práctica principal del Drukpa Kagyu',{unit:'sesiones',goal:1000,daily:1,current:0,days:[],times:[],reminders:[]});
+
+  // ── SAKYA
+  addN('sakya',null,'Sakya','school','Familia Khön · fundada 1073 · Virupa > Drogmi Lotsawa');
+    addN('lamdre','sakya','Lamdre Tsongsum','lineage','Sakya Pandita · El Camino y su Fruto');
+      addN('sakya-ngondro','lamdre','Ngöndro Sakya','practice','4.100.000 postraciones · Extraordinario Ngöndro',{unit:'postraciones',goal:4100000,daily:300,current:0,days:[1,2,3,4,5,6,0],times:['07:00'],reminders:[15]});
+      addN('hevajra','lamdre','Hevajra','practice','Yidam principal del Lamdre',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('vajrayogini-s','lamdre','Vajrayogini (Sakya)','practice','Naro Khechari · dakini del Sakya',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+    addN('thirteen','sakya','Thirteen Golden Dharmas','lineage','Las trece enseñanzas de oro del Sakya');
+      addN('kurukulle','thirteen','Kurukulle','practice','Deidad del magnetismo rojo',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+
+  // ── GELUG
+  addN('gelug',null,'Gelug','school','Je Tsongkhapa (1357-1419) · Ganden');
+    addN('gelug-kama','gelug','Kama Gelug · Yidams','lineage','Lamrim Chenmo + Cuatro Tantras principales');
+      addN('ganden-ngondro','gelug-kama','Ngöndro Ganden Lhagyama','practice','Guru yoga de Migtsema',{unit:'repeticiones',goal:100000,daily:108,current:0,days:[1,2,3,4,5],times:['07:00'],reminders:[15]});
+      addN('yamantaka','gelug-kama','Yamantaka','practice','Vajrabhairava · vencedor de la muerte · Manjushri iracundo',{unit:'mantras',goal:100000,daily:108,current:0,days:[1,3,5],times:['08:00'],reminders:[10]});
+      addN('guhyasamaja','gelug-kama','Guhyasamaja','practice','Tantra de la Asamblea Secreta · padre tantra',{unit:'mantras',goal:100000,daily:108,current:0,days:[2,4,6],times:['08:00'],reminders:[10]});
+      addN('chakrasamvara','gelug-kama','Chakrasamvara','practice','Heruka · madre tantra · no-dualidad',{unit:'mantras',goal:100000,daily:108,current:0,days:[6,0],times:['09:00'],reminders:[30]});
+      addN('vajrayogini-g','gelug-kama','Vajrayogini (Gelug)','practice','Vajravarahi · dakini principal del Gelug',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('hayagriva','gelug-kama','Hayagriva','practice','Cabeza de caballo · deidad iracunda',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+    addN('kalachakra','gelug','Kalachakra','lineage','Rueda del Tiempo · Jonang/Gelug');
+      addN('kala-main','kalachakra','Kalachakra','practice','Rueda del Tiempo · Anuttara',{unit:'mantras',goal:100000,daily:108,current:0,days:[0],times:['10:00'],reminders:[30]});
+      addN('kala-ngondro','kalachakra','Kalachakra Ngöndro','practice','Preliminares del Kalachakra',{unit:'repeticiones',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+
+  // ── BON
+  addN('bon',null,'Bon','school','Tradición pre-budista tibetana · Shenrab Miwoche');
+    addN('yung-bon','bon','Yungdrung Bon','lineage','Bon eterno · Zhang Zhung Nyengyü');
+      addN('bon-dzogchen','yung-bon','Dzogchen Yungdrung','practice','Gran Perfección del Bon',{unit:'sesiones',goal:1000,daily:1,current:0,days:[6,0],times:['07:00'],reminders:[10]});
+      addN('bon-shenrab','yung-bon','Práctica de Shenrab Miwoche','practice','Fundador del Bon · sadhana principal',{unit:'mantras',goal:100000,daily:108,current:0,days:[],times:[],reminders:[]});
+      addN('bon-tsalung','yung-bon','Tsa Lung (Bon)','practice','Canales y vientos del Bon',{unit:'ciclos',goal:10000,daily:21,current:0,days:[],times:[],reminders:[]});
+
+  DB.saveNodes(nodes);
 }
 
 seed();
 renderToday();
-if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.navigator.standalone&&!localStorage.getItem('vj4_ib')){setTimeout(()=>document.getElementById('ib').classList.add('show'),3000);}
+if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.navigator.standalone&&!localStorage.getItem('vj5_ib')){setTimeout(()=>document.getElementById('ib').classList.add('show'),3000);}
 </script>
 </body>
 </html>
