@@ -3,380 +3,351 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#0f3460">
+<meta name="theme-color" content="#0a1628">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Vajrayana">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icons/icon-180x180.png">
 <title>Vajrayana · Práctica</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root {
-  /* Lapis lazuli palette */
-  --lapis:       #0f3460;
-  --lapis-mid:   #1a4a80;
-  --lapis-light: #2563a8;
-  --cyan:        #4ab8cc;
-  --cyan-light:  #e0f4f8;
-  --cyan-mid:    #b8e8f0;
+  --bg:         #0a1628;
+  --bg2:        #0f1e36;
+  --bg3:        #162440;
+  --surface:    #1a2d4a;
+  --surface2:   #1f3558;
+  --border:     #2a3f5f;
+  --border2:    #1e3050;
+  --lapis:      #2563a8;
+  --lapis-l:    #3577c0;
+  --cyan:       #4ab8cc;
+  --cyan-d:     #38a0b4;
+  --cyan-dim:   rgba(74,184,204,.15);
+  --cyan-glow:  rgba(74,184,204,.08);
+  --text:       #e8edf5;
+  --text-m:     #8fa3c0;
+  --text-d:     #506480;
+  --danger:     #e05555;
+  --danger-dim: rgba(224,85,85,.15);
+  --gold:       #c9a84c;
+  --gold-dim:   rgba(201,168,76,.12);
+  --success:    #4acc8a;
+  --success-dim:rgba(74,204,138,.12);
+  --radius:     14px;
+  --radius-s:   8px;
+  --radius-xs:  5px;
+  --shadow:     0 2px 8px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.2);
+  --shadow-l:   0 8px 32px rgba(0,0,0,.4);
+  --glow:       0 0 20px rgba(74,184,204,.15);
+  --safe-t:     env(safe-area-inset-top,0px);
+  --safe-b:     env(safe-area-inset-bottom,0px);
+}
 
-  --bg:          #f8f9fc;
-  --surface:     #ffffff;
-  --surface2:    #f2f4f8;
-  --border:      #dde2ec;
-  --border-light:#eef0f6;
-
-  --text:        #111827;
-  --text-muted:  #6b7280;
-  --text-light:  #9ca3af;
-
-  --danger:      #b91c1c;
-  --danger-light:#fef2f2;
-  --success:     #0f6460;
-  --success-light:#e0f4f3;
-
-  --radius:      14px;
-  --radius-sm:   8px;
-  --shadow:      0 1px 4px rgba(15,52,96,.07), 0 4px 16px rgba(15,52,96,.05);
-  --shadow-lg:   0 8px 32px rgba(15,52,96,.13);
-
-  --safe-top:    env(safe-area-inset-top,0px);
-  --safe-bottom: env(safe-area-inset-bottom,0px);
+@media(prefers-color-scheme:light){
+  :root{
+    --bg:#f0f4fa; --bg2:#e8eef8; --bg3:#dde5f2;
+    --surface:#fff; --surface2:#f5f8ff;
+    --border:#d0daea; --border2:#e0e8f5;
+    --lapis:#1a4a8a; --lapis-l:#2563a8;
+    --cyan:#2a90a8; --cyan-d:#1e7a90;
+    --cyan-dim:rgba(42,144,168,.1); --cyan-glow:rgba(42,144,168,.05);
+    --text:#0f1e36; --text-m:#4a6080; --text-d:#8a9cb0;
+    --danger:#c43030; --danger-dim:rgba(196,48,48,.1);
+    --gold:#8a6820; --gold-dim:rgba(138,104,32,.1);
+    --success:#1a8a50; --success-dim:rgba(26,138,80,.1);
+    --shadow:0 2px 8px rgba(15,30,54,.08),0 1px 2px rgba(15,30,54,.05);
+    --shadow-l:0 8px 32px rgba(15,30,54,.12);
+    --glow:0 0 20px rgba(42,144,168,.08);
+  }
 }
 
 html{height:100%;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
-body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;font-weight:300;line-height:1.6;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+body{font-family:'Jost',sans-serif;font-weight:300;background:var(--bg);color:var(--text);min-height:100dvh;line-height:1.6;overflow-x:hidden;-webkit-overflow-scrolling:touch;transition:background .3s,color .3s}
 
-/* ── APP SHELL ── */
-#app{display:flex;flex-direction:column;min-height:100dvh;padding-top:var(--safe-top)}
+/* ── SHELL ── */
+#app{display:flex;flex-direction:column;min-height:100dvh;padding-top:var(--safe-t)}
 
 /* ── HEADER ── */
 header{
-  background:rgba(248,249,252,.93);
-  border-bottom:1px solid var(--border);
-  padding:0 18px;
-  position:sticky;top:0;z-index:100;
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(10,22,40,.85);
+  border-bottom:1px solid var(--border2);
+  padding:0 16px;position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
 }
-.header-inner{display:flex;align-items:center;height:54px;gap:10px}
-.header-back{
-  width:36px;height:36px;border-radius:50%;border:none;
-  background:var(--surface2);color:var(--lapis);
-  font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;display:none;
-}
-.header-back.visible{display:flex}
-.header-title{
-  font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;
-  letter-spacing:.02em;color:var(--lapis);flex:1;min-width:0;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.header-action{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
+@media(prefers-color-scheme:light){header{background:rgba(240,244,250,.9)}}
+.header-inner{display:flex;align-items:center;height:52px;gap:10px}
+.h-back{width:34px;height:34px;border-radius:50%;border:none;background:var(--surface2);color:var(--cyan);font-size:.95rem;cursor:pointer;display:none;align-items:center;justify-content:center;flex-shrink:0}
+.h-back.on{display:flex}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;letter-spacing:.02em;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-acts{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
 
 /* ── MAIN ── */
-main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:18px 16px;padding-bottom:calc(72px + var(--safe-bottom))}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px;padding-bottom:calc(68px + var(--safe-b))}
 
-/* ── BOTTOM TAB BAR ── */
-.tab-bar{
-  position:fixed;bottom:0;left:0;right:0;
-  background:rgba(248,249,252,.96);border-top:1px solid var(--border);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  display:flex;padding-bottom:var(--safe-bottom);z-index:200;
-}
-.tab-btn{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:3px;padding:9px 0 7px;border:none;background:transparent;
-  color:var(--text-light);font-family:'Jost',sans-serif;
-  font-size:.65rem;font-weight:400;cursor:pointer;transition:color .2s;
-  letter-spacing:.04em;text-transform:uppercase;
-}
-.tab-btn.active{color:var(--lapis)}
-.tab-icon{font-size:1.15rem;line-height:1}
+/* ── TABS ── */
+.tab-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(10,22,40,.92);border-top:1px solid var(--border2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;padding-bottom:var(--safe-b);z-index:200}
+@media(prefers-color-scheme:light){.tab-bar{background:rgba(240,244,250,.95)}}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:9px 0 7px;border:none;background:transparent;color:var(--text-d);font-family:'Jost',sans-serif;font-size:.6rem;font-weight:400;cursor:pointer;transition:color .2s;letter-spacing:.05em;text-transform:uppercase}
+.tab-btn.active{color:var(--cyan)}
+.t-icon{font-size:1.1rem;line-height:1}
 
 /* ── VIEWS ── */
 .view{display:none}
-.view.active{display:block;animation:fadeUp .18s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.view.active{display:block;animation:fadeUp .16s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── SECTION HEADER ── */
-.section-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:12px}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;line-height:1.15;color:var(--lapis)}
-.section-sub{font-size:.75rem;color:var(--text-muted);margin-top:3px}
+/* ── SEC HEADER ── */
+.sec-hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px;gap:10px}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:300;color:var(--text);line-height:1.15}
+.sec-sub{font-size:.73rem;color:var(--text-m);margin-top:2px}
 
-/* ── FAMILY CARDS ── */
+/* ══════════════════════════════════════
+   TODAY VIEW
+══════════════════════════════════════ */
+.today-hero{
+  background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px;margin-bottom:16px;box-shadow:var(--shadow),var(--glow);
+  position:relative;overflow:hidden;
+}
+.today-hero::before{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle,var(--cyan-dim) 0%,transparent 70%);
+  pointer-events:none;
+}
+.today-date{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--text);text-transform:capitalize;margin-bottom:4px}
+.today-streak{display:flex;align-items:center;gap:8px}
+.streak-num{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);font-weight:400}
+.streak-lbl{font-size:.72rem;color:var(--text-m)}
+.streak-bar{display:flex;gap:3px;margin-top:8px}
+.streak-day{width:28px;height:4px;border-radius:100px;background:var(--border)}
+.streak-day.done{background:var(--gold)}
+.streak-day.today-d{background:var(--cyan)}
+
+.today-progress-row{display:flex;gap:10px;margin-top:14px}
+.today-prog-card{flex:1;background:var(--bg2);border-radius:var(--radius-s);padding:10px 12px;border:1px solid var(--border2)}
+.tpc-val{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cyan);line-height:1}
+.tpc-lbl{font-size:.65rem;color:var(--text-m);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+
+.today-practices{margin-top:16px}
+.tp-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-weight:500;margin-bottom:8px}
+
+.today-item{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-s);padding:14px;margin-bottom:8px;
+  display:flex;align-items:center;gap:12px;
+  transition:opacity .2s;
+}
+.today-item.done-item{opacity:.5}
+.ti-check{
+  width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);
+  background:transparent;cursor:pointer;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:transparent;font-size:.8rem;transition:all .2s;
+}
+.ti-check.checked{background:var(--success);border-color:var(--success);color:#fff}
+.ti-body{flex:1;min-width:0}
+.ti-name{font-size:.9rem;color:var(--text);font-weight:400}
+.ti-meta{font-size:.7rem;color:var(--text-m);margin-top:1px}
+.ti-btn{padding:6px 12px;border-radius:100px;border:1px solid var(--cyan);background:transparent;color:var(--cyan);font-family:'Jost',sans-serif;font-size:.72rem;cursor:pointer;flex-shrink:0;white-space:nowrap}
+.ti-btn:active{background:var(--cyan-dim)}
+
+/* ══════════════════════════════════════
+   FAMILIES VIEW
+══════════════════════════════════════ */
 .families-list{display:flex;flex-direction:column;gap:12px}
-
 .family-card{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:0;overflow:hidden;
-  box-shadow:var(--shadow);cursor:pointer;
-  transition:box-shadow .2s,transform .15s;
-  -webkit-tap-highlight-color:transparent;
+  border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  cursor:pointer;transition:box-shadow .2s,transform .12s;
 }
-.family-card:active{transform:scale(.985);box-shadow:var(--shadow-lg)}
+.family-card:active{transform:scale(.985);box-shadow:var(--shadow-l)}
+.fc-header{padding:16px 16px 12px;display:flex;align-items:flex-start;gap:12px}
+.fc-stripe{width:3px;border-radius:100px;background:linear-gradient(180deg,var(--lapis),var(--cyan));flex-shrink:0;align-self:stretch;min-height:36px}
+.fc-body{flex:1;min-width:0}
+.fc-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;color:var(--text);line-height:1.2}
+.fc-meta{font-size:.7rem;color:var(--text-m);margin-top:2px}
+.fc-img{width:44px;height:44px;border-radius:var(--radius-s);object-fit:cover;flex-shrink:0;border:1px solid var(--border)}
+.fc-img-placeholder{width:44px;height:44px;border-radius:var(--radius-s);background:var(--bg3);border:1px dashed var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--text-d);font-size:.7rem;cursor:pointer;text-align:center;line-height:1.3}
+.fc-menu-btn{width:30px;height:30px;border-radius:50%;border:none;background:var(--bg2);color:var(--text-m);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc-prog{padding:0 16px 14px 31px}
+.prog-lbl{display:flex;justify-content:space-between;font-size:.7rem;color:var(--text-m);margin-bottom:4px}
+.prog-bar{height:3px;background:var(--border2);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .6s ease;min-width:2px}
+.fc-arrow{color:var(--text-d);font-size:.9rem;flex-shrink:0;margin-top:3px}
 
-.family-card-header{
-  padding:18px 18px 14px;
-  display:flex;align-items:flex-start;gap:14px;
+/* ══════════════════════════════════════
+   PRACTICES VIEW
+══════════════════════════════════════ */
+.today-banner{
+  background:linear-gradient(135deg,var(--lapis) 0%,var(--cyan-d) 100%);
+  border-radius:var(--radius-s);padding:10px 14px;margin-bottom:14px;
+  font-size:.78rem;color:rgba(255,255,255,.9);
 }
-.family-card-stripe{
-  width:4px;border-radius:100px;
-  background:linear-gradient(180deg,var(--lapis),var(--cyan));
-  flex-shrink:0;align-self:stretch;min-height:40px;
-}
-.family-card-body{flex:1;min-width:0}
-.family-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:400;color:var(--lapis);line-height:1.2}
-.family-count{font-size:.72rem;color:var(--text-muted);margin-top:2px}
-.family-card-arrow{color:var(--text-light);font-size:1rem;flex-shrink:0;margin-top:2px}
+.today-banner strong{color:#fff}
 
-.family-progress-row{padding:0 18px 16px 36px}
-.prog-label{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text-muted);margin-bottom:5px}
-.prog-bar{height:4px;background:var(--border);border-radius:100px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .5s ease}
+.pi-section{margin-bottom:18px}
+.pi-sec-label{font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-weight:500;margin-bottom:8px;padding-left:2px}
 
-.family-card-menu-btn{
-  width:32px;height:32px;border-radius:50%;border:none;
-  background:var(--surface2);color:var(--text-muted);
-  font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-
-/* ── PRACTICE LIST (inside family) ── */
-.today-label{
-  font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--cyan);font-weight:500;margin-bottom:8px;padding-left:2px;
-}
-.practices-section{margin-bottom:20px}
-
-.practice-item{
+.pi-card{
   background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);margin-bottom:8px;overflow:hidden;
-  box-shadow:var(--shadow);
+  border-radius:var(--radius);margin-bottom:8px;overflow:hidden;box-shadow:var(--shadow);
 }
-.practice-item.today{border-color:var(--cyan-mid);border-left:3px solid var(--lapis)}
+.pi-card.is-today{border-color:var(--lapis);border-left:3px solid var(--cyan)}
+.pi-top{display:flex;align-items:center;padding:13px 13px 0;gap:10px}
+.pi-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--text);flex:1;min-width:0;line-height:1.2}
+.pi-today-tag{font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;background:var(--lapis);color:#fff;border-radius:100px;padding:2px 8px;flex-shrink:0}
+.pi-menu{width:28px;height:28px;border-radius:50%;border:none;background:transparent;color:var(--text-d);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pi-body{padding:10px 13px 13px}
+.pi-prog-row{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:var(--text-m);margin-bottom:4px}
+.pi-count{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--text)}
+.pi-bar{height:3px;background:var(--border2);border-radius:100px;overflow:hidden;margin-bottom:3px}
+.pi-fill{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .6s ease;min-width:2px}
+.pi-pct{font-size:.65rem;color:var(--text-d);text-align:right;margin-bottom:8px}
+.pi-daily{display:flex;justify-content:space-between;align-items:center;background:var(--cyan-glow);border:1px solid var(--border2);border-radius:var(--radius-xs);padding:7px 10px;margin-bottom:8px}
+.pi-daily-l{font-size:.7rem;color:var(--text-m)}
+.pi-daily-v{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--cyan)}
+.pi-days{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+.dd{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;background:var(--bg3);color:var(--text-d)}
+.dd.on{background:var(--lapis);color:#fff}
+.dd.now{background:var(--cyan);color:#fff}
+.pi-times{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
+.pi-time-tag{font-size:.68rem;background:var(--cyan-dim);color:var(--cyan);padding:2px 8px;border-radius:100px}
+.pi-desc{font-size:.7rem;color:var(--text-m);font-style:italic;margin-bottom:8px;line-height:1.5}
+.pi-projection{font-size:.68rem;color:var(--gold);margin-bottom:8px}
+.btn-add-pi{width:100%;padding:10px;background:var(--lapis);color:#fff;border:none;border-radius:var(--radius-xs);font-family:'Jost',sans-serif;font-size:.82rem;cursor:pointer;transition:background .15s}
+.btn-add-pi:active{background:var(--lapis-l)}
 
-.practice-item-header{
-  display:flex;align-items:center;padding:14px 14px 10px;gap:12px;cursor:pointer;
-}
-.pi-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--text);flex:1;min-width:0}
-.pi-today-badge{
-  font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;
-  background:var(--lapis);color:#fff;border-radius:100px;
-  padding:2px 8px;flex-shrink:0;font-weight:400;
-}
-.pi-menu-btn{
-  width:30px;height:30px;border-radius:50%;border:none;
-  background:transparent;color:var(--text-light);font-size:1rem;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
+/* ══════════════════════════════════════
+   STATS VIEW
+══════════════════════════════════════ */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center;box-shadow:var(--shadow)}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;color:var(--cyan);line-height:1;margin-bottom:3px}
+.stat-l{font-size:.62rem;color:var(--text-m);text-transform:uppercase;letter-spacing:.07em}
 
-.practice-item-body{padding:0 14px 14px}
-.pi-progress-label{display:flex;justify-content:space-between;font-size:.73rem;color:var(--text-muted);margin-bottom:5px}
-.pi-count{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--text)}
-.pi-bar{height:4px;background:var(--border);border-radius:100px;overflow:hidden;margin-bottom:6px}
-.pi-fill{height:100%;background:linear-gradient(90deg,var(--lapis),var(--cyan));border-radius:100px;transition:width .5s ease;min-width:3px}
-.pi-meta{font-size:.7rem;color:var(--text-light);text-align:right;margin-bottom:10px}
-.pi-daily-row{
-  display:flex;justify-content:space-between;align-items:center;
-  background:var(--cyan-light);border-radius:var(--radius-sm);
-  padding:8px 12px;margin-bottom:10px;
-}
-.pi-daily-label{font-size:.72rem;color:var(--lapis)}
-.pi-daily-val{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--lapis);font-weight:400}
+/* CHART */
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px;box-shadow:var(--shadow)}
+.chart-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m);margin-bottom:12px}
+.chart-wrap{display:flex;align-items:flex-end;gap:3px;height:60px}
+.chart-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.chart-bar{width:100%;border-radius:2px 2px 0 0;background:var(--lapis);min-height:2px;transition:height .4s ease}
+.chart-bar.today-b{background:var(--cyan)}
+.chart-day-lbl{font-size:.55rem;color:var(--text-d);text-align:center}
 
-.pi-schedule{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
-.day-dot{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.65rem;font-weight:500;letter-spacing:0;
-  background:var(--surface2);color:var(--text-muted);
-}
-.day-dot.active{background:var(--lapis);color:#fff}
-.day-dot.today-dot{background:var(--cyan);color:#fff}
+/* RETREATS */
+.retreat-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-s);padding:12px 14px;margin-bottom:8px;box-shadow:var(--shadow)}
+.ret-name{font-size:.9rem;color:var(--text);font-weight:400;margin-bottom:2px}
+.ret-dates{font-size:.7rem;color:var(--text-m)}
+.ret-count{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold)}
 
-.btn-add-mantras{
-  width:100%;padding:11px;
-  background:var(--lapis);color:#fff;
-  border:none;border-radius:var(--radius-sm);
-  font-family:'Jost',sans-serif;font-size:.85rem;font-weight:400;
-  cursor:pointer;transition:background .15s;
-  letter-spacing:.02em;
-}
-.btn-add-mantras:active{background:var(--lapis-mid)}
+/* SESSIONS */
+.filter-row{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.fsel{padding:6px 24px 6px 10px;border:1px solid var(--border);border-radius:100px;font-family:'Jost',sans-serif;font-size:.75rem;background:var(--surface);color:var(--text);outline:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238fa3c0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;-webkit-appearance:none;appearance:none}
 
-/* ── HISTORY ── */
-.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
-.stat-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius);padding:14px;text-align:center;box-shadow:var(--shadow);
-}
-.stat-val{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--lapis);line-height:1;margin-bottom:3px}
-.stat-lbl{font-size:.64rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em}
+.sess-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-s);padding:11px 13px;display:flex;align-items:center;gap:11px;margin-bottom:7px}
+.s-date{min-width:34px;flex-shrink:0;text-align:center}
+.s-day{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--cyan);line-height:1}
+.s-mon{font-size:.58rem;text-transform:uppercase;color:var(--text-m);letter-spacing:.05em}
+.s-body{flex:1;min-width:0}
+.s-name{font-size:.82rem;color:var(--text);font-weight:400}
+.s-meta{font-size:.68rem;color:var(--text-m);margin-top:1px}
+.s-note{font-size:.65rem;color:var(--text-d);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-cnt{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--text);flex-shrink:0}
+.s-unit{font-size:.58rem;color:var(--text-m);font-family:'Jost',sans-serif;text-align:right}
+.s-acts{display:flex;gap:4px;flex-shrink:0}
+.sb-e{padding:5px 9px;border-radius:100px;border:none;font-family:'Jost',sans-serif;font-size:.68rem;cursor:pointer}
+.sb-edit{background:var(--surface2);color:var(--text-m)}
+.sb-del{background:var(--danger-dim);color:var(--danger)}
 
-.filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.filter-select{
-  padding:7px 28px 7px 12px;border:1px solid var(--border);
-  border-radius:100px;font-family:'Jost',sans-serif;font-size:.78rem;
-  background:var(--surface);color:var(--text);outline:none;cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 10px center;
-  -webkit-appearance:none;appearance:none;
-}
+/* EXPORT */
+.export-btn{display:flex;align-items:center;justify-content:space-between;width:100%;padding:13px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-s);font-family:'Jost',sans-serif;font-size:.85rem;color:var(--text);cursor:pointer;margin-bottom:8px}
+.export-btn:active{background:var(--surface2)}
 
-.sessions-list{display:flex;flex-direction:column;gap:8px}
-.session-item{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--radius-sm);padding:12px 14px;
-  display:flex;align-items:center;gap:12px;
-}
-.sess-date{min-width:36px;flex-shrink:0;text-align:center}
-.sess-day{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--lapis);line-height:1}
-.sess-mon{font-size:.6rem;text-transform:uppercase;color:var(--text-muted);letter-spacing:.05em}
-.sess-body{flex:1;min-width:0}
-.sess-name{font-size:.85rem;color:var(--text);font-weight:400}
-.sess-meta{font-size:.72rem;color:var(--text-muted);margin-top:1px}
-.sess-note{font-size:.68rem;color:var(--text-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sess-count{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--lapis);text-align:right;flex-shrink:0}
-.sess-unit{font-size:.6rem;color:var(--text-muted);text-align:right;font-family:'Jost',sans-serif}
-.sess-actions{display:flex;gap:4px;flex-shrink:0}
-
-/* ── BUTTONS ── */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  padding:12px 20px;border-radius:var(--radius-sm);border:none;
-  font-family:'Jost',sans-serif;font-size:.88rem;font-weight:400;
-  cursor:pointer;transition:all .15s;min-height:48px;
-  -webkit-tap-highlight-color:transparent;
-}
-.btn-primary{background:var(--lapis);color:#fff}
-.btn-primary:active{background:var(--lapis-mid)}
-.btn-cyan{background:var(--cyan);color:#fff}
-.btn-cyan:active{background:#3aa0b4}
-.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
-.btn-ghost:active{background:var(--surface2)}
+/* ══════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 18px;border-radius:var(--radius-s);border:none;font-family:'Jost',sans-serif;font-size:.85rem;font-weight:400;cursor:pointer;transition:all .15s;min-height:46px;-webkit-tap-highlight-color:transparent}
+.btn-p{background:var(--lapis);color:#fff}
+.btn-p:active{background:var(--lapis-l)}
+.btn-c{background:var(--cyan);color:#fff}
+.btn-c:active{background:var(--cyan-d)}
+.btn-g{background:transparent;color:var(--text-m);border:1px solid var(--border)}
+.btn-g:active{background:var(--surface2)}
 .btn-danger{background:var(--danger);color:#fff}
 .btn-full{width:100%}
+.btn-sm{padding:8px 14px;min-height:36px;font-size:.78rem}
 
-.btn-icon-sm{
-  padding:7px 12px;min-height:34px;border-radius:100px;border:none;
-  font-family:'Jost',sans-serif;font-size:.72rem;font-weight:400;
-  cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all .15s;
-}
-.btn-edit-sm{background:var(--surface2);color:var(--text-muted)}
-.btn-del-sm{background:var(--danger-light);color:var(--danger)}
-
-/* ── FORM ── */
-.form-group{margin-bottom:15px}
-label{display:block;font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+/* ══════════════════════════════════════
+   FORM
+══════════════════════════════════════ */
+.fg{margin-bottom:14px}
+label{display:block;font-size:.68rem;color:var(--text-m);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
 input[type=text],input[type=number],input[type=date],input[type=time],select,textarea{
-  width:100%;padding:12px 14px;border:1px solid var(--border);
-  border-radius:var(--radius-sm);font-family:'Jost',sans-serif;font-size:1rem;
-  background:var(--surface2);color:var(--text);outline:none;transition:border-color .2s;
-  -webkit-appearance:none;appearance:none;
+  width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:var(--radius-s);
+  font-family:'Jost',sans-serif;font-size:1rem;background:var(--bg2);color:var(--text);
+  outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none;
 }
-input:focus,select:focus,textarea:focus{border-color:var(--lapis);background:var(--surface)}
-input::placeholder,textarea::placeholder{color:var(--text-light)}
-select{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
-}
-textarea{resize:vertical;min-height:72px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+input:focus,select:focus,textarea:focus{border-color:var(--cyan)}
+input::placeholder,textarea::placeholder{color:var(--text-d)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 12 12'%3E%3Cpath fill='%238fa3c0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+textarea{resize:vertical;min-height:70px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-/* ── SCHEDULE EDITOR ── */
-.days-picker{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.day-toggle{
-  width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);
-  background:var(--surface2);color:var(--text-muted);
-  font-family:'Jost',sans-serif;font-size:.72rem;font-weight:500;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  -webkit-tap-highlight-color:transparent;transition:all .15s;
-}
-.day-toggle.sel{background:var(--lapis);color:#fff;border-color:var(--lapis)}
+.days-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.dtog{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg2);color:var(--text-m);font-family:'Jost',sans-serif;font-size:.7rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.dtog.sel{background:var(--lapis);color:#fff;border-color:var(--lapis)}
 
-.times-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.time-row{display:flex;align-items:center;gap:8px}
-.time-row input{flex:1}
-.time-remove{
-  width:34px;height:34px;border-radius:50%;border:none;
-  background:var(--danger-light);color:var(--danger);
-  font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.btn-add-time{
-  margin-top:6px;padding:8px 14px;border-radius:var(--radius-sm);border:1.5px dashed var(--border);
-  background:transparent;color:var(--text-muted);font-family:'Jost',sans-serif;font-size:.8rem;
-  cursor:pointer;width:100%;text-align:center;
-}
+.times-list,.reminders-list{display:flex;flex-direction:column;gap:7px;margin-top:5px}
+.t-row,.r-row{display:flex;align-items:center;gap:7px}
+.t-row input,.r-row select{flex:1}
+.t-rm{width:32px;height:32px;border-radius:50%;border:none;background:var(--danger-dim);color:var(--danger);font-size:.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.btn-add-t{margin-top:5px;padding:7px 12px;border-radius:var(--radius-s);border:1.5px dashed var(--border);background:transparent;color:var(--text-m);font-family:'Jost',sans-serif;font-size:.78rem;cursor:pointer;width:100%;text-align:center}
 
-.reminders-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
-.reminder-row{display:flex;align-items:center;gap:8px}
-.reminder-row select{flex:1}
-
-/* ── BOTTOM SHEET ── */
-.sheet-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(10,20,40,.5);z-index:500;
-  align-items:flex-end;justify-content:center;
+/* Image upload */
+.img-upload-area{
+  border:1.5px dashed var(--border);border-radius:var(--radius-s);
+  padding:20px;text-align:center;cursor:pointer;
+  color:var(--text-m);font-size:.8rem;transition:border-color .2s;
 }
-.sheet-overlay.open{display:flex}
+.img-upload-area:hover{border-color:var(--cyan)}
+.img-preview{width:100%;max-height:140px;object-fit:cover;border-radius:var(--radius-s);margin-top:8px;display:none}
+
+/* ══════════════════════════════════════
+   BOTTOM SHEET
+══════════════════════════════════════ */
+.sh-ov{display:none;position:fixed;inset:0;background:rgba(5,10,20,.6);z-index:500;align-items:flex-end;justify-content:center}
+.sh-ov.open{display:flex}
 .sheet{
-  background:var(--surface);border-radius:20px 20px 0 0;
-  padding:0 18px;padding-bottom:calc(22px + var(--safe-bottom));
+  background:var(--bg2);border-radius:20px 20px 0 0;border-top:1px solid var(--border);
+  padding:0 18px;padding-bottom:calc(20px + var(--safe-b));
   max-width:600px;width:100%;max-height:92dvh;
   overflow-y:auto;-webkit-overflow-scrolling:touch;
   animation:slideUp .22s cubic-bezier(.34,1.2,.64,1);
 }
 @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.sheet-handle{width:40px;height:4px;background:var(--border);border-radius:100px;margin:12px auto 18px}
-.sheet-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;margin-bottom:18px;color:var(--lapis);line-height:1.3}
-.sheet-actions{display:flex;flex-direction:column;gap:10px;margin-top:18px}
-
-.menu-item{
-  display:flex;align-items:center;gap:14px;padding:13px 0;
-  border:none;background:transparent;font-family:'Jost',sans-serif;
-  font-size:.92rem;color:var(--text);cursor:pointer;width:100%;
-  border-bottom:1px solid var(--border-light);-webkit-tap-highlight-color:transparent;
-}
+.sh-handle{width:38px;height:4px;background:var(--border);border-radius:100px;margin:11px auto 16px}
+.sh-title{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;color:var(--text);margin-bottom:16px;line-height:1.3}
+.sh-acts{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.menu-item{display:flex;align-items:center;gap:12px;padding:12px 0;border:none;background:transparent;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--text);cursor:pointer;width:100%;border-bottom:1px solid var(--border2)}
 .menu-item:last-child{border-bottom:none}
 .menu-item.danger{color:var(--danger)}
 
-/* ── EMPTY ── */
-.empty-state{text-align:center;padding:50px 20px;color:var(--text-muted)}
-.empty-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;margin-bottom:6px;color:var(--text)}
-.empty-text{font-size:.82rem}
-
-/* ── TOAST ── */
-.toast{
-  position:fixed;bottom:calc(68px + var(--safe-bottom) + 10px);left:50%;
-  transform:translateX(-50%) translateY(16px);
-  background:var(--lapis);color:#fff;
-  padding:9px 20px;border-radius:100px;font-size:.8rem;z-index:9999;
-  opacity:0;transition:all .22s;white-space:nowrap;
-  max-width:calc(100vw - 40px);text-align:center;pointer-events:none;
-}
+/* TOAST */
+.toast{position:fixed;bottom:calc(66px + var(--safe-b) + 10px);left:50%;transform:translateX(-50%) translateY(14px);background:var(--lapis);color:#fff;padding:8px 18px;border-radius:100px;font-size:.78rem;z-index:9999;opacity:0;transition:all .22s;white-space:nowrap;max-width:calc(100vw - 36px);text-align:center;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ── INSTALL BANNER ── */
-.install-banner{
-  display:none;position:fixed;
-  bottom:calc(64px + var(--safe-bottom) + 8px);
-  left:14px;right:14px;
-  background:var(--lapis);color:#fff;
-  border-radius:var(--radius);padding:13px 14px;
-  box-shadow:var(--shadow-lg);z-index:300;
-  align-items:center;gap:12px;font-size:.78rem;line-height:1.4;
-}
-.install-banner.show{display:flex}
-.ib-close{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;width:26px;height:26px;font-size:.75rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* INSTALL */
+.ib{display:none;position:fixed;bottom:calc(62px + var(--safe-b) + 8px);left:12px;right:12px;background:var(--lapis);color:#fff;border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow-l);z-index:300;align-items:center;gap:10px;font-size:.77rem;line-height:1.5}
+.ib.show{display:flex}
+.ib-x{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:.72rem;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 
-@media(max-width:380px){
-  .form-row{grid-template-columns:1fr}
-  .days-picker{gap:5px}
-  .day-toggle{width:34px;height:34px}
-}
+@media(max-width:380px){.frow{grid-template-columns:1fr}.days-row{gap:4px}.dtog{width:32px;height:32px}}
 </style>
 </head>
 <body>
@@ -384,95 +355,56 @@ textarea{resize:vertical;min-height:72px}
 
 <header>
   <div class="header-inner">
-    <button class="header-back" id="header-back" onclick="goBack()">&#8592;</button>
-    <div class="header-title" id="header-title">Vajrayana · Práctica</div>
-    <div class="header-action" id="header-action"></div>
+    <button class="h-back" id="hback" onclick="goBack()">&#8592;</button>
+    <div class="h-title" id="htitle">Vajrayana</div>
+    <div class="h-acts" id="hacts"></div>
   </div>
 </header>
 
-<main id="main-scroll">
-
-  <!-- ══ FAMILIES VIEW ══ -->
-  <div id="view-families" class="view active">
-    <div class="section-header">
-      <div>
-        <h1 class="section-title">Familias</h1>
-        <p class="section-sub" id="today-label"></p>
-      </div>
-      <button class="btn btn-primary" style="min-height:38px;padding:7px 14px;font-size:.8rem" onclick="openNewFamily()">+ Familia</button>
-    </div>
-    <div id="families-list" class="families-list"></div>
-  </div>
-
-  <!-- ══ PRACTICES VIEW (inside family) ══ -->
-  <div id="view-practices" class="view">
-    <div id="practices-container"></div>
-  </div>
-
-  <!-- ══ HISTORY VIEW ══ -->
-  <div id="view-history" class="view">
-    <div class="section-header">
-      <div><h1 class="section-title">Historial</h1><p class="section-sub">Todas las sesiones</p></div>
-    </div>
-    <div class="stats-row" id="stats-row"></div>
-    <div class="filter-row">
-      <select class="filter-select" id="filter-family" onchange="renderHistory()"><option value="">Todas las familias</option></select>
-      <select class="filter-select" id="filter-period" onchange="renderHistory()">
-        <option value="">Siempre</option>
-        <option value="7">7 días</option>
-        <option value="30">30 días</option>
-        <option value="90">90 días</option>
-      </select>
-    </div>
-    <div id="sessions-list" class="sessions-list"></div>
-  </div>
-
+<main id="mscroll">
+  <div id="view-today"     class="view active"></div>
+  <div id="view-families"  class="view"></div>
+  <div id="view-practices" class="view"></div>
+  <div id="view-stats"     class="view"></div>
 </main>
 
 <nav class="tab-bar">
-  <button class="tab-btn active" onclick="showTab('families')">
-    <span class="tab-icon">&#9635;</span>Familias
-  </button>
-  <button class="tab-btn" onclick="showTab('history')">
-    <span class="tab-icon">&#9776;</span>Historial
-  </button>
+  <button class="tab-btn active" onclick="showTab('today')">   <span class="t-icon">&#9788;</span>Hoy</button>
+  <button class="tab-btn"        onclick="showTab('families')"><span class="t-icon">&#9635;</span>Familias</button>
+  <button class="tab-btn"        onclick="showTab('stats')">   <span class="t-icon">&#9650;</span>Estadísticas</button>
 </nav>
 </div>
 
 <!-- ══ SHEETS ══ -->
 
-<!-- Family Form -->
-<div id="sheet-family" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-family')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title" id="sheet-family-title">Nueva familia</h2>
-  <div class="form-group">
-    <label>Nombre de la familia</label>
-    <input type="text" id="f-name" placeholder="ej. Ngöndro, Yidam, Mahamudra…"/>
+<!-- Family form -->
+<div id="sh-family" class="sh-ov" onclick="shOvClose(event,'sh-family')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title" id="sh-family-title">Nueva familia</h2>
+  <div class="fg"><label>Nombre</label><input type="text" id="f-name" placeholder="ej. Ngöndro, Yidam…"/></div>
+  <div class="fg"><label>Descripción</label><textarea id="f-desc" rows="2" placeholder="Prácticas preliminares…"></textarea></div>
+  <div class="fg">
+    <label>Imagen (opcional)</label>
+    <div class="img-upload-area" onclick="document.getElementById('f-img-input').click()">
+      Toca para añadir imagen (thangka, yidam…)
+      <img id="f-img-preview" class="img-preview"/>
+    </div>
+    <input type="file" id="f-img-input" accept="image/*" style="display:none" onchange="handleFamilyImg(event)"/>
+    <input type="hidden" id="f-img-data"/>
   </div>
-  <div class="form-group">
-    <label>Descripción (opcional)</label>
-    <textarea id="f-desc" placeholder="Prácticas preliminares del Vajrayana…" rows="2"></textarea>
+  <div class="sh-acts">
+    <button class="btn btn-p btn-full" onclick="saveFamily()">Guardar familia</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-family')">Cancelar</button>
   </div>
-  <div class="sheet-actions">
-    <button class="btn btn-primary btn-full" onclick="saveFamily()">Guardar familia</button>
-    <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-family')">Cancelar</button>
-  </div>
-</div>
-</div>
+</div></div>
 
-<!-- Practice Form -->
-<div id="sheet-practice" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-practice')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title" id="sheet-practice-title">Nueva práctica</h2>
-  <div class="form-group">
-    <label>Nombre</label>
-    <input type="text" id="p-name" placeholder="ej. Vajrasattva, Mandala, Guru Yoga…"/>
-  </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label>Unidad</label>
+<!-- Practice form -->
+<div id="sh-practice" class="sh-ov" onclick="shOvClose(event,'sh-practice')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title" id="sh-p-title">Nueva práctica</h2>
+  <div class="fg"><label>Nombre</label><input type="text" id="p-name" placeholder="Vajrasattva, Mandala…"/></div>
+  <div class="frow">
+    <div class="fg"><label>Unidad</label>
       <select id="p-unit">
         <option value="mantras">Mantras</option>
         <option value="repeticiones">Repeticiones</option>
@@ -482,840 +414,911 @@ textarea{resize:vertical;min-height:72px}
         <option value="oraciones">Oraciones</option>
       </select>
     </div>
-    <div class="form-group">
-      <label>Familia</label>
-      <select id="p-family"></select>
+    <div class="fg"><label>Familia</label><select id="p-family"></select></div>
+  </div>
+  <div class="frow">
+    <div class="fg"><label>Meta total</label><input type="number" id="p-goal" inputmode="numeric" placeholder="100000"/></div>
+    <div class="fg"><label>Meta diaria</label><input type="number" id="p-daily" inputmode="numeric" placeholder="108"/></div>
+  </div>
+  <div class="fg"><label>Total acumulado</label><input type="number" id="p-current" inputmode="numeric" placeholder="0"/></div>
+  <div class="fg"><label>Mantra / descripción</label><textarea id="p-desc" rows="2" placeholder="OM VAJRASATTVA HUM…"></textarea></div>
+  <div class="fg"><label>Días de práctica</label>
+    <div class="days-row" id="days-row">
+      <button class="dtog" data-d="1">L</button><button class="dtog" data-d="2">M</button>
+      <button class="dtog" data-d="3">X</button><button class="dtog" data-d="4">J</button>
+      <button class="dtog" data-d="5">V</button><button class="dtog" data-d="6">S</button>
+      <button class="dtog" data-d="0">D</button>
     </div>
   </div>
-  <div class="form-row">
-    <div class="form-group">
-      <label>Meta total</label>
-      <input type="number" id="p-goal" inputmode="numeric" placeholder="100000"/>
-    </div>
-    <div class="form-group">
-      <label>Meta diaria</label>
-      <input type="number" id="p-daily" inputmode="numeric" placeholder="108"/>
-    </div>
-  </div>
-  <div class="form-group">
-    <label>Total acumulado</label>
-    <input type="number" id="p-current" inputmode="numeric" placeholder="0"/>
-  </div>
-  <div class="form-group">
-    <label>Mantra / descripción</label>
-    <textarea id="p-desc" rows="2" placeholder="OM VAJRASATTVA HUM…"></textarea>
-  </div>
-
-  <!-- Schedule -->
-  <div class="form-group">
-    <label>Días de práctica</label>
-    <div class="days-picker" id="days-picker">
-      <button class="day-toggle" data-d="1">L</button>
-      <button class="day-toggle" data-d="2">M</button>
-      <button class="day-toggle" data-d="3">X</button>
-      <button class="day-toggle" data-d="4">J</button>
-      <button class="day-toggle" data-d="5">V</button>
-      <button class="day-toggle" data-d="6">S</button>
-      <button class="day-toggle" data-d="0">D</button>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label>Horas de práctica</label>
+  <div class="fg"><label>Horas de práctica</label>
     <div class="times-list" id="times-list"></div>
-    <button class="btn-add-time" onclick="addTimeRow()">+ Añadir hora</button>
+    <button class="btn-add-t" onclick="addTimeRow()">+ Añadir hora</button>
   </div>
-
-  <div class="form-group">
-    <label>Recordatorios antes de cada sesión</label>
+  <div class="fg"><label>Recordatorios</label>
     <div class="reminders-list" id="reminders-list"></div>
-    <button class="btn-add-time" onclick="addReminderRow()">+ Añadir recordatorio</button>
+    <button class="btn-add-t" onclick="addReminderRow()">+ Añadir recordatorio</button>
   </div>
+  <div class="sh-acts">
+    <button class="btn btn-p btn-full" onclick="savePractice()">Guardar práctica</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-practice')">Cancelar</button>
+  </div>
+</div></div>
 
-  <div class="sheet-actions">
-    <button class="btn btn-primary btn-full" onclick="savePractice()">Guardar práctica</button>
-    <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-practice')">Cancelar</button>
+<!-- Quick add -->
+<div id="sh-mantras" class="sh-ov" onclick="shOvClose(event,'sh-mantras')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title" id="sh-m-title">Añadir sesión</h2>
+  <div class="fg"><label>Cantidad</label><input type="number" id="q-qty" inputmode="numeric" placeholder="108"/></div>
+  <div class="fg"><label>Duración (min)</label><input type="number" id="q-dur" inputmode="numeric" placeholder="30"/></div>
+  <div class="fg"><label>Notas</label><input type="text" id="q-notes" placeholder="Sesión de mañana…"/></div>
+  <div class="sh-acts">
+    <button class="btn btn-p btn-full" onclick="confirmAdd()">Guardar</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-mantras')">Cancelar</button>
   </div>
-</div>
-</div>
+</div></div>
 
-<!-- Quick Add Mantras -->
-<div id="sheet-mantras" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-mantras')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title" id="sheet-mantras-title">Añadir sesión</h2>
-  <div class="form-group">
-    <label>Cantidad</label>
-    <input type="number" id="q-mantras" inputmode="numeric" placeholder="108"/>
+<!-- Retreat form -->
+<div id="sh-retreat" class="sh-ov" onclick="shOvClose(event,'sh-retreat')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title" id="sh-ret-title">Nuevo retiro</h2>
+  <div class="fg"><label>Nombre del retiro</label><input type="text" id="ret-name" placeholder="Retiro de Vajrasattva…"/></div>
+  <div class="frow">
+    <div class="fg"><label>Fecha inicio</label><input type="date" id="ret-start"/></div>
+    <div class="fg"><label>Fecha fin</label><input type="date" id="ret-end"/></div>
   </div>
-  <div class="form-group">
-    <label>Duración (minutos)</label>
-    <input type="number" id="q-duration" inputmode="numeric" placeholder="30"/>
+  <div class="fg"><label>Total acumulado en el retiro</label><input type="number" id="ret-count" inputmode="numeric" placeholder="0"/></div>
+  <div class="fg"><label>Notas</label><textarea id="ret-notes" rows="2" placeholder="Lugar, maestro, dedicatoria…"></textarea></div>
+  <div class="sh-acts">
+    <button class="btn btn-p btn-full" onclick="saveRetreat()">Guardar retiro</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-retreat')">Cancelar</button>
   </div>
-  <div class="form-group">
-    <label>Notas</label>
-    <input type="text" id="q-notes" placeholder="Sesión de mañana, dedicatoria…"/>
-  </div>
-  <div class="sheet-actions">
-    <button class="btn btn-primary btn-full" onclick="confirmAddMantras()">Añadir</button>
-    <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-mantras')">Cancelar</button>
-  </div>
-</div>
-</div>
+</div></div>
 
-<!-- Context Menu: Family -->
-<div id="sheet-fmenu" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-fmenu')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title" id="sheet-fmenu-title"></h2>
-  <button class="menu-item" onclick="fMenuAddPractice()">+ Añadir práctica</button>
-  <button class="menu-item" onclick="fMenuEdit()">Editar familia</button>
-  <button class="menu-item danger" onclick="fMenuDelete()">Eliminar familia</button>
-</div>
-</div>
+<!-- Family menu -->
+<div id="sh-fmenu" class="sh-ov" onclick="shOvClose(event,'sh-fmenu')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title" id="sh-fm-title"></h2>
+  <button class="menu-item" onclick="fmAddP()">Añadir práctica</button>
+  <button class="menu-item" onclick="fmEdit()">Editar familia</button>
+  <button class="menu-item danger" onclick="fmDelete()">Eliminar familia</button>
+</div></div>
 
-<!-- Context Menu: Practice -->
-<div id="sheet-pmenu" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-pmenu')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title" id="sheet-pmenu-title"></h2>
-  <button class="menu-item" onclick="pMenuAdd()">+ Añadir sesión</button>
-  <button class="menu-item" onclick="pMenuEdit()">Editar práctica</button>
-  <button class="menu-item danger" onclick="pMenuDelete()">Eliminar práctica</button>
-</div>
-</div>
+<!-- Practice menu -->
+<div id="sh-pmenu" class="sh-ov" onclick="shOvClose(event,'sh-pmenu')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title" id="sh-pm-title"></h2>
+  <button class="menu-item" onclick="pmAdd()">Añadir sesión</button>
+  <button class="menu-item" onclick="pmEdit()">Editar práctica</button>
+  <button class="menu-item danger" onclick="pmDelete()">Eliminar práctica</button>
+</div></div>
 
-<!-- Edit Session -->
-<div id="sheet-edit-sess" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-edit-sess')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title">Editar sesión</h2>
+<!-- Edit session -->
+<div id="sh-esess" class="sh-ov" onclick="shOvClose(event,'sh-esess')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title">Editar sesión</h2>
   <input type="hidden" id="es-id"/>
-  <div class="form-group"><label>Práctica</label><select id="es-practice"></select></div>
-  <div class="form-row">
-    <div class="form-group"><label>Cantidad</label><input type="number" id="es-mantras" inputmode="numeric"/></div>
-    <div class="form-group"><label>Duración (min)</label><input type="number" id="es-duration" inputmode="numeric"/></div>
+  <div class="fg"><label>Práctica</label><select id="es-prac"></select></div>
+  <div class="frow">
+    <div class="fg"><label>Cantidad</label><input type="number" id="es-qty" inputmode="numeric"/></div>
+    <div class="fg"><label>Duración (min)</label><input type="number" id="es-dur" inputmode="numeric"/></div>
   </div>
-  <div class="form-group"><label>Fecha</label><input type="date" id="es-date"/></div>
-  <div class="form-group"><label>Notas</label><textarea id="es-notes" rows="2"></textarea></div>
-  <div class="sheet-actions">
-    <button class="btn btn-primary btn-full" onclick="saveEditSession()">Guardar</button>
-    <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-edit-sess')">Cancelar</button>
+  <div class="fg"><label>Fecha</label><input type="date" id="es-date"/></div>
+  <div class="fg"><label>Notas</label><textarea id="es-notes" rows="2"></textarea></div>
+  <div class="sh-acts">
+    <button class="btn btn-p btn-full" onclick="saveEditSession()">Guardar</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-esess')">Cancelar</button>
   </div>
-</div>
-</div>
+</div></div>
 
 <!-- Confirm -->
-<div id="sheet-confirm" class="sheet-overlay" onclick="closeSheetOverlay(event,'sheet-confirm')">
-<div class="sheet">
-  <div class="sheet-handle"></div>
-  <h2 class="sheet-title">Confirmar</h2>
-  <p id="confirm-text" style="font-size:.88rem;color:var(--text-muted);margin-bottom:4px;line-height:1.6"></p>
-  <div class="sheet-actions">
-    <button class="btn btn-danger btn-full" id="confirm-btn">Eliminar</button>
-    <button class="btn btn-ghost btn-full" onclick="closeSheet('sheet-confirm')">Cancelar</button>
+<div id="sh-confirm" class="sh-ov" onclick="shOvClose(event,'sh-confirm')"><div class="sheet">
+  <div class="sh-handle"></div>
+  <h2 class="sh-title">Confirmar</h2>
+  <p id="conf-text" style="font-size:.85rem;color:var(--text-m);line-height:1.65;margin-bottom:4px"></p>
+  <div class="sh-acts">
+    <button class="btn btn-danger btn-full" id="conf-btn">Eliminar</button>
+    <button class="btn btn-g btn-full" onclick="closeSheet('sh-confirm')">Cancelar</button>
   </div>
-</div>
-</div>
+</div></div>
 
-<!-- Install Banner -->
-<div id="install-banner" class="install-banner">
-  <span style="flex:1">Safari: pulsa <strong>Compartir</strong> &rarr; <strong>Añadir a pantalla de inicio</strong></span>
-  <button class="ib-close" onclick="dismissInstall()">&#10005;</button>
-</div>
-
-<div id="toast" class="toast"></div>
+<div class="ib" id="ib"><span style="flex:1">Safari: <strong>Compartir</strong> → <strong>Añadir a pantalla de inicio</strong></span><button class="ib-x" onclick="dismissIB()">&#10005;</button></div>
+<div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════════════
-// DATA
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// DB
+// ═══════════════════════════════════════════
 const DB = {
-  getFamilies:  () => JSON.parse(localStorage.getItem('vj2_families')  || '[]'),
-  saveFamilies: d  => localStorage.setItem('vj2_families',  JSON.stringify(d)),
-  getPractices: () => JSON.parse(localStorage.getItem('vj2_practices') || '[]'),
-  savePractices:d  => localStorage.setItem('vj2_practices', JSON.stringify(d)),
-  getSessions:  () => JSON.parse(localStorage.getItem('vj2_sessions')  || '[]'),
-  saveSessions: d  => localStorage.setItem('vj2_sessions',  JSON.stringify(d)),
+  g: k => JSON.parse(localStorage.getItem(k)||'[]'),
+  s: (k,v) => localStorage.setItem(k,JSON.stringify(v)),
+  get families()  { return this.g('vj3_families') },
+  get practices() { return this.g('vj3_practices') },
+  get sessions()  { return this.g('vj3_sessions') },
+  get retreats()  { return this.g('vj3_retreats') },
+  saveFamilies:  v => localStorage.setItem('vj3_families',  JSON.stringify(v)),
+  savePractices: v => localStorage.setItem('vj3_practices', JSON.stringify(v)),
+  saveSessions:  v => localStorage.setItem('vj3_sessions',  JSON.stringify(v)),
+  saveRetreats:  v => localStorage.setItem('vj3_retreats',  JSON.stringify(v)),
 };
 
-const DAYS_ES = ['D','L','M','X','J','V','S'];
 const MONTHS  = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-const DAY_NAMES = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const DNAMES  = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const DLBLS   = ['D','L','M','X','J','V','S'];
+const DORDER  = [1,2,3,4,5,6,0];
+const DOLBLS  = ['L','M','X','J','V','S','D'];
 
-// ══════════════════════════════════════════════════════
-// NAVIGATION STATE
-// ══════════════════════════════════════════════════════
-let currentTab      = 'families';
-let currentFamilyId = null;
+function today() { return new Date().toISOString().split('T')[0]; }
+function todayDow() { return new Date().getDay(); }
+
+// ═══════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════
+let curTab = 'today';
+let curFamilyId = null;
 
 function showTab(tab) {
-  currentTab = tab;
-  currentFamilyId = null;
-  ['families','practices','history'].forEach(v =>
+  curTab = tab; curFamilyId = null;
+  ['today','families','practices','stats'].forEach(v =>
     document.getElementById('view-'+v).classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
-  if (tab === 'families') {
-    document.getElementById('view-families').classList.add('active');
-    document.querySelectorAll('.tab-btn')[0].classList.add('active');
-    document.getElementById('header-back').classList.remove('visible');
-    document.getElementById('header-title').textContent = 'Vajrayana · Práctica';
-    document.getElementById('header-action').innerHTML = '';
-    renderFamilies();
-  } else if (tab === 'history') {
-    document.getElementById('view-history').classList.add('active');
-    document.querySelectorAll('.tab-btn')[1].classList.add('active');
-    document.getElementById('header-back').classList.remove('visible');
-    document.getElementById('header-title').textContent = 'Historial';
-    document.getElementById('header-action').innerHTML = '';
-    renderStats(); renderHistory();
-  }
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('view-'+tab).classList.add('active');
+  const ti = ['today','families','stats'].indexOf(tab);
+  if (ti>=0) document.querySelectorAll('.tab-btn')[ti].classList.add('active');
+  document.getElementById('hback').classList.remove('on');
+  document.getElementById('hacts').innerHTML = '';
+  const titles = {today:'Vajrayana',families:'Familias',stats:'Estadísticas'};
+  document.getElementById('htitle').textContent = titles[tab]||'';
+  if (tab==='today')    renderToday();
+  if (tab==='families') renderFamilies();
+  if (tab==='stats')    renderStats();
+  document.getElementById('mscroll').scrollTop = 0;
 }
 
-function openFamily(familyId) {
-  currentFamilyId = familyId;
-  const f = DB.getFamilies().find(x => x.id === familyId);
+function openFamily(fid) {
+  curFamilyId = fid;
+  const f = DB.families.find(x=>x.id===fid);
   document.getElementById('view-families').classList.remove('active');
   document.getElementById('view-practices').classList.add('active');
-  document.getElementById('header-back').classList.add('visible');
-  document.getElementById('header-title').textContent = f.name;
-  document.getElementById('header-action').innerHTML =
-    `<button class="btn btn-primary" style="min-height:34px;padding:6px 12px;font-size:.78rem" onclick="openNewPractice('${familyId}')">+ Práctica</button>`;
-  renderPractices(familyId);
+  document.getElementById('hback').classList.add('on');
+  document.getElementById('htitle').textContent = f.name;
+  document.getElementById('hacts').innerHTML =
+    `<button class="btn btn-p btn-sm" onclick="openNewPractice('${fid}')">+ Práctica</button>`;
+  renderPractices(fid);
 }
 
 function goBack() {
-  currentFamilyId = null;
+  curFamilyId = null;
   document.getElementById('view-practices').classList.remove('active');
   document.getElementById('view-families').classList.add('active');
-  document.getElementById('header-back').classList.remove('visible');
-  document.getElementById('header-title').textContent = 'Vajrayana · Práctica';
-  document.getElementById('header-action').innerHTML = '';
+  document.getElementById('hback').classList.remove('on');
+  document.getElementById('htitle').textContent = 'Familias';
+  document.getElementById('hacts').innerHTML = '';
   renderFamilies();
 }
 
-// ══════════════════════════════════════════════════════
-// FAMILIES
-// ══════════════════════════════════════════════════════
-function renderFamilies() {
-  const families  = DB.getFamilies();
-  const practices = DB.getPractices();
-  const today     = new Date().getDay(); // 0=Sun
-
-  document.getElementById('today-label').textContent =
-    new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
-
-  const el = document.getElementById('families-list');
-  if (!families.length) {
-    el.innerHTML = `<div class="empty-state">
-      <div class="empty-title">Sin familias aún</div>
-      <div class="empty-text">Crea tu primera familia de prácticas</div>
-    </div>`;
-    return;
+// ═══════════════════════════════════════════
+// STREAK
+// ═══════════════════════════════════════════
+function calcStreak() {
+  const sessions = DB.sessions;
+  if (!sessions.length) return { current:0, last7:[] };
+  const days = [...new Set(sessions.map(s=>s.date))].sort().reverse();
+  const t = today();
+  let streak = 0;
+  let d = new Date(t);
+  for (let i=0; i<365; i++) {
+    const ds = d.toISOString().split('T')[0];
+    if (days.includes(ds)) { streak++; d.setDate(d.getDate()-1); }
+    else if (i===0) { d.setDate(d.getDate()-1); } // today not practiced yet, keep going
+    else break;
   }
-
-  el.innerHTML = families.map(f => {
-    const fps = practices.filter(p => p.familyId === f.id);
-    const totalCurrent = fps.reduce((a,p) => a+(p.current||0), 0);
-    const totalGoal    = fps.reduce((a,p) => a+(p.goal||100000), 0);
-    const pct = totalGoal > 0 ? Math.min(100,(totalCurrent/totalGoal)*100) : 0;
-    const todayCount = fps.filter(p => (p.days||[]).includes(today)).length;
-
-    return `<div class="family-card" onclick="openFamily('${f.id}')">
-      <div class="family-card-header">
-        <div class="family-card-stripe"></div>
-        <div class="family-card-body">
-          <div class="family-name">${f.name}</div>
-          <div class="family-count">${fps.length} práctica${fps.length!==1?'s':''} · ${todayCount} hoy</div>
-        </div>
-        <button class="family-card-menu-btn" onclick="event.stopPropagation();openFamilyMenu('${f.id}')">···</button>
-        <div class="family-card-arrow">&#8250;</div>
-      </div>
-      ${fps.length ? `<div class="family-progress-row">
-        <div class="prog-label">
-          <span>${totalCurrent.toLocaleString('es-ES')} acumulados</span>
-          <span>${pct.toFixed(1)}%</span>
-        </div>
-        <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
-      </div>` : ''}
-    </div>`;
-  }).join('');
+  const last7 = [];
+  for (let i=6; i>=0; i--) {
+    const dd = new Date(); dd.setDate(dd.getDate()-i);
+    last7.push(days.includes(dd.toISOString().split('T')[0]));
+  }
+  return { current: streak, last7 };
 }
 
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// TODAY VIEW
+// ═══════════════════════════════════════════
+function renderToday() {
+  const dow = todayDow();
+  const practices = DB.practices;
+  const sessions = DB.sessions;
+  const todaySessions = sessions.filter(s=>s.date===today());
+  const todayMantras = todaySessions.reduce((a,s)=>a+(s.mantras||0),0);
+  const todayPractices = practices.filter(p=>(p.days||[]).includes(dow));
+  const completedIds = new Set(todaySessions.map(s=>s.practiceId));
+  const streak = calcStreak();
+
+  const dateStr = new Date().toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+
+  const streakDots = streak.last7.map((done,i)=>{
+    const isToday = i===6;
+    return `<div class="streak-day ${done?(isToday?'today-d':'done'):''}"></div>`;
+  }).join('');
+
+  let todayHTML = '';
+  if (todayPractices.length) {
+    const done = todayPractices.filter(p=>completedIds.has(p.id));
+    todayHTML = `<div class="today-practices">
+      <div class="tp-label">Prácticas de hoy · ${done.length}/${todayPractices.length}</div>
+      ${todayPractices.map(p=>{
+        const isDone = completedIds.has(p.id);
+        return `<div class="today-item ${isDone?'done-item':''}" id="ti-${p.id}">
+          <button class="ti-check ${isDone?'checked':''}" onclick="toggleTodayCheck('${p.id}')">&#10003;</button>
+          <div class="ti-body">
+            <div class="ti-name">${p.name}</div>
+            <div class="ti-meta">${p.daily||108} ${p.unit||'mantras'} · ${(p.times||[]).join(', ')||'sin hora'}</div>
+          </div>
+          <button class="ti-btn" onclick="openQuickAdd('${p.id}')">+ Añadir</button>
+        </div>`;
+      }).join('')}
+    </div>`;
+  } else {
+    todayHTML = `<div style="padding:16px 0;font-size:.82rem;color:var(--text-m);text-align:center">
+      No hay prácticas programadas para hoy.<br>
+      <span style="font-size:.72rem;color:var(--text-d)">Configura los días en cada práctica.</span>
+    </div>`;
+  }
+
+  document.getElementById('view-today').innerHTML = `
+    <div class="today-hero">
+      <div class="today-date">${dateStr}</div>
+      <div class="today-streak">
+        <span class="streak-num">${streak.current}</span>
+        <span class="streak-lbl">día${streak.current!==1?'s':''} consecutivo${streak.current!==1?'s':''}</span>
+      </div>
+      <div class="streak-bar">${streakDots}</div>
+      <div class="today-progress-row">
+        <div class="today-prog-card">
+          <div class="tpc-val">${todayMantras.toLocaleString('es-ES')}</div>
+          <div class="tpc-lbl">Hoy acumulado</div>
+        </div>
+        <div class="today-prog-card">
+          <div class="tpc-val">${todayPractices.length}</div>
+          <div class="tpc-lbl">Prácticas hoy</div>
+        </div>
+        <div class="today-prog-card">
+          <div class="tpc-val">${todaySessions.length}</div>
+          <div class="tpc-lbl">Sesiones hoy</div>
+        </div>
+      </div>
+      ${todayHTML}
+    </div>`;
+}
+
+function toggleTodayCheck(pid) {
+  // Visual toggle only — session must be added via + button
+  const el = document.querySelector(`#ti-${pid} .ti-check`);
+  const item = document.getElementById('ti-'+pid);
+  if (el) {
+    el.classList.toggle('checked');
+    item.classList.toggle('done-item');
+  }
+}
+
+// ═══════════════════════════════════════════
+// FAMILIES VIEW
+// ═══════════════════════════════════════════
+function renderFamilies() {
+  const families = DB.families;
+  const practices = DB.practices;
+  const dow = todayDow();
+  const el = document.getElementById('view-families');
+
+  let html = `<div class="sec-hdr">
+    <div><h1 class="sec-title">Familias</h1></div>
+    <button class="btn btn-p btn-sm" onclick="openNewFamily()">+ Familia</button>
+  </div><div class="families-list">`;
+
+  if (!families.length) {
+    html += `<div style="text-align:center;padding:40px 0;color:var(--text-m)">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:6px;color:var(--text)">Sin familias aún</div>
+      <div style="font-size:.8rem">Crea tu primera familia de prácticas</div>
+    </div>`;
+  } else {
+    html += families.map(f => {
+      const fps = practices.filter(p=>p.familyId===f.id);
+      const total = fps.reduce((a,p)=>a+(p.current||0),0);
+      const goal  = fps.reduce((a,p)=>a+(p.goal||100000),0);
+      const pct   = goal>0?Math.min(100,(total/goal)*100):0;
+      const todayN = fps.filter(p=>(p.days||[]).includes(dow)).length;
+      const imgHTML = f.img
+        ? `<img class="fc-img" src="${f.img}" alt=""/>`
+        : `<div class="fc-img-placeholder" onclick="event.stopPropagation();editFamilyImg('${f.id}')">Añadir imagen</div>`;
+      return `<div class="family-card" onclick="openFamily('${f.id}')">
+        <div class="fc-header">
+          <div class="fc-stripe"></div>
+          <div class="fc-body">
+            <div class="fc-name">${f.name}</div>
+            <div class="fc-meta">${fps.length} práctica${fps.length!==1?'s':''} · ${todayN} hoy</div>
+          </div>
+          ${imgHTML}
+          <button class="fc-menu-btn" onclick="event.stopPropagation();openFamilyMenu('${f.id}')">···</button>
+          <div class="fc-arrow">›</div>
+        </div>
+        ${fps.length?`<div class="fc-prog">
+          <div class="prog-lbl"><span>${total.toLocaleString('es-ES')}</span><span>${pct.toFixed(1)}%</span></div>
+          <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+        </div>`:''}
+      </div>`;
+    }).join('');
+  }
+
+  html += `</div>`;
+  el.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════
+// PRACTICES VIEW
+// ═══════════════════════════════════════════
+function renderPractices(fid) {
+  const practices = DB.practices.filter(p=>p.familyId===fid);
+  const dow = todayDow();
+  const el = document.getElementById('view-practices');
+
+  if (!practices.length) {
+    el.innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--text-m)">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;margin-bottom:6px;color:var(--text)">Sin prácticas</div>
+      <div style="font-size:.8rem">Usa el botón + Práctica para añadir</div>
+    </div>`; return;
+  }
+
+  const todayPs = practices.filter(p=>(p.days||[]).includes(dow));
+  const otherPs = practices.filter(p=>!(p.days||[]).includes(dow));
+
+  let html = '';
+  if (todayPs.length) {
+    html += `<div class="today-banner">Hoy · <strong>${DNAMES[dow]}</strong> — ${todayPs.length} práctica${todayPs.length!==1?'s':''} programada${todayPs.length!==1?'s':''}</div>`;
+    html += `<div class="pi-section"><div class="pi-sec-label">Hoy</div>${todayPs.map(p=>piHTML(p,true)).join('')}</div>`;
+  }
+  if (otherPs.length) {
+    html += `<div class="pi-section">${todayPs.length?'<div class="pi-sec-label" style="color:var(--text-d)">Otras prácticas</div>':''}${otherPs.map(p=>piHTML(p,false)).join('')}</div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+function piHTML(p, isToday) {
+  const total = p.current||0;
+  const goal  = p.goal||100000;
+  const pct   = Math.min(100,(total/goal)*100);
+  const dow   = todayDow();
+
+  const dayDots = DORDER.map((d,i)=>{
+    const on = (p.days||[]).includes(d);
+    const now = d===dow;
+    return `<div class="dd ${on?(now?'now':'on'):''}">${DOLBLS[i]}</div>`;
+  }).join('');
+
+  const times = (p.times||[]).map(t=>`<span class="pi-time-tag">${t}</span>`).join('');
+
+  // Projection
+  let projection = '';
+  const sessions = DB.sessions.filter(s=>s.practiceId===p.id);
+  if (sessions.length >= 3 && total < goal) {
+    const last7days = sessions.filter(s=>{
+      const d=new Date(s.date+'T12:00:00'); const now=new Date();
+      return (now-d)<7*86400000;
+    });
+    const avg7 = last7days.reduce((a,s)=>a+(s.mantras||0),0)/7;
+    if (avg7>0) {
+      const daysLeft = Math.ceil((goal-total)/avg7);
+      const finDate = new Date(); finDate.setDate(finDate.getDate()+daysLeft);
+      const fin = finDate.toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+      projection = `<div class="pi-projection">A este ritmo: ${fin}</div>`;
+    }
+  }
+
+  return `<div class="pi-card ${isToday?'is-today':''}" id="pi-${p.id}">
+    <div class="pi-top">
+      <div class="pi-name">${p.name}</div>
+      ${isToday?'<span class="pi-today-tag">Hoy</span>':''}
+      <button class="pi-menu" onclick="openPracticeMenu('${p.id}')">···</button>
+    </div>
+    <div class="pi-body">
+      <div class="pi-prog-row">
+        <span>${p.unit||'mantras'} acumulados</span>
+        <span class="pi-count" id="pic-${p.id}">${total.toLocaleString('es-ES')}</span>
+      </div>
+      <div class="pi-bar"><div class="pi-fill" id="pif-${p.id}" style="width:${pct}%"></div></div>
+      <div class="pi-pct">Meta: ${goal.toLocaleString('es-ES')} · <span id="pipc-${p.id}">${pct.toFixed(1)}</span>%</div>
+      <div class="pi-daily">
+        <span class="pi-daily-l">Meta diaria</span>
+        <span class="pi-daily-v">${(p.daily||108).toLocaleString('es-ES')} ${p.unit||'mantras'}</span>
+      </div>
+      <div class="pi-days">${dayDots}</div>
+      ${times?`<div class="pi-times">${times}</div>`:''}
+      ${p.desc?`<div class="pi-desc">${p.desc}</div>`:''}
+      ${projection}
+      <button class="btn-add-pi" onclick="openQuickAdd('${p.id}')">+ Añadir sesión</button>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════
 // FAMILY CRUD
-// ══════════════════════════════════════════════════════
-let editingFamilyId = null;
+// ═══════════════════════════════════════════
+let editFamilyId = null;
 
 function openNewFamily() {
-  editingFamilyId = null;
-  document.getElementById('sheet-family-title').textContent = 'Nueva familia';
+  editFamilyId = null;
+  document.getElementById('sh-family-title').textContent = 'Nueva familia';
   document.getElementById('f-name').value = '';
   document.getElementById('f-desc').value = '';
-  openSheet('sheet-family');
+  document.getElementById('f-img-data').value = '';
+  document.getElementById('f-img-preview').style.display = 'none';
+  openSheet('sh-family');
 }
 
 function openEditFamily(id) {
-  const f = DB.getFamilies().find(x => x.id === id);
-  editingFamilyId = id;
-  document.getElementById('sheet-family-title').textContent = 'Editar familia';
+  const f = DB.families.find(x=>x.id===id);
+  editFamilyId = id;
+  document.getElementById('sh-family-title').textContent = 'Editar familia';
   document.getElementById('f-name').value = f.name||'';
   document.getElementById('f-desc').value = f.desc||'';
-  openSheet('sheet-family');
+  document.getElementById('f-img-data').value = f.img||'';
+  const prev = document.getElementById('f-img-preview');
+  if (f.img) { prev.src=f.img; prev.style.display='block'; }
+  else prev.style.display='none';
+  openSheet('sh-family');
+}
+
+function handleFamilyImg(e) {
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    document.getElementById('f-img-data').value = ev.target.result;
+    const prev = document.getElementById('f-img-preview');
+    prev.src = ev.target.result; prev.style.display='block';
+  };
+  reader.readAsDataURL(file);
 }
 
 function saveFamily() {
   const name = document.getElementById('f-name').value.trim();
   if (!name) { showToast('El nombre es obligatorio'); return; }
-  const families = DB.getFamilies();
-  const obj = { name, desc: document.getElementById('f-desc').value.trim() };
-  if (editingFamilyId) {
-    const idx = families.findIndex(x => x.id === editingFamilyId);
-    families[idx] = { ...families[idx], ...obj };
+  const families = DB.families;
+  const obj = { name, desc:document.getElementById('f-desc').value.trim(), img:document.getElementById('f-img-data').value||null };
+  if (editFamilyId) {
+    const idx=families.findIndex(x=>x.id===editFamilyId);
+    families[idx]={...families[idx],...obj};
     showToast('Familia actualizada');
   } else {
-    obj.id = 'f_'+Date.now(); obj.createdAt = new Date().toISOString();
-    families.push(obj);
-    showToast('Familia creada');
+    obj.id='f_'+Date.now(); obj.createdAt=new Date().toISOString();
+    families.push(obj); showToast('Familia creada');
   }
   DB.saveFamilies(families);
-  closeSheet('sheet-family');
+  closeSheet('sh-family');
   renderFamilies();
 }
 
-// Family context menu
-let menuFamilyId = null;
-function openFamilyMenu(id) {
-  menuFamilyId = id;
-  const f = DB.getFamilies().find(x => x.id === id);
-  document.getElementById('sheet-fmenu-title').textContent = f.name;
-  openSheet('sheet-fmenu');
-}
-function fMenuAddPractice() { closeSheet('sheet-fmenu'); setTimeout(()=>openNewPractice(menuFamilyId),150); }
-function fMenuEdit()        { closeSheet('sheet-fmenu'); setTimeout(()=>openEditFamily(menuFamilyId),150); }
-function fMenuDelete()      { closeSheet('sheet-fmenu'); setTimeout(()=>confirmDeleteFamily(menuFamilyId),150); }
-
-function confirmDeleteFamily(id) {
-  const f = DB.getFamilies().find(x=>x.id===id);
-  document.getElementById('confirm-text').textContent = `¿Eliminar la familia "${f.name}"? Se eliminarán también todas sus prácticas y sesiones.`;
-  document.getElementById('confirm-btn').onclick = () => deleteFamily(id);
-  openSheet('sheet-confirm');
-}
+let menuFamId=null;
+function openFamilyMenu(id) { menuFamId=id; const f=DB.families.find(x=>x.id===id); document.getElementById('sh-fm-title').textContent=f.name; openSheet('sh-fmenu'); }
+function fmAddP()   { closeSheet('sh-fmenu'); setTimeout(()=>openNewPractice(menuFamId),150); }
+function fmEdit()   { closeSheet('sh-fmenu'); setTimeout(()=>openEditFamily(menuFamId),150); }
+function fmDelete() { closeSheet('sh-fmenu'); setTimeout(()=>{
+  const f=DB.families.find(x=>x.id===menuFamId);
+  document.getElementById('conf-text').textContent=`¿Eliminar "${f.name}"? Se eliminarán todas sus prácticas y sesiones.`;
+  document.getElementById('conf-btn').onclick=()=>deleteFamily(menuFamId);
+  openSheet('sh-confirm');
+},150); }
 
 function deleteFamily(id) {
-  const practiceIds = DB.getPractices().filter(p=>p.familyId===id).map(p=>p.id);
-  DB.saveFamilies(DB.getFamilies().filter(f=>f.id!==id));
-  DB.savePractices(DB.getPractices().filter(p=>p.familyId!==id));
-  DB.saveSessions(DB.getSessions().filter(s=>!practiceIds.includes(s.practiceId)));
-  closeSheet('sheet-confirm');
-  renderFamilies();
-  showToast('Familia eliminada');
+  const pids=DB.practices.filter(p=>p.familyId===id).map(p=>p.id);
+  DB.saveFamilies(DB.families.filter(f=>f.id!==id));
+  DB.savePractices(DB.practices.filter(p=>p.familyId!==id));
+  DB.saveSessions(DB.sessions.filter(s=>!pids.includes(s.practiceId)));
+  closeSheet('sh-confirm'); renderFamilies(); showToast('Familia eliminada');
 }
 
-// ══════════════════════════════════════════════════════
-// PRACTICES VIEW
-// ══════════════════════════════════════════════════════
-function renderPractices(familyId) {
-  const practices = DB.getPractices().filter(p => p.familyId === familyId);
-  const todayDow  = new Date().getDay();
-  const container = document.getElementById('practices-container');
-
-  if (!practices.length) {
-    container.innerHTML = `<div class="empty-state">
-      <div class="empty-title">Sin prácticas</div>
-      <div class="empty-text">Añade la primera práctica con el botón de arriba</div>
-    </div>`;
-    return;
-  }
-
-  const todayPs  = practices.filter(p => (p.days||[]).includes(todayDow));
-  const otherPs  = practices.filter(p => !(p.days||[]).includes(todayDow));
-
-  let html = '';
-
-  if (todayPs.length) {
-    html += `<div class="practices-section">
-      <div class="today-label">Hoy · ${DAY_NAMES[todayDow]}</div>
-      ${todayPs.map(p => practiceItemHTML(p, true)).join('')}
-    </div>`;
-  }
-
-  if (otherPs.length) {
-    html += `<div class="practices-section">
-      ${todayPs.length ? '<div class="today-label" style="color:var(--text-light)">Otras prácticas</div>' : ''}
-      ${otherPs.map(p => practiceItemHTML(p, false)).join('')}
-    </div>`;
-  }
-
-  container.innerHTML = html;
-}
-
-function practiceItemHTML(p, isToday) {
-  const total = p.current || 0;
-  const goal  = p.goal || 100000;
-  const pct   = Math.min(100,(total/goal)*100);
-  const daily = p.daily || 108;
-  const todayDow = new Date().getDay();
-
-  // Days dots
-  const dayOrder = [1,2,3,4,5,6,0];
-  const dayLabels = ['L','M','X','J','V','S','D'];
-  const dayDots = dayOrder.map((d,i) => {
-    const active = (p.days||[]).includes(d);
-    const isToday2 = d === todayDow;
-    return `<div class="day-dot ${active?(isToday2?'today-dot':'active'):''}">${dayLabels[i]}</div>`;
-  }).join('');
-
-  // Schedule times
-  const timesStr = (p.times||[]).length
-    ? (p.times||[]).map(t=>`<span style="font-size:.72rem;background:var(--cyan-light);color:var(--lapis);padding:2px 8px;border-radius:100px">${t}</span>`).join('')
-    : '';
-
-  return `<div class="practice-item ${isToday?'today':''}" id="pi-${p.id}">
-    <div class="practice-item-header">
-      <div class="pi-name">${p.name}</div>
-      ${isToday ? '<span class="pi-today-badge">Hoy</span>' : ''}
-      <button class="pi-menu-btn" onclick="openPracticeMenu('${p.id}')">···</button>
-    </div>
-    <div class="practice-item-body">
-      <div class="pi-progress-label">
-        <span>${p.unit||'mantras'} acumulados</span>
-        <span class="pi-count" id="pic-${p.id}">${total.toLocaleString('es-ES')}</span>
-      </div>
-      <div class="pi-bar"><div class="pi-fill" id="pif-${p.id}" style="width:${pct}%"></div></div>
-      <div class="pi-meta">Meta: ${goal.toLocaleString('es-ES')} · <span id="pipc-${p.id}">${pct.toFixed(1)}</span>%</div>
-      <div class="pi-daily-row">
-        <span class="pi-daily-label">Meta diaria</span>
-        <span class="pi-daily-val">${daily.toLocaleString('es-ES')} ${p.unit||'mantras'}</span>
-      </div>
-      <div class="pi-schedule">${dayDots}</div>
-      ${timesStr ? `<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">${timesStr}</div>` : ''}
-      ${p.desc ? `<div style="font-size:.72rem;color:var(--text-muted);margin-bottom:10px;font-style:italic">${p.desc}</div>` : ''}
-      <button class="btn-add-mantras" onclick="openQuickAdd('${p.id}')">+ Añadir sesión</button>
-    </div>
-  </div>`;
-}
-
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // PRACTICE CRUD
-// ══════════════════════════════════════════════════════
-let editingPracticeId = null;
+// ═══════════════════════════════════════════
+let editPracId=null;
 
-function populateFamilySelect(selectedId) {
-  const families = DB.getFamilies();
-  document.getElementById('p-family').innerHTML =
-    families.map(f=>`<option value="${f.id}" ${f.id===selectedId?'selected':''}>${f.name}</option>`).join('');
+function populateFamilySel(selId) {
+  document.getElementById('p-family').innerHTML = DB.families.map(f=>
+    `<option value="${f.id}" ${f.id===selId?'selected':''}>${f.name}</option>`).join('');
 }
 
-function openNewPractice(familyId) {
-  editingPracticeId = null;
-  document.getElementById('sheet-practice-title').textContent = 'Nueva práctica';
+function openNewPractice(fid) {
+  editPracId=null;
+  document.getElementById('sh-p-title').textContent='Nueva práctica';
   ['p-name','p-goal','p-daily','p-current','p-desc'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('p-unit').value = 'mantras';
-  populateFamilySelect(familyId || currentFamilyId);
-  // Reset days
-  document.querySelectorAll('.day-toggle').forEach(b=>b.classList.remove('sel'));
-  document.getElementById('times-list').innerHTML = '';
-  document.getElementById('reminders-list').innerHTML = '';
-  openSheet('sheet-practice');
+  document.getElementById('p-unit').value='mantras';
+  populateFamilySel(fid||curFamilyId);
+  document.querySelectorAll('.dtog').forEach(b=>b.classList.remove('sel'));
+  document.getElementById('times-list').innerHTML='';
+  document.getElementById('reminders-list').innerHTML='';
+  openSheet('sh-practice');
 }
 
 function openEditPractice(id) {
-  const p = DB.getPractices().find(x=>x.id===id);
-  editingPracticeId = id;
-  document.getElementById('sheet-practice-title').textContent = 'Editar práctica';
-  document.getElementById('p-name').value    = p.name||'';
-  document.getElementById('p-unit').value    = p.unit||'mantras';
-  document.getElementById('p-goal').value    = p.goal||'';
-  document.getElementById('p-daily').value   = p.daily||'';
-  document.getElementById('p-current').value = p.current||0;
-  document.getElementById('p-desc').value    = p.desc||'';
-  populateFamilySelect(p.familyId);
-  // Days
-  document.querySelectorAll('.day-toggle').forEach(b=>{
-    b.classList.toggle('sel', (p.days||[]).includes(parseInt(b.dataset.d)));
-  });
-  // Times
-  document.getElementById('times-list').innerHTML = '';
-  (p.times||[]).forEach(t=>addTimeRow(t));
-  // Reminders
-  document.getElementById('reminders-list').innerHTML = '';
-  (p.reminders||[]).forEach(r=>addReminderRow(r));
-  openSheet('sheet-practice');
+  const p=DB.practices.find(x=>x.id===id);
+  editPracId=id;
+  document.getElementById('sh-p-title').textContent='Editar práctica';
+  document.getElementById('p-name').value=p.name||'';
+  document.getElementById('p-unit').value=p.unit||'mantras';
+  document.getElementById('p-goal').value=p.goal||'';
+  document.getElementById('p-daily').value=p.daily||'';
+  document.getElementById('p-current').value=p.current||0;
+  document.getElementById('p-desc').value=p.desc||'';
+  populateFamilySel(p.familyId);
+  document.querySelectorAll('.dtog').forEach(b=>b.classList.toggle('sel',(p.days||[]).includes(parseInt(b.dataset.d))));
+  document.getElementById('times-list').innerHTML=''; (p.times||[]).forEach(t=>addTimeRow(t));
+  document.getElementById('reminders-list').innerHTML=''; (p.reminders||[]).forEach(r=>addReminderRow(r));
+  openSheet('sh-practice');
 }
 
-function addTimeRow(val) {
-  const row = document.createElement('div');
-  row.className = 'time-row';
-  row.innerHTML = `<input type="time" value="${val||'07:00'}"/><button class="time-remove" onclick="this.parentElement.remove()">&#10005;</button>`;
-  document.getElementById('times-list').appendChild(row);
-}
+document.querySelectorAll('.dtog').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('sel')));
 
-function addReminderRow(val) {
-  const row = document.createElement('div');
-  row.className = 'reminder-row';
-  row.innerHTML = `<select>
-    <option value="5" ${val==5?'selected':''}>5 min antes</option>
-    <option value="10" ${val==10?'selected':''}>10 min antes</option>
-    <option value="15" ${val==15?'selected':''}>15 min antes</option>
-    <option value="30" ${val==30?'selected':''}>30 min antes</option>
-    <option value="60" ${val==60?'selected':''}>1 hora antes</option>
-    <option value="120" ${val==120?'selected':''}>2 horas antes</option>
-  </select>
-  <button class="time-remove" onclick="this.parentElement.remove()">&#10005;</button>`;
-  document.getElementById('reminders-list').appendChild(row);
+function addTimeRow(v) {
+  const r=document.createElement('div'); r.className='t-row';
+  r.innerHTML=`<input type="time" value="${v||'07:00'}"/><button class="t-rm" onclick="this.parentElement.remove()">&#10005;</button>`;
+  document.getElementById('times-list').appendChild(r);
 }
-
-document.querySelectorAll('.day-toggle').forEach(b=>{
-  b.addEventListener('click',()=>b.classList.toggle('sel'));
-});
+function addReminderRow(v) {
+  const r=document.createElement('div'); r.className='r-row';
+  r.innerHTML=`<select>
+    <option value="5" ${v==5?'selected':''}>5 min antes</option>
+    <option value="10" ${v==10?'selected':''}>10 min antes</option>
+    <option value="15" ${v==15?'selected':''}>15 min antes</option>
+    <option value="30" ${v==30?'selected':''}>30 min antes</option>
+    <option value="60" ${v==60?'selected':''}>1 hora antes</option>
+    <option value="120" ${v==120?'selected':''}>2 horas antes</option>
+  </select><button class="t-rm" onclick="this.parentElement.remove()">&#10005;</button>`;
+  document.getElementById('reminders-list').appendChild(r);
+}
 
 function savePractice() {
-  const name = document.getElementById('p-name').value.trim();
+  const name=document.getElementById('p-name').value.trim();
   if (!name) { showToast('El nombre es obligatorio'); return; }
-
-  const days = Array.from(document.querySelectorAll('.day-toggle.sel')).map(b=>parseInt(b.dataset.d));
-  const times = Array.from(document.querySelectorAll('#times-list input')).map(i=>i.value).filter(Boolean);
-  const reminders = Array.from(document.querySelectorAll('#reminders-list select')).map(s=>parseInt(s.value));
-
-  const practices = DB.getPractices();
-  const obj = {
-    name,
-    familyId:  document.getElementById('p-family').value,
-    unit:      document.getElementById('p-unit').value,
-    goal:      parseInt(document.getElementById('p-goal').value)||100000,
-    daily:     parseInt(document.getElementById('p-daily').value)||108,
-    current:   parseInt(document.getElementById('p-current').value)||0,
-    desc:      document.getElementById('p-desc').value.trim(),
-    days, times, reminders,
-  };
-
-  if (editingPracticeId) {
-    const idx = practices.findIndex(x=>x.id===editingPracticeId);
-    practices[idx] = {...practices[idx],...obj};
-    showToast('Práctica actualizada');
+  const days=Array.from(document.querySelectorAll('.dtog.sel')).map(b=>parseInt(b.dataset.d));
+  const times=Array.from(document.querySelectorAll('#times-list input')).map(i=>i.value).filter(Boolean);
+  const reminders=Array.from(document.querySelectorAll('#reminders-list select')).map(s=>parseInt(s.value));
+  const practices=DB.practices;
+  const obj={name,familyId:document.getElementById('p-family').value,unit:document.getElementById('p-unit').value,
+    goal:parseInt(document.getElementById('p-goal').value)||100000,
+    daily:parseInt(document.getElementById('p-daily').value)||108,
+    current:parseInt(document.getElementById('p-current').value)||0,
+    desc:document.getElementById('p-desc').value.trim(),days,times,reminders};
+  if (editPracId) {
+    const idx=practices.findIndex(x=>x.id===editPracId);
+    practices[idx]={...practices[idx],...obj}; showToast('Práctica actualizada');
   } else {
-    obj.id = 'p_'+Date.now(); obj.createdAt = new Date().toISOString();
-    practices.push(obj);
-    showToast('Práctica creada');
+    obj.id='p_'+Date.now(); obj.createdAt=new Date().toISOString();
+    practices.push(obj); showToast('Práctica creada');
   }
   DB.savePractices(practices);
-  scheduleRemindersForPractice(obj.id || editingPracticeId);
-  closeSheet('sheet-practice');
-  if (currentFamilyId) renderPractices(currentFamilyId);
-  else renderFamilies();
+  scheduleReminders(obj.id||editPracId);
+  closeSheet('sh-practice');
+  if (curFamilyId) renderPractices(curFamilyId); else renderFamilies();
 }
 
-// Practice context menu
-let menuPracticeId = null;
-function openPracticeMenu(id) {
-  menuPracticeId = id;
-  const p = DB.getPractices().find(x=>x.id===id);
-  document.getElementById('sheet-pmenu-title').textContent = p.name;
-  openSheet('sheet-pmenu');
-}
-function pMenuAdd()    { closeSheet('sheet-pmenu'); setTimeout(()=>openQuickAdd(menuPracticeId),150); }
-function pMenuEdit()   { closeSheet('sheet-pmenu'); setTimeout(()=>openEditPractice(menuPracticeId),150); }
-function pMenuDelete() { closeSheet('sheet-pmenu'); setTimeout(()=>confirmDeletePractice(menuPracticeId),150); }
-
-function confirmDeletePractice(id) {
-  const p = DB.getPractices().find(x=>x.id===id);
-  document.getElementById('confirm-text').textContent = `¿Eliminar "${p.name}"? Se borrarán todas sus sesiones.`;
-  document.getElementById('confirm-btn').onclick = ()=>deletePractice(id);
-  openSheet('sheet-confirm');
-}
+let menuPracId=null;
+function openPracticeMenu(id) { menuPracId=id; const p=DB.practices.find(x=>x.id===id); document.getElementById('sh-pm-title').textContent=p.name; openSheet('sh-pmenu'); }
+function pmAdd()    { closeSheet('sh-pmenu'); setTimeout(()=>openQuickAdd(menuPracId),150); }
+function pmEdit()   { closeSheet('sh-pmenu'); setTimeout(()=>openEditPractice(menuPracId),150); }
+function pmDelete() { closeSheet('sh-pmenu'); setTimeout(()=>{
+  const p=DB.practices.find(x=>x.id===menuPracId);
+  document.getElementById('conf-text').textContent=`¿Eliminar "${p.name}"? Se borrarán todas sus sesiones.`;
+  document.getElementById('conf-btn').onclick=()=>deletePractice(menuPracId);
+  openSheet('sh-confirm');
+},150); }
 
 function deletePractice(id) {
-  DB.savePractices(DB.getPractices().filter(x=>x.id!==id));
-  DB.saveSessions(DB.getSessions().filter(s=>s.practiceId!==id));
-  closeSheet('sheet-confirm');
-  if (currentFamilyId) renderPractices(currentFamilyId); else renderFamilies();
+  DB.savePractices(DB.practices.filter(x=>x.id!==id));
+  DB.saveSessions(DB.sessions.filter(s=>s.practiceId!==id));
+  closeSheet('sh-confirm');
+  if (curFamilyId) renderPractices(curFamilyId); else renderFamilies();
   showToast('Práctica eliminada');
 }
 
-// ══════════════════════════════════════════════════════
-// QUICK ADD MANTRAS
-// ══════════════════════════════════════════════════════
-let quickPracticeId = null;
-
+// ═══════════════════════════════════════════
+// QUICK ADD
+// ═══════════════════════════════════════════
+let quickPid=null;
 function openQuickAdd(id) {
-  quickPracticeId = id;
-  const p = DB.getPractices().find(x=>x.id===id);
-  document.getElementById('sheet-mantras-title').textContent = p.name;
-  document.getElementById('q-mantras').value = '';
-  document.getElementById('q-duration').value = '';
-  document.getElementById('q-notes').value = '';
-  openSheet('sheet-mantras');
-  setTimeout(()=>document.getElementById('q-mantras').focus(),320);
+  quickPid=id;
+  const p=DB.practices.find(x=>x.id===id);
+  document.getElementById('sh-m-title').textContent=p.name;
+  document.getElementById('q-qty').value='';
+  document.getElementById('q-dur').value='';
+  document.getElementById('q-notes').value='';
+  openSheet('sh-mantras');
+  setTimeout(()=>document.getElementById('q-qty').focus(),320);
 }
 
-function confirmAddMantras() {
-  const qty = parseInt(document.getElementById('q-mantras').value);
-  if (!qty || qty < 1) { showToast('Introduce una cantidad válida'); return; }
-  const duration = parseInt(document.getElementById('q-duration').value)||null;
-  const notes    = document.getElementById('q-notes').value.trim();
-
-  const practices = DB.getPractices();
-  const idx = practices.findIndex(x=>x.id===quickPracticeId);
-  if (idx<0) return;
-  practices[idx].current = (practices[idx].current||0) + qty;
+function confirmAdd() {
+  const qty=parseInt(document.getElementById('q-qty').value);
+  if (!qty||qty<1) { showToast('Introduce una cantidad válida'); return; }
+  const dur=parseInt(document.getElementById('q-dur').value)||null;
+  const notes=document.getElementById('q-notes').value.trim();
+  const practices=DB.practices;
+  const idx=practices.findIndex(x=>x.id===quickPid); if(idx<0) return;
+  practices[idx].current=(practices[idx].current||0)+qty;
   DB.savePractices(practices);
-
-  DB.getSessions(); // just reading
-  const sessions = DB.getSessions();
-  sessions.unshift({id:'s_'+Date.now(),practiceId:quickPracticeId,
-    date:new Date().toISOString().split('T')[0],mantras:qty,duration,notes,
-    createdAt:new Date().toISOString()});
+  const sessions=DB.sessions;
+  sessions.unshift({id:'s_'+Date.now(),practiceId:quickPid,date:today(),mantras:qty,duration:dur,notes,createdAt:new Date().toISOString()});
   DB.saveSessions(sessions);
-
-  // Animate in DOM
-  const countEl = document.getElementById('pic-'+quickPracticeId);
-  const fillEl  = document.getElementById('pif-'+quickPracticeId);
-  const pctEl   = document.getElementById('pipc-'+quickPracticeId);
-  if (countEl) {
-    const newTotal = practices[idx].current;
-    const newPct   = Math.min(100,(newTotal/(practices[idx].goal||100000))*100);
-    animateCounter(countEl, newTotal);
-    if (fillEl) fillEl.style.width = newPct+'%';
-    if (pctEl)  pctEl.textContent  = newPct.toFixed(1);
+  // Animate
+  const ce=document.getElementById('pic-'+quickPid);
+  const fe=document.getElementById('pif-'+quickPid);
+  const pe=document.getElementById('pipc-'+quickPid);
+  if (ce) {
+    const nt=practices[idx].current;
+    const np=Math.min(100,(nt/(practices[idx].goal||100000))*100);
+    animateN(ce,nt); if(fe)fe.style.width=np+'%'; if(pe)pe.textContent=np.toFixed(1);
   }
-
-  closeSheet('sheet-mantras');
+  closeSheet('sh-mantras');
   showToast(`+${qty.toLocaleString('es-ES')} ${practices[idx].unit||'mantras'} guardados`);
+  if (curTab==='today') renderToday();
 }
 
-function animateCounter(el, target) {
-  const from = parseInt(el.textContent.replace(/\D/g,''))||0;
-  const diff = target-from; const steps=24; let i=0;
-  const t = setInterval(()=>{
-    i++; el.textContent = Math.round(from+diff*(i/steps)).toLocaleString('es-ES');
+function animateN(el,target) {
+  const from=parseInt(el.textContent.replace(/\D/g,''))||0;
+  const diff=target-from; const steps=24; let i=0;
+  const t=setInterval(()=>{
+    i++; el.textContent=Math.round(from+diff*(i/steps)).toLocaleString('es-ES');
     if(i>=steps){el.textContent=target.toLocaleString('es-ES');clearInterval(t);}
   },16);
 }
 
-// ══════════════════════════════════════════════════════
-// HISTORY
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
+// STATS VIEW
+// ═══════════════════════════════════════════
 function renderStats() {
-  const sessions  = DB.getSessions();
-  const practices = DB.getPractices();
-  const totalMan  = practices.reduce((a,p)=>a+(p.current||0),0);
-  const today     = new Date().toISOString().split('T')[0];
-  const todayMan  = sessions.filter(s=>s.date===today).reduce((a,s)=>a+(s.mantras||0),0);
-  const totalMin  = sessions.reduce((a,s)=>a+(s.duration||0),0);
-  document.getElementById('stats-row').innerHTML = `
-    <div class="stat-card"><div class="stat-val">${totalMan.toLocaleString('es-ES')}</div><div class="stat-lbl">Total acumulado</div></div>
-    <div class="stat-card"><div class="stat-val">${sessions.length}</div><div class="stat-lbl">Sesiones totales</div></div>
-    <div class="stat-card"><div class="stat-val">${Math.round(totalMin/60)||0}</div><div class="stat-lbl">Horas práctica</div></div>
-    <div class="stat-card"><div class="stat-val">${todayMan.toLocaleString('es-ES')}</div><div class="stat-lbl">Hoy</div></div>`;
-}
+  const sessions=DB.sessions;
+  const practices=DB.practices;
+  const families=DB.families;
+  const retreats=DB.retreats;
 
-function renderHistory() {
-  const sessions  = DB.getSessions();
-  const practices = DB.getPractices();
-  const families  = DB.getFamilies();
+  const totalMan=practices.reduce((a,p)=>a+(p.current||0),0);
+  const todayMan=sessions.filter(s=>s.date===today()).reduce((a,s)=>a+(s.mantras||0),0);
+  const totalMin=sessions.reduce((a,s)=>a+(s.duration||0),0);
+  const streak=calcStreak();
 
-  // Populate family filter
-  const ff = document.getElementById('filter-family');
-  const ffVal = ff.value;
-  ff.innerHTML = '<option value="">Todas las familias</option>' +
-    families.map(f=>`<option value="${f.id}" ${ffVal===f.id?'selected':''}>${f.name}</option>`).join('');
-  ff.value = ffVal;
-
-  const filterFamily = ff.value;
-  const filterPeriod = parseInt(document.getElementById('filter-period').value)||0;
-
-  let filtered = [...sessions];
-  if (filterFamily) {
-    const fPracticeIds = practices.filter(p=>p.familyId===filterFamily).map(p=>p.id);
-    filtered = filtered.filter(s=>fPracticeIds.includes(s.practiceId));
+  // 30-day chart
+  const chartData=[];
+  for(let i=29;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const ds=d.toISOString().split('T')[0];
+    const total=sessions.filter(s=>s.date===ds).reduce((a,s)=>a+(s.mantras||0),0);
+    chartData.push({ds,total,isToday:i===0,dayLbl:DLBLS[d.getDay()]});
   }
-  if (filterPeriod) {
-    const cutoff=new Date(); cutoff.setDate(cutoff.getDate()-filterPeriod);
-    filtered = filtered.filter(s=>new Date(s.date)>=cutoff);
-  }
+  const maxV=Math.max(...chartData.map(c=>c.total),1);
+  const chartHTML=chartData.map(c=>
+    `<div class="chart-bar-col">
+      <div class="chart-bar ${c.isToday?'today-b':''}" style="height:${Math.max(2,(c.total/maxV)*52)}px"></div>
+      ${c.isToday?`<div class="chart-day-lbl" style="color:var(--cyan)">${c.dayLbl}</div>`:`<div class="chart-day-lbl">${c.dayLbl}</div>`}
+    </div>`).join('');
 
-  const list = document.getElementById('sessions-list');
-  if (!filtered.length) {
-    list.innerHTML=`<div class="empty-state"><div class="empty-title">Sin sesiones</div><div class="empty-text">Registra tu primera práctica</div></div>`;
-    return;
-  }
+  // Session list
+  const filterFam=document.getElementById('sf-fam')?.value||'';
+  const filterPer=parseInt(document.getElementById('sf-per')?.value)||0;
+  let filtSess=[...sessions];
+  if(filterFam){const pids=practices.filter(p=>p.familyId===filterFam).map(p=>p.id);filtSess=filtSess.filter(s=>pids.includes(s.practiceId));}
+  if(filterPer){const cut=new Date();cut.setDate(cut.getDate()-filterPer);filtSess=filtSess.filter(s=>new Date(s.date)>=cut);}
 
-  list.innerHTML = filtered.map(s=>{
-    const p = practices.find(x=>x.id===s.practiceId);
-    const d = new Date(s.date+'T12:00:00');
-    return `<div class="session-item">
-      <div class="sess-date">
-        <div class="sess-day">${d.getDate()}</div>
-        <div class="sess-mon">${MONTHS[d.getMonth()]}</div>
+  const sessHTML=filtSess.length?filtSess.map(s=>{
+    const p=practices.find(x=>x.id===s.practiceId);
+    const d=new Date(s.date+'T12:00:00');
+    return `<div class="sess-item">
+      <div class="s-date"><div class="s-day">${d.getDate()}</div><div class="s-mon">${MONTHS[d.getMonth()]}</div></div>
+      <div class="s-body">
+        <div class="s-name">${p?p.name:'Eliminada'}</div>
+        <div class="s-meta">${s.duration?s.duration+' min · ':''}${p?.unit||''}</div>
+        ${s.notes?`<div class="s-note">${s.notes}</div>`:''}
       </div>
-      <div class="sess-body">
-        <div class="sess-name">${p?p.name:'Práctica eliminada'}</div>
-        <div class="sess-meta">${s.duration?s.duration+' min · ':''}${p?.unit||'unidades'}</div>
-        ${s.notes?`<div class="sess-note">${s.notes}</div>`:''}
-      </div>
-      <div>
-        <div class="sess-count">${s.mantras?s.mantras.toLocaleString('es-ES'):'—'}</div>
-        <div class="sess-unit">${p?.unit||''}</div>
-      </div>
-      <div class="sess-actions">
-        <button class="btn-icon-sm btn-edit-sm" onclick="openEditSession('${s.id}')">Editar</button>
-        <button class="btn-icon-sm btn-del-sm" onclick="confirmDelSession('${s.id}')">Borrar</button>
+      <div><div class="s-cnt">${s.mantras?s.mantras.toLocaleString('es-ES'):'—'}</div><div class="s-unit">${p?.unit||''}</div></div>
+      <div class="s-acts">
+        <button class="sb-e sb-edit" onclick="openEditSession('${s.id}')">Editar</button>
+        <button class="sb-e sb-del" onclick="confDelSession('${s.id}')">Borrar</button>
       </div>
     </div>`;
-  }).join('');
+  }).join(''):`<div style="text-align:center;padding:30px 0;color:var(--text-m);font-size:.82rem">Sin sesiones registradas</div>`;
+
+  const retreatsHTML=retreats.length?retreats.map(r=>`
+    <div class="retreat-item">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="ret-name">${r.name}</div>
+          <div class="ret-dates">${r.start} → ${r.end||'en curso'}</div>
+          ${r.notes?`<div style="font-size:.7rem;color:var(--text-m);margin-top:2px">${r.notes}</div>`:''}
+        </div>
+        <div class="ret-count">${(r.count||0).toLocaleString('es-ES')}</div>
+      </div>
+    </div>`).join(''):`<div style="font-size:.8rem;color:var(--text-m);text-align:center;padding:16px 0">Sin retiros registrados</div>`;
+
+  document.getElementById('view-stats').innerHTML = `
+    <div class="sec-hdr"><div><h1 class="sec-title">Estadísticas</h1></div></div>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-v">${totalMan.toLocaleString('es-ES')}</div><div class="stat-l">Total acumulado</div></div>
+      <div class="stat-card"><div class="stat-v">${sessions.length}</div><div class="stat-l">Sesiones</div></div>
+      <div class="stat-card"><div class="stat-v">${Math.round(totalMin/60)||0}</div><div class="stat-l">Horas práctica</div></div>
+      <div class="stat-card"><div class="stat-v" style="color:var(--gold)">${streak.current}</div><div class="stat-l">Racha actual</div></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-title">Últimos 30 días</div>
+      <div class="chart-wrap">${chartHTML}</div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m)">Retiros</div>
+      <button class="btn btn-p btn-sm" onclick="openSheet('sh-retreat')">+ Retiro</button>
+    </div>
+    <div style="margin-bottom:20px">${retreatsHTML}</div>
+
+    <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m);margin-bottom:10px">Exportar datos</div>
+    <button class="export-btn" onclick="exportCSV()">
+      <span>Exportar sesiones CSV</span><span style="color:var(--cyan)">&#8595;</span>
+    </button>
+    <button class="export-btn" onclick="exportJSON()">
+      <span>Exportar copia de seguridad JSON</span><span style="color:var(--cyan)">&#8595;</span>
+    </button>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin:20px 0 10px">
+      <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-m)">Historial de sesiones</div>
+    </div>
+    <div class="filter-row">
+      <select class="fsel" id="sf-fam" onchange="renderStats()">
+        <option value="">Todas las familias</option>
+        ${families.map(f=>`<option value="${f.id}">${f.name}</option>`).join('')}
+      </select>
+      <select class="fsel" id="sf-per" onchange="renderStats()">
+        <option value="">Siempre</option>
+        <option value="7">7 días</option>
+        <option value="30">30 días</option>
+        <option value="90">90 días</option>
+      </select>
+    </div>
+    <div>${sessHTML}</div>`;
 }
 
+// EDIT SESSION
 function openEditSession(id) {
-  const s = DB.getSessions().find(x=>x.id===id); if(!s) return;
-  const practices = DB.getPractices();
-  document.getElementById('es-practice').innerHTML =
-    practices.map(p=>`<option value="${p.id}" ${p.id===s.practiceId?'selected':''}>${p.name}</option>`).join('');
-  document.getElementById('es-id').value       = s.id;
-  document.getElementById('es-mantras').value  = s.mantras||'';
-  document.getElementById('es-duration').value = s.duration||'';
-  document.getElementById('es-date').value     = s.date;
-  document.getElementById('es-notes').value    = s.notes||'';
-  openSheet('sheet-edit-sess');
+  const s=DB.sessions.find(x=>x.id===id); if(!s) return;
+  document.getElementById('es-prac').innerHTML=DB.practices.map(p=>`<option value="${p.id}" ${p.id===s.practiceId?'selected':''}>${p.name}</option>`).join('');
+  document.getElementById('es-id').value=s.id;
+  document.getElementById('es-qty').value=s.mantras||'';
+  document.getElementById('es-dur').value=s.duration||'';
+  document.getElementById('es-date').value=s.date;
+  document.getElementById('es-notes').value=s.notes||'';
+  openSheet('sh-esess');
 }
-
 function saveEditSession() {
-  const id = document.getElementById('es-id').value;
-  const sessions = DB.getSessions();
-  const idx = sessions.findIndex(x=>x.id===id); if(idx<0) return;
-  const oldPid = sessions[idx].practiceId;
-  const newPid = document.getElementById('es-practice').value;
-  sessions[idx] = {...sessions[idx],
-    practiceId:newPid,
-    mantras:parseInt(document.getElementById('es-mantras').value)||0,
-    duration:parseInt(document.getElementById('es-duration').value)||null,
-    date:document.getElementById('es-date').value,
-    notes:document.getElementById('es-notes').value.trim(),
-  };
+  const id=document.getElementById('es-id').value;
+  const sessions=DB.sessions; const idx=sessions.findIndex(x=>x.id===id); if(idx<0) return;
+  const oldP=sessions[idx].practiceId;
+  const newP=document.getElementById('es-prac').value;
+  sessions[idx]={...sessions[idx],practiceId:newP,mantras:parseInt(document.getElementById('es-qty').value)||0,
+    duration:parseInt(document.getElementById('es-dur').value)||null,
+    date:document.getElementById('es-date').value,notes:document.getElementById('es-notes').value.trim()};
   DB.saveSessions(sessions);
-  recalcTotal(oldPid); if(newPid!==oldPid) recalcTotal(newPid);
-  closeSheet('sheet-edit-sess');
-  renderHistory(); renderStats();
-  showToast('Sesión actualizada');
+  recalc(oldP); if(newP!==oldP) recalc(newP);
+  closeSheet('sh-esess'); renderStats(); showToast('Sesión actualizada');
+}
+function confDelSession(id) {
+  document.getElementById('conf-text').textContent='¿Eliminar esta sesión? El total se recalculará.';
+  document.getElementById('conf-btn').onclick=()=>{
+    const s=DB.sessions.find(x=>x.id===id);
+    DB.saveSessions(DB.sessions.filter(x=>x.id!==id));
+    if(s?.practiceId) recalc(s.practiceId);
+    closeSheet('sh-confirm'); renderStats(); showToast('Sesión eliminada');
+  };
+  openSheet('sh-confirm');
+}
+function recalc(pid) {
+  const total=DB.sessions.filter(s=>s.practiceId===pid).reduce((a,s)=>a+(s.mantras||0),0);
+  const pr=DB.practices; const idx=pr.findIndex(x=>x.id===pid);
+  if(idx>=0){pr[idx].current=total;DB.savePractices(pr);}
 }
 
-function confirmDelSession(id) {
-  document.getElementById('confirm-text').textContent = '¿Eliminar esta sesión? El total se recalculará.';
-  document.getElementById('confirm-btn').onclick = ()=>deleteSession(id);
-  openSheet('sheet-confirm');
+// ═══════════════════════════════════════════
+// RETREATS
+// ═══════════════════════════════════════════
+function saveRetreat() {
+  const name=document.getElementById('ret-name').value.trim();
+  if(!name){showToast('El nombre es obligatorio');return;}
+  const retreats=DB.retreats;
+  retreats.unshift({id:'r_'+Date.now(),name,
+    start:document.getElementById('ret-start').value,
+    end:document.getElementById('ret-end').value,
+    count:parseInt(document.getElementById('ret-count').value)||0,
+    notes:document.getElementById('ret-notes').value.trim(),
+    createdAt:new Date().toISOString()});
+  DB.saveRetreats(retreats);
+  closeSheet('sh-retreat'); renderStats(); showToast('Retiro guardado');
 }
 
-function deleteSession(id) {
-  const s = DB.getSessions().find(x=>x.id===id);
-  DB.saveSessions(DB.getSessions().filter(x=>x.id!==id));
-  if(s?.practiceId) recalcTotal(s.practiceId);
-  closeSheet('sheet-confirm');
-  renderHistory(); renderStats();
-  showToast('Sesión eliminada');
-}
-
-function recalcTotal(practiceId) {
-  const total = DB.getSessions().filter(s=>s.practiceId===practiceId).reduce((a,s)=>a+(s.mantras||0),0);
-  const practices = DB.getPractices();
-  const idx = practices.findIndex(x=>x.id===practiceId);
-  if(idx>=0){practices[idx].current=total;DB.savePractices(practices);}
-}
-
-// ══════════════════════════════════════════════════════
-// NOTIFICATIONS / REMINDERS
-// ══════════════════════════════════════════════════════
-async function requestNotificationPermission() {
-  if (!('Notification' in window)) return false;
-  if (Notification.permission === 'granted') return true;
-  if (Notification.permission === 'denied') return false;
-  const perm = await Notification.requestPermission();
-  return perm === 'granted';
-}
-
-function scheduleRemindersForPractice(practiceId) {
-  if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) return;
-  const p = DB.getPractices().find(x=>x.id===practiceId);
-  if (!p || !p.times?.length || !p.reminders?.length || !p.days?.length) return;
-
-  const todayDow = new Date().getDay();
-  if (!p.days.includes(todayDow)) return;
-
-  const now = new Date();
-  p.times.forEach(timeStr => {
-    p.reminders.forEach(minBefore => {
-      const [h,m] = timeStr.split(':').map(Number);
-      const target = new Date(now);
-      target.setHours(h, m-minBefore, 0, 0);
-      const delay = target - now;
-      if (delay > 0 && delay < 86400000) {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'SCHEDULE_REMINDER',
-          delay,
-          title: 'Vajrayana · Práctica',
-          body: `En ${minBefore} min: ${p.name}`,
-          tag: `reminder-${p.id}-${timeStr}`,
-        });
-      }
-    });
+// ═══════════════════════════════════════════
+// EXPORT
+// ═══════════════════════════════════════════
+function exportCSV() {
+  const sessions=DB.sessions;
+  const practices=DB.practices;
+  let csv='Fecha,Práctica,Familia,Cantidad,Unidad,Duración(min),Notas\n';
+  sessions.forEach(s=>{
+    const p=practices.find(x=>x.id===s.practiceId);
+    const f=p?DB.families.find(x=>x.id===p.familyId):null;
+    csv+=`${s.date},"${p?.name||''}","${f?.name||''}",${s.mantras||0},"${p?.unit||''}",${s.duration||''},"${(s.notes||'').replace(/"/g,'""')}"\n`;
   });
+  downloadFile('vajrayana-sesiones.csv', csv, 'text/csv');
+}
+function exportJSON() {
+  const data={families:DB.families,practices:DB.practices,sessions:DB.sessions,retreats:DB.retreats,exportedAt:new Date().toISOString()};
+  downloadFile('vajrayana-backup.json',JSON.stringify(data,null,2),'application/json');
+}
+function downloadFile(name,content,type) {
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type}));
+  a.download=name; a.click();
 }
 
-function scheduleAllReminders() {
-  DB.getPractices().forEach(p => scheduleRemindersForPractice(p.id));
+// ═══════════════════════════════════════════
+// NOTIFICATIONS
+// ═══════════════════════════════════════════
+async function requestNotifPerm() {
+  if(!('Notification' in window)) return false;
+  if(Notification.permission==='granted') return true;
+  if(Notification.permission==='denied') return false;
+  return (await Notification.requestPermission())==='granted';
 }
+function scheduleReminders(pid) {
+  if(!navigator.serviceWorker?.controller) return;
+  const p=DB.practices.find(x=>x.id===pid);
+  if(!p?.times?.length||!p?.reminders?.length||!p?.days?.length) return;
+  if(!(p.days.includes(todayDow()))) return;
+  const now=new Date();
+  p.times.forEach(t=>p.reminders.forEach(m=>{
+    const [h,mn]=t.split(':').map(Number);
+    const target=new Date(now);
+    target.setHours(h,mn-m,0,0);
+    const delay=target-now;
+    if(delay>0&&delay<86400000)
+      navigator.serviceWorker.controller.postMessage({type:'SCHEDULE_REMINDER',delay,
+        title:'Vajrayana · Práctica',body:`En ${m} min: ${p.name}`,tag:`r-${p.id}-${t}`});
+  }));
+}
+function scheduleAll() { DB.practices.forEach(p=>scheduleReminders(p.id)); }
 
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // SHEETS
-// ══════════════════════════════════════════════════════
-function openSheet(id)  { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
-function closeSheet(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
-function closeSheetOverlay(e,id) { if(e.target.id===id) closeSheet(id); }
-
-// Swipe down to close
-document.querySelectorAll('.sheet-overlay').forEach(overlay=>{
-  const sheet = overlay.querySelector('.sheet');
-  let sy=0;
-  sheet.addEventListener('touchstart',e=>{sy=e.touches[0].clientY},{passive:true});
-  sheet.addEventListener('touchmove',e=>{if(e.touches[0].clientY-sy>70) closeSheet(overlay.id)},{passive:true});
+// ═══════════════════════════════════════════
+function openSheet(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden'}
+function closeSheet(id){document.getElementById(id).classList.remove('open');document.body.style.overflow=''}
+function shOvClose(e,id){if(e.target.id===id)closeSheet(id)}
+document.querySelectorAll('.sh-ov').forEach(ov=>{
+  const sh=ov.querySelector('.sheet'); let sy=0;
+  sh.addEventListener('touchstart',e=>{sy=e.touches[0].clientY},{passive:true});
+  sh.addEventListener('touchmove',e=>{if(e.touches[0].clientY-sy>70)closeSheet(ov.id)},{passive:true});
 });
 
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // TOAST
-// ══════════════════════════════════════════════════════
-let toastTimer=null;
-function showToast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>el.classList.remove('show'),2300);
-}
+// ═══════════════════════════════════════════
+let tt=null;
+function showToast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('show'),2300)}
 
-// ══════════════════════════════════════════════════════
+// ═══════════════════════════════════════════
 // INSTALL BANNER
-// ══════════════════════════════════════════════════════
-function dismissInstall(){ document.getElementById('install-banner').classList.remove('show'); localStorage.setItem('vj2_ib','1'); }
+// ═══════════════════════════════════════════
+function dismissIB(){document.getElementById('ib').classList.remove('show');localStorage.setItem('vj3_ib','1')}
 
-// ══════════════════════════════════════════════════════
-// SERVICE WORKER
-// ══════════════════════════════════════════════════════
-if('serviceWorker' in navigator){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('./sw.js').then(async ()=>{
-      const granted = await requestNotificationPermission();
-      if(granted){ setTimeout(scheduleAllReminders,1000); }
-    }).catch(e=>console.log('SW error:',e));
-  });
-}
-
-// ══════════════════════════════════════════════════════
-// SEED DATA
-// ══════════════════════════════════════════════════════
-function seedIfEmpty(){
-  if(DB.getFamilies().length>0) return;
+// ═══════════════════════════════════════════
+// SEED
+// ═══════════════════════════════════════════
+function seed(){
+  if(DB.families.length) return;
   DB.saveFamilies([
-    {id:'f_1',name:'Ngöndro',desc:'Prácticas preliminares',createdAt:new Date().toISOString()},
-    {id:'f_2',name:'Yidam',desc:'Prácticas de deidad',createdAt:new Date().toISOString()},
+    {id:'f_1',name:'Ngöndro',desc:'Prácticas preliminares',img:null,createdAt:new Date().toISOString()},
+    {id:'f_2',name:'Yidam',desc:'Prácticas de deidad',img:null,createdAt:new Date().toISOString()},
   ]);
   DB.savePractices([
     {id:'p_1',familyId:'f_1',name:'Refugio y Bodichita',unit:'repeticiones',goal:100000,daily:111,current:0,desc:'',days:[1,2,3,4,5],times:['07:00'],reminders:[15],createdAt:new Date().toISOString()},
@@ -1327,13 +1330,22 @@ function seedIfEmpty(){
   ]);
 }
 
-// ══════════════════════════════════════════════════════
-// INIT
-// ══════════════════════════════════════════════════════
-seedIfEmpty();
-renderFamilies();
-if(/iphone|ipad|ipod/i.test(navigator.userAgent) && !window.navigator.standalone && !localStorage.getItem('vj2_ib')){
-  setTimeout(()=>document.getElementById('install-banner').classList.add('show'),2500);
+// ═══════════════════════════════════════════
+// SW + INIT
+// ═══════════════════════════════════════════
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').then(async()=>{
+      if(await requestNotifPerm()) setTimeout(scheduleAll,1000);
+    }).catch(e=>console.log('SW:',e));
+  });
+}
+
+seed();
+renderToday();
+
+if(/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.navigator.standalone&&!localStorage.getItem('vj3_ib')){
+  setTimeout(()=>document.getElementById('ib').classList.add('show'),3000);
 }
 </script>
 </body>
