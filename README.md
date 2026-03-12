@@ -1,45 +1,49 @@
-# Vajrayana · Práctica v2
+# NGAKKHOR · Guru Rinpoche Mantra
 
-PWA completa para registro de prácticas Vajrayana con familias, horarios y recordatorios.
+Aplicación minimalista para `https://www.ngakkhor.com/guru` en hosting compartido **PHP + MySQL + JavaScript**.
 
-## Contenido del ZIP
+## Diseño
 
+- Título principal: **NGAKKHOR**
+- Subtítulo: **Guru Rinpoche Mantra**
+- Menú inferior fijo (Inicio, Recordatorios, Historial, Ajustes)
+- Interfaz móvil compacta
+- Tipografía Montserrat (Google Fonts) con estética más suave
+- Paleta azul rebajada para menor contraste
+
+## Backend MySQL (listo para hosting compartido)
+
+La app usa:
+
+- `index.html` (frontend)
+- `api.php` (API de guardado/carga)
+- `db_config.php` (tú lo creas con tus credenciales)
+
+### 1) Configura credenciales
+
+Copia `db_config.php.example` a `db_config.php` y rellena tus datos.
+
+### 2) Sube archivos a tu carpeta
+
+Sube todo a:
+
+- `public_html/guru/` (equivalente a `https://www.ngakkhor.com/guru`)
+
+### 3) Tabla en MySQL
+
+`api.php` crea automáticamente la tabla `guru_state` si no existe.
+
+## Recordatorios y email
+
+- CRUD completo de recordatorios (crear, consultar, modificar, activar/pausar, borrar)
+- CRUD del histórico diario (corregir o eliminar registros de un día)
+- Programación a 60 y 30 min antes
+- Envío a `ctk.tn.ktg@pm.me` por EmailJS (configurable desde Ajustes)
+
+## Uso local
+
+```bash
+php -S 127.0.0.1:4173
 ```
-vajrayana-v2/
-├── index.html       ← app completa
-├── manifest.json    ← configuración PWA
-├── sw.js            ← offline + recordatorios
-├── icons/           ← iconos para iPhone
-└── README.md
-```
 
-## Subir a GitHub Pages (paso a paso)
-
-1. Ve a **github.com** → New repository → nombre: `vajrayana` → Public → Create
-2. Pulsa **"uploading an existing file"** → arrastra todos los archivos y la carpeta `icons/`
-3. **Settings** → **Pages** → Branch: **main** / **root** → Save
-4. Espera 1-2 min → tu URL: `https://TU_USUARIO.github.io/vajrayana/`
-
-## Instalar en iPhone
-
-1. Abre la URL en **Safari**
-2. Compartir (icono cuadrado con flecha) → **"Añadir a pantalla de inicio"**
-3. Aparece como app nativa con icono azul lapislázuli
-
-## Activar recordatorios
-
-Los recordatorios funcionan con **Web Push** (iOS 16.4+, solo si está instalada como PWA):
-- Al abrir la app por primera vez te pedirá permiso para notificaciones
-- Acepta para recibir los recordatorios configurados en cada práctica
-
-## Funcionalidades
-
-- **Familias de prácticas**: Ngöndro, Yidam, o las que crees
-- **Prácticas por familia**: CRUD completo con metas y progreso
-- **Días de práctica**: marca qué días de la semana se practica
-- **Horarios**: añade una o varias horas por práctica
-- **Recordatorios**: 5, 10, 15, 30, 60 o 120 min antes
-- **Destacar prácticas de hoy** al abrir una familia
-- **Historial** con filtros y estadísticas
-- **Funciona offline**
-- **Datos en el dispositivo** (localStorage, sin servidor)
+Luego abre `http://127.0.0.1:4173`.
